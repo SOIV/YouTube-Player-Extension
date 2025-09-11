@@ -10,7 +10,7 @@
 
 #### ✅ 포함할 파일/폴더:
 ```
-📁 YouTube Bug Fixer & Enhancer - Release/
+📁 YouTube Player Extension - Release/
 ├── 📁 scripts/           # 모듈화된 JavaScript
 ├── 📁 icons/             # 확장 프로그램 아이콘들
 ├── 📄 manifest.json      # 확장 프로그램 설정
@@ -34,7 +34,7 @@
 #### 옵션 A: 배포 전용 폴더 사용
 ```bash
 # 이미 생성된 Release 폴더 사용
-cd "YouTube Bug Fixer & Enhancer - Release"
+cd "YouTube Player Extension - Release"
 # 이 폴더를 압축해서 업로드
 ```
 
@@ -68,12 +68,12 @@ cd "YouTube Bug Fixer & Enhancer - Release"
 
 ```bash
 # Release 폴더로 이동
-cd "../YouTube Bug Fixer & Enhancer - Release"
+cd "../YouTube Player Extension - Release"
 
 # 압축 파일 생성 (선택사항)
-zip -r "youtube-enhancer-v1.0.0.zip" .
+zip -r "youtube-extension-v1.0.0.zip" .
 
-# 업로드할 폴더: YouTube Bug Fixer & Enhancer - Release
+# 업로드할 폴더: YouTube Player Extension - Release
 ```
 
 ---

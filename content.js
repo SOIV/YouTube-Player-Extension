@@ -1,4 +1,4 @@
-// YouTube Player Enhancer - Modular Main Entry Point
+// YouTube Player Extension - Modular Main Entry Point
 
 class YouTubePlayerEnhancer {
   constructor() {
@@ -22,7 +22,7 @@ class YouTubePlayerEnhancer {
 
   async init() {
     try {
-      console.log('🚀 YouTube Player Enhancer starting (modular version)');
+      console.log('🚀 YouTube Player Extension starting (modular version)');
       
       // 1. 핵심 매니저 초기화
       await this.initCoreManagers();
@@ -40,10 +40,10 @@ class YouTubePlayerEnhancer {
       this.startMainLoop();
       
       this.isInitialized = true;
-      console.log('✅ YouTube Player Enhancer initialized successfully (modular)');
+      console.log('✅ YouTube Player Extension initialized successfully (modular)');
       
     } catch (error) {
-      console.error('❌ Failed to initialize YouTube Player Enhancer:', error);
+      console.error('❌ Failed to initialize YouTube Player Extension:', error);
     }
   }
 
@@ -99,7 +99,7 @@ class YouTubePlayerEnhancer {
         this.eventManager
       );
       await this.audioEnhancer.init();
-      console.log('🎵 Audio enhancer module loaded');
+      console.log('🎵 Audio extension module loaded');
     }
     
     // 품질 제어 모듈
@@ -175,7 +175,7 @@ class YouTubePlayerEnhancer {
 
   // 정리
   cleanup() {
-    console.log('🧹 Cleaning up YouTube Player Enhancer...');
+    console.log('🧹 Cleaning up YouTube Player Extension...');
     
     // 메인 루프 정리
     if (this.mainLoopInterval) {

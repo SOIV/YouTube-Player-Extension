@@ -1,4 +1,4 @@
-// YouTube Player Enhancer - Popup Script
+// YouTube Player Extension - Popup Script
 class PopupManager {
   constructor() {
     this.settings = {};
@@ -546,7 +546,7 @@ class PopupManager {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `youtube-player-enhancer-settings-${new Date().toISOString().split('T')[0]}.json`;
+      a.download = `youtube-player-extension-settings-${new Date().toISOString().split('T')[0]}.json`;
       a.click();
       
       URL.revokeObjectURL(url);
