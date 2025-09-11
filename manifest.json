@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube™ Player Extension",
+  "version": "1.0.0",
+  "description": "유튜브 플레이어 버그를 수정하고 고급 오디오/비디오 기능을 제공하는 확장 프로그램",
+  
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "contextMenus"
+  ],
+  
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.googlevideo.com/*"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": [
+        "scripts/core/base.js",
+        "scripts/core/settings.js", 
+        "scripts/features/audio.js",
+        "scripts/features/quality.js",
+        "scripts/features/pip.js",
+        "content.js"
+      ],
+      "css": ["styles.css"],
+      "run_at": "document_start"
+    }
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "YouTube Player Enhancer"
+  },
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["about.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+  
+}

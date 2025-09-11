@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - YouTube™ Player Extension</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 380px;
+      min-height: 500px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #ff0000, #cc0000);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .header p {
+      margin: 5px 0 0 0;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .app-info {
+      text-align: center;
+      margin-bottom: 25px;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .app-icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .app-name {
+      font-weight: 600;
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .app-version {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .app-description {
+      font-size: 14px;
+      color: #495057;
+      line-height: 1.5;
+    }
+
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-list {
+      margin: 0;
+      padding-left: 20px;
+      color: #495057;
+    }
+
+    .feature-list li {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .highlight-box {
+      background: #e7f3ff;
+      border: 1px solid #b8daff;
+      border-radius: 6px;
+      padding: 12px;
+      margin: 12px 0;
+    }
+
+    .highlight-box.warning {
+      background: #fff3cd;
+      border-color: #ffeaa7;
+    }
+
+    .highlight-title {
+      font-weight: 600;
+      font-size: 13px;
+      color: #0c5460;
+      margin-bottom: 6px;
+    }
+
+    .highlight-box.warning .highlight-title {
+      color: #856404;
+    }
+
+    .highlight-text {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #0c5460;
+    }
+
+    .highlight-box.warning .highlight-text {
+      color: #856404;
+    }
+
+    .footer {
+      padding: 15px 20px;
+      background: #e9ecef;
+      border-top: 1px solid #dee2e6;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 11px;
+      color: #6c757d;
+      line-height: 1.5;
+    }
+
+    .footer-text strong {
+      color: #495057;
+    }
+
+    .link-btn {
+      background: none;
+      border: none;
+      color: #007bff;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: inherit;
+      padding: 0;
+    }
+
+    .link-btn:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <button class="back-btn" id="backBtn">← 뒤로</button>
+    <h1>About</h1>
+    <p>YouTube™ Player Extension 정보</p>
+  </div>
+
+  <div class="content">
+    <div class="app-info">
+      <div class="app-icon">🎮</div>
+      <div class="app-name">YouTube™ Player Extension</div>
+      <div class="app-version">버전 1.0.0</div>
+      <div class="app-description">
+        YouTube의 플레이어 기능을 향상시키고<br>
+        실용적인 오디오 제어 기능을 제공하는 확장 프로그램
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        🎵 주요 기능
+      </div>
+      <ul class="feature-list">
+        <li><strong>오디오 컴프레서</strong> - 볼륨 증폭 및 다이나믹 레인지 압축 (50% ~ 200%)</li>
+        <li><strong>스테레오 패닝</strong> - 좌우 음향 균형 조정 (L/R)</li>
+        <li><strong>Picture-in-Picture</strong> - 작은 창으로 비디오 시청</li>
+        <li><strong>미니플레이어</strong> - 스크롤 시 작은 플레이어로 계속 시청</li>
+        <li><strong>자동 품질 선택</strong> - 선호 화질로 자동 설정</li>
+        <li><strong>비디오 코덱 선택</strong> - H.264, VP9, AV1 중 선택</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        💡 개발 배경
+      </div>
+      <p style="font-size: 13px; color: #495057; line-height: 1.5; margin: 12px 0;">
+        기존의 복잡한 YouTube 확장 프로그램들과 달리, 정말 필요한 기능만 엄선하여 
+        성능과 안정성에 중점을 둔 설계입니다.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        🎤 노래방 기능이 필요하다면?
+      </div>
+      <div class="highlight-box warning">
+        <div class="highlight-title">Transpose ▲▼ 추천</div>
+        <div class="highlight-text">
+          노래 키 조정, 템포 변경, 반복 구간 설정 등의 노래방 기능이 필요하시면 
+          <a href="https://chromewebstore.google.com/detail/ioimlbgefgadofblnajllknopjboejda?utm_source=item-share-cb" 
+             target="_blank" 
+             style="color: #856404; font-weight: bold; text-decoration: underline;">
+            <strong>Transpose ▲▼</strong>
+          </a> 확장 프로그램을 추천드립니다.
+        </div>
+      </div>
+      <p style="font-size: 12px; color: #666; margin: 8px 0 0 0;">
+        각 확장 프로그램이 각자의 전문 분야에서 최고의 성능을 발휘할 수 있도록 역할을 분담했습니다.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        🛠️ 기술 정보
+      </div>
+      <ul class="feature-list">
+        <li><strong>Manifest V3</strong> - 최신 크롬 확장 프로그램 표준</li>
+        <li><strong>모듈화 설계</strong> - 기능별 분리된 JavaScript 모듈</li>
+        <li><strong>Web Audio API</strong> - 고품질 오디오 처리</li>
+        <li><strong>메모리 최적화</strong> - 사용하지 않는 기능은 로드하지 않음</li>
+        <li><strong>YouTube 호환성</strong> - YouTube 업데이트에 대응하는 안정적인 구조</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">
+      <strong>Made with ❤️ by Developer</strong><br>
+      YouTube는 Google LLC의 상표입니다<br>
+      <span style="margin-top: 8px; display: inline-block;">
+        이 확장 프로그램은 YouTube와 공식적인 관련이 없습니다
+      </span>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="about.js"></script>
+</body>
+</html>
