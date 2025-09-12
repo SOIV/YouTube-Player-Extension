@@ -33,7 +33,7 @@ class SettingsManager {
       
       // UI 상태 (접기/펼치기)
       collapsedSections: {
-        bugFixes: false,     // 버그 수정은 기본적으로 펼쳐진 상태
+        bugFixes: true,      // 버그 수정은 기본적으로 접힌 상태
         advanced: true       // 고급 설정은 기본적으로 접힌 상태
       }
     };
