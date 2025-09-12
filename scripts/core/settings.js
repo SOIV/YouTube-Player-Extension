@@ -27,8 +27,7 @@ class SettingsManager {
       // Picture-in-Picture 설정
       enablePIP: true,
       
-      // 디버그/고급 모드
-      enableDebugMode: false,
+      // 고급 설정
       customScripts: '',
       customTheme: '',
       
@@ -85,9 +84,7 @@ class SettingsManager {
   }
 
   isAdvancedEnabled() {
-    return this.settings.enableDebugMode || 
-           this.settings.customScripts || 
-           this.settings.customTheme;
+    return this.settings.customScripts || this.settings.customTheme;
   }
 }
 

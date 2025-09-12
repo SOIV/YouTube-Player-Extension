@@ -54,8 +54,6 @@ class BackgroundManager {
       hideRecommendations: false,
       autoExpandDescription: false,
       
-      // 고급 설정
-      enableDebugMode: false,
       
       // 내부 설정
       extensionVersion: '1.0.0',
@@ -66,10 +64,10 @@ class BackgroundManager {
     try {
       await chrome.storage.sync.set(defaultSettings);
       
-      // 환영 탭 열기
-      chrome.tabs.create({
-        url: chrome.runtime.getURL('welcome.html')
-      });
+      // 환영 탭 열기 (비활성화)
+      // chrome.tabs.create({
+      //   url: chrome.runtime.getURL('welcome.html')
+      // });
       
       console.log('YouTube Bug Fixer installed with default settings');
     } catch (error) {

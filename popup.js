@@ -33,24 +33,20 @@ class PopupManager {
       const key = element.getAttribute('data-i18n');
       const translation = window.i18n.t(key);
       
-      // 섹션 제목의 경우 이모지를 유지
-      if (element.classList.contains('section-title') || element.closest('.section-title')) {
-        const sectionEmojiMap = {
-          'audioControl': '🎵 ',
-          'playbackQuality': '📺 ',
-          'pipMiniPlayer': '📱 ',
-          'bugFixes': '🔧 ',
-          'advancedSettings': '🛠️ '
-        };
-        const emoji = sectionEmojiMap[key] || '';
-        element.textContent = emoji + translation;
-      } else {
-        element.textContent = translation;
-      }
+      element.textContent = translation;
     });
 
     // 슬라이더 값 표시 업데이트
     this.updateSliderValues();
+    
+    // placeholder 텍스트 업데이트
+    this.updatePlaceholders();
+    
+    // select 옵션 텍스트 업데이트
+    this.updateSelectOptions();
+    
+    // 설정 표시 이름들을 새로 고침하기 위해 getSettingDisplayName 캐시 무효화
+    // (실제로는 함수가 매번 새로 계산하므로 별도 작업 불필요)
   }
 
   updateSliderValues() {
@@ -96,7 +92,6 @@ class PopupManager {
         enablePIP: true,
         
         // 고급 설정
-        enableDebugMode: false,
         customScripts: '',
         customTheme: '',
         
@@ -110,7 +105,7 @@ class PopupManager {
       this.settings = result;
     } catch (error) {
       console.error('Failed to load settings:', error);
-      this.showStatus('설정을 불러오는데 실패했습니다.', 'error');
+      this.showStatus(window.i18n.t('settingsLoadFailed'), 'error');
     }
   }
 
@@ -262,6 +257,31 @@ class PopupManager {
     // 컨트롤 표시/숨김 업데이트
     this.updateControlVisibility();
   }
+  
+  updatePlaceholders() {
+    // data-i18n-placeholder 속성을 가진 모든 요소 업데이트
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+      const key = element.getAttribute('data-i18n-placeholder');
+      const translation = window.i18n.t(key);
+      element.placeholder = translation;
+    });
+  }
+  
+  updateSelectOptions() {
+    // data-i18n 속성을 가진 option 요소들 업데이트
+    document.querySelectorAll('option[data-i18n]').forEach(option => {
+      const key = option.getAttribute('data-i18n');
+      const translation = window.i18n.t(key);
+      option.textContent = translation;
+    });
+    
+    // span[data-i18n] 요소들도 업데이트 (기본값 표시용)
+    document.querySelectorAll('span[data-i18n]').forEach(span => {
+      const key = span.getAttribute('data-i18n');
+      const translation = window.i18n.t(key);
+      span.textContent = translation;
+    });
+  }
 
   updateControlVisibility() {
     // 오디오 컴프레서 컨트롤 표시/숨김
@@ -332,9 +352,9 @@ class PopupManager {
     try {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       if (!tab.url.includes('youtube.com')) {
-        this.showStatus('이 확장 프로그램은 YouTube에서만 작동합니다.', 'error');
+        this.showStatus(window.i18n.t('extensionYouTubeOnly'), 'error');
       } else {
-        this.showStatus('YouTube에서 확장 프로그램이 활성화되었습니다.', 'success');
+        this.showStatus(window.i18n.t('extensionActivated'), 'success');
       }
     } catch (error) {
       console.error('Failed to check current tab:', error);
@@ -362,17 +382,21 @@ class PopupManager {
       this.updateControlVisibility();
     }
     
-    this.showStatus(`${this.getSettingDisplayName(setting)} ${newValue ? '활성화' : '비활성화'}됨`, 'success');
+    this.showStatus(`${this.getSettingDisplayName(setting)} ${newValue ? window.i18n.t('enabledOn') : window.i18n.t('disabledOn')}`, 'success');
   }
 
   async handleSelectChange(select) {
     const setting = select.dataset.setting;
+    
+    // 언어 선택기는 data-setting이 없으므로 무시
+    if (!setting) return;
+    
     const newValue = select.value;
     
     this.settings[setting] = newValue;
     await this.saveSetting(setting, newValue);
     
-    this.showStatus(`${this.getSettingDisplayName(setting)} 변경됨: ${newValue}`, 'success');
+    this.showStatus(`${this.getSettingDisplayName(setting)} ${window.i18n.t('changed')}: ${newValue}`, 'success');
   }
 
   async handleSliderChange(slider) {
@@ -387,7 +411,7 @@ class PopupManager {
     
     // 오디오 설정은 즉시 적용 피드백
     if (['volumeBoost', 'stereoPan'].includes(setting)) {
-      this.showStatus(`${this.getSettingDisplayName(setting)} 조정됨`, 'success');
+      this.showStatus(`${this.getSettingDisplayName(setting)} ${window.i18n.t('adjusted')}`, 'success');
     }
   }
 
@@ -416,29 +440,53 @@ class PopupManager {
       }
     } catch (error) {
       console.error('Failed to save setting:', error);
-      this.showStatus('설정 저장에 실패했습니다.', 'error');
+      this.showStatus(window.i18n.t('settingSaveFailed'), 'error');
     }
   }
 
   getSettingDisplayName(setting) {
+    // i18n이 사용 가능한지 확인
+    if (!window.i18n || typeof window.i18n.t !== 'function') {
+      // 기본 한국어 설정 이름들
+      const fallbackNames = {
+        enableCompressor: '오디오 컴프레서',
+        enableStereoPan: '스테레오 패닝',
+        autoQuality: '자동 품질 선택',
+        preferredQuality: '선호 화질',
+        autoCodec: '자동 코덱 선택',
+        preferredCodec: '선호 코덱',
+        popupPlayer: '미니플레이어',
+        miniPlayerSize: '미니플레이어 크기',
+        miniPlayerPosition: '미니플레이어 위치',
+        enablePIP: 'Picture-in-Picture(PIP)',
+        volumeBoost: '볼륨 부스트',
+        stereoPan: '스테레오 패닝'
+      };
+      return fallbackNames[setting] || setting;
+    }
+    
     const displayNames = {
       // 버그 수정 (모두 제거됨)
       
       // 오디오
-      enableCompressor: '오디오 컴프레서', // 전 volumeBoost
-      enableStereoPan: '스테레오 패닝', // 전 stereoPan
+      enableCompressor: window.i18n.t('audioCompressorName'), // 전 volumeBoost
+      enableStereoPan: window.i18n.t('stereoPanningName'), // 전 stereoPan
       
       // 품질
-      autoQuality: '자동 품질 선택',
-      preferredQuality: '선호 화질',
-      autoCodec: '자동 코덱 선택',
-      preferredCodec: '선호 코덱',
+      autoQuality: window.i18n.t('autoQualityName'),
+      preferredQuality: window.i18n.t('preferredQualityName'),
+      autoCodec: window.i18n.t('autoCodecName'),
+      preferredCodec: window.i18n.t('preferredCodecName'),
       
       // 팝업/미니 재생기
-      popupPlayer: '미니플레이어',
-      miniPlayerSize: '미니플레이어 크기',
-      miniPlayerPosition: '미니플레이어 위치',
-      enablePIP: 'Picture-in-Picture(PIP)',
+      popupPlayer: window.i18n.t('miniPlayerName'),
+      miniPlayerSize: window.i18n.t('miniPlayerSizeName'),
+      miniPlayerPosition: window.i18n.t('miniPlayerPositionName'),
+      enablePIP: window.i18n.t('pipModeName'),
+      
+      // 슬라이더 설정
+      volumeBoost: window.i18n.t('audioCompressorName'),
+      stereoPan: window.i18n.t('stereoPanningName'),
       
       // 고급 설정 (디버그 모드 제거)
     };
@@ -550,10 +598,10 @@ class PopupManager {
       a.click();
       
       URL.revokeObjectURL(url);
-      this.showStatus('설정이 내보내졌습니다.', 'success');
+      this.showStatus(window.i18n.t('settingsExported'), 'success');
     } catch (error) {
       console.error('Failed to export settings:', error);
-      this.showStatus('설정 내보내기에 실패했습니다.', 'error');
+      this.showStatus(window.i18n.t('settingsExportFailed'), 'error');
     }
   }
 
@@ -573,10 +621,10 @@ class PopupManager {
       this.settings = settings;
       this.setupUI();
       
-      this.showStatus('설정이 가져와졌습니다.', 'success');
+      this.showStatus(window.i18n.t('settingsImported'), 'success');
     } catch (error) {
       console.error('Failed to import settings:', error);
-      this.showStatus('설정 가져오기에 실패했습니다.', 'error');
+      this.showStatus(window.i18n.t('settingsImportFailed'), 'error');
     }
   }
 
@@ -587,7 +635,7 @@ class PopupManager {
         window.location.reload();
       } catch (error) {
         console.error('Failed to reset settings:', error);
-        this.showStatus('설정 초기화에 실패했습니다.', 'error');
+        this.showStatus(window.i18n.t('settingsResetFailed'), 'error');
       }
     }
   }

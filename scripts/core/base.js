@@ -12,10 +12,12 @@ class DOMCache {
       switch (key) {
         case 'player':
           element = document.getElementById('movie_player') || 
-                   document.querySelector('.html5-video-player');
+                   document.querySelector('.html5-video-player') ||
+                   document.querySelector('ytd-player#ytd-player');
           break;
         case 'video':
           element = document.querySelector('#movie_player video') || 
+                   document.querySelector('.html5-video-player video') ||
                    document.querySelector('video');
           break;
         default:
@@ -35,6 +37,26 @@ class DOMCache {
   clear() {
     this.cache.clear();
   }
+  
+  // 유틸리티 함수들
+  throttle(func, delay) {
+    let timeoutId;
+    let lastExecTime = 0;
+    return (...args) => {
+      const currentTime = Date.now();
+      
+      if (currentTime - lastExecTime > delay) {
+        func(...args);
+        lastExecTime = currentTime;
+      } else {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          func(...args);
+          lastExecTime = Date.now();
+        }, delay - (currentTime - lastExecTime));
+      }
+    };
+  }
 }
 
 // 이벤트 관리 클래스
@@ -47,6 +69,18 @@ class EventManager {
   addEventListener(target, event, handler, options = false) {
     target.addEventListener(event, handler, options);
     this.listeners.add({ target, event, handler, options });
+  }
+  
+  removeEventListener(target, event, handler, options = false) {
+    target.removeEventListener(event, handler, options);
+    // Set에서 해당 리스너 찾아서 제거
+    for (const listener of this.listeners) {
+      if (listener.target === target && listener.event === event && 
+          listener.handler === handler && listener.options === options) {
+        this.listeners.delete(listener);
+        break;
+      }
+    }
   }
 
   addInterval(callback, delay) {

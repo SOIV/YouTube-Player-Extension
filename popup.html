@@ -264,21 +264,6 @@
       text-align: center;
     }
 
-    .advanced-section {
-      background: #f8f9fa;
-      border: 1px solid #e9ecef;
-      border-radius: 5px;
-      padding: 10px;
-      margin-top: 10px;
-    }
-
-    .advanced-toggle {
-      font-size: 12px;
-      color: #007bff;
-      cursor: pointer;
-      text-decoration: underline;
-      margin-bottom: 10px;
-    }
 
 
     .code-editor {
@@ -418,6 +403,11 @@
       font-size: 12px;
       transition: transform 0.3s ease;
       margin-left: 10px;
+      color: #666;
+      font-weight: bold;
+      display: inline-block;
+      min-width: 12px;
+      text-align: center;
     }
 
     .section-title.collapsible.collapsed .collapse-icon {
@@ -499,7 +489,7 @@
         </div>
         <div class="control-group">
           <select data-setting="preferredQuality">
-            <option value="auto">자동</option>
+            <option value="auto" data-i18n="autoOption">자동</option>
             <option value="small">240p</option>
             <option value="medium">360p</option>
             <option value="large">480p</option>
@@ -521,7 +511,7 @@
         </div>
         <div class="control-group">
           <select data-setting="preferredCodec">
-            <option value="auto">자동</option>
+            <option value="auto" data-i18n="autoOption">자동</option>
             <option value="h264">H.264 (호환성)</option>
             <option value="vp9">VP9 (효율성)</option>
             <option value="av01">AV1 (최신)</option>
@@ -545,23 +535,23 @@
 
       <div class="option">
         <div>
-          <div class="option-label">미니플레이어</div>
-          <div class="option-description">스크롤 시 작은 플레이어로 계속 시청</div>
+          <div class="option-label" data-i18n="miniPlayerLabel">미니플레이어</div>
+          <div class="option-description" data-i18n="miniPlayerDescription">스크롤 시 작은 플레이어로 계속 시청</div>
         </div>
         <div class="toggle" data-setting="popupPlayer"></div>
       </div>
 
       <div class="option">
         <div>
-          <div class="option-label">미니플레이어 크기</div>
-          <div class="option-description">미니플레이어의 크기를 선택</div>
+          <div class="option-label" data-i18n="miniPlayerSizeLabel">미니플레이어 크기</div>
+          <div class="option-description" data-i18n="miniPlayerSizeDescription">미니플레이어의 크기를 선택</div>
         </div>
         <select data-setting="miniPlayerSize">
           <option value="256x144">256x144</option>
           <option value="320x180">320x180</option>
           <option value="400x225">400x225</option>
           <option value="426x240">426x240</option>
-          <option value="480x270">480x270 (기본값)</option>
+          <option value="480x270">480x270 (<span data-i18n="defaultSize">기본값</span>)</option>
           <option value="560x315">560x315</option>
           <option value="640x360">640x360</option>
         </select>
@@ -569,8 +559,8 @@
 
       <div class="option">
         <div>
-          <div class="option-label">미니플레이어 위치</div>
-          <div class="option-description">미니플레이어가 나타날 화면 위치</div>
+          <div class="option-label" data-i18n="miniPlayerPositionLabel">미니플레이어 위치</div>
+          <div class="option-description" data-i18n="miniPlayerPositionDescription">미니플레이어가 나타날 화면 위치</div>
         </div>
         <select data-setting="miniPlayerPosition">
           <option value="top-left" data-i18n="topLeft">왼쪽 상단</option>
@@ -599,7 +589,7 @@
     </div>
 
     <!-- 고급 설정 섹션 -->
-    <div class="advanced-section">
+    <div class="section">
       <div class="section-title collapsible collapsed" id="advancedToggle">
         <span data-i18n="advancedSettings">🛠️ 고급 설정</span>
         <span class="collapse-icon">▼</span>
@@ -613,6 +603,7 @@
             id="customTheme" 
             class="code-editor" 
             data-setting="customTheme"
+            data-i18n-placeholder="customThemePlaceholder"
             placeholder="/* 커스텀 CSS 코드를 입력하세요 */
 .ytp-chrome-bottom { 
   background: rgba(0,0,0,0.8) !important; 
@@ -626,6 +617,7 @@
             id="customScripts" 
             class="code-editor" 
             data-setting="customScripts"
+            data-i18n-placeholder="customScriptsPlaceholder"
             placeholder="// 커스텀 JavaScript 코드를 입력하세요
 // 사용 가능한 변수: player, settings, audioContext
 console.log('커스텀 스크립트 실행됨');"
