@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // 다국어 텍스트 업데이트
+document.addEventListener('DOMContentLoaded', async () => {
+  // i18n이 로드될 때까지 기다린 후 다국어 텍스트 업데이트
+  await window.waitForI18n();
   updateTexts();
   
   // 뒤로 버튼 이벤트

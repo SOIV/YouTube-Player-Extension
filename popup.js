@@ -7,19 +7,22 @@ class PopupManager {
 
   async init() {
     await this.loadSettings();
-    this.initI18n();
+    await this.initI18n();
     this.setupUI();
     this.setupEventListeners();
     this.updateSliderDisplays();
   }
 
-  initI18n() {
+  async initI18n() {
+    // i18n이 로드될 때까지 대기
+    await window.waitForI18n();
+    
     // 언어 선택기 초기화
     const languageSelect = document.getElementById('languageSelect');
     if (languageSelect) {
       languageSelect.value = window.i18n.getCurrentLanguage();
-      languageSelect.addEventListener('change', (e) => {
-        window.i18n.setLanguage(e.target.value);
+      languageSelect.addEventListener('change', async (e) => {
+        await window.i18n.setLanguage(e.target.value);
         this.updateTexts();
       });
     }
