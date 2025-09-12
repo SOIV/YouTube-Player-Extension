@@ -20,9 +20,9 @@ class SettingsManager {
       preferredCodec: 'auto', // vp9, h264, av01
       
       // 팝업/미니 재생기
-      popupPlayer: false,
+      popupPlayer: true,
       miniPlayerSize: '480x270', // 256x144, 320x180, 400x225, 426x240, 480x270, 560x315, 640x360
-      miniPlayerPosition: 'bottom-right',
+      miniPlayerPosition: 'top-right',
       
       // Picture-in-Picture 설정
       enablePIP: true,
