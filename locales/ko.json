@@ -63,6 +63,8 @@
   "miniPlayerSizeName": "미니플레이어 크기",
   "miniPlayerPositionName": "미니플레이어 위치",
   "pipModeName": "Picture-in-Picture(PIP)",
+  "smallPlayerButton": "소형 플레이어 버튼",
+  "smallPlayerButtonDesc": "YouTube 우클릭 메뉴의 소형 플레이어 기능을 버튼으로 추가",
   "backButton": "뒤로",
   "aboutInfo": "YouTube™ Player Extension 정보",
   "version": "버전 1.0.0",

@@ -27,6 +27,9 @@ class SettingsManager {
       // Picture-in-Picture 설정
       enablePIP: true,
       
+      // 소형 플레이어 버튼 설정
+      enableSmallPlayerButton: true,
+      
       // 고급 설정
       customScripts: '',
       customTheme: '',

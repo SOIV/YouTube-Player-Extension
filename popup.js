@@ -107,6 +107,9 @@ class PopupManager {
         // Picture-in-Picture 설정
         enablePIP: true,
         
+        // 소형 플레이어 버튼 설정
+        enableSmallPlayerButton: true,
+        
         // 고급 설정
         customScripts: '',
         customTheme: '',
@@ -398,6 +401,8 @@ class PopupManager {
       this.updateControlVisibility();
     }
     
+    // 소형 플레이어 버튼은 기본 메시지 사용 (다국어 지원)
+    
     this.showStatus(`${this.getSettingDisplayName(setting)} ${newValue ? window.i18n.t('enabledOn') : window.i18n.t('disabledOn')}`, 'success');
   }
 
@@ -475,6 +480,7 @@ class PopupManager {
         miniPlayerSize: '미니플레이어 크기',
         miniPlayerPosition: '미니플레이어 위치',
         enablePIP: 'Picture-in-Picture(PIP)',
+        enableSmallPlayerButton: '소형 플레이어 버튼',
         volumeBoost: '볼륨 부스트',
         stereoPan: '스테레오 패닝'
       };
@@ -499,6 +505,7 @@ class PopupManager {
       miniPlayerSize: window.i18n.t('miniPlayerSizeName'),
       miniPlayerPosition: window.i18n.t('miniPlayerPositionName'),
       enablePIP: window.i18n.t('pipModeName'),
+      enableSmallPlayerButton: window.i18n.t('smallPlayerButton'),
       
       // 슬라이더 설정
       volumeBoost: window.i18n.t('audioCompressorName'),
