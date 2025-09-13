@@ -1,5 +1,7 @@
 # YouTube Player Extension
 
+[![English](https://img.shields.io/badge/README-English-blue)](README_EN.md)
+
 유튜브 재생기의 다양한 기능을 향상시키는 브라우저 확장 프로그램입니다.
 
 ## 주요 기능
