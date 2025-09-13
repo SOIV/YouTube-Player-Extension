@@ -102,5 +102,5 @@
   "defaultSize": "Default",
   "autoOption": "Auto",
   "customThemePlaceholder": "/* Enter your custom CSS code here */\n.ytp-chrome-bottom { \n  background: rgba(0,0,0,0.8) !important; \n}",
-  "customScriptsPlaceholder": "// Enter your custom JavaScript code here\nconsole.log(\"Custom script executed\");"
+  "customScriptsPlaceholder": "// Enter your custom JavaScript code here"
 }

@@ -15,11 +15,9 @@ class PIPController {
   // PIP 초기화
   init() {
     if (!this.isEnabled()) {
-      console.log('PIP features disabled, skipping setup');
       return;
     }
 
-    console.log('PIP controller initialized');
     this.setupPIP();
   }
 
@@ -58,7 +56,6 @@ class PIPController {
       }
       
     } catch (error) {
-      console.error('Failed to apply PIP settings:', error);
     }
   }
 
@@ -70,19 +67,16 @@ class PIPController {
       const nativePIPButton = document.querySelector('.ytp-pip-button');
       
       if (nativePIPButton) {
-        console.log('🎯 Found native PIP button - hijacking it!');
         
         // 기본 PIP 버튼을 보이게 만들기
         nativePIPButton.style.display = '';
         nativePIPButton.style.visibility = 'visible';
         nativePIPButton.style.opacity = '1';
         
-        console.log('📋 Original button HTML:', nativePIPButton.outerHTML);
         
         // SVG 요소만 찾아서 path 내용만 교체 (툴팁 시스템 보존)
         const existingSvg = nativePIPButton.querySelector('svg');
         if (existingSvg) {
-          console.log('🔍 Found existing SVG, replacing path only...');
           
           // 기존 SVG의 path만 교체 (CSS 조정 없이)
           const existingPath = existingSvg.querySelector('path');
@@ -90,12 +84,9 @@ class PIPController {
             // PIP 아이콘 전체를 오른쪽으로 6 이동
             existingPath.setAttribute('d', 'M27 9H9c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V11c0-1.1-.9-2-2-2zm0 16H9V11h18v14zM24 14h-6c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V15c0-.55-.45-1-1-1z');
             existingPath.setAttribute('fill', 'white');
-            console.log('✅ SVG path replaced');
           } else {
-            console.log('❌ No path found in SVG');
           }
         } else {
-          console.log('❌ No SVG found, replacing innerHTML...');
           // SVG가 없으면 전체 교체 (폴백)
           nativePIPButton.innerHTML = `
             <svg height="100%" version="1.1" viewBox="0 0 24 24" width="100%">
@@ -106,19 +97,15 @@ class PIPController {
         
         // 기존 클릭 이벤트에 우리 기능 추가 (기존 이벤트 제거하지 않음)
         nativePIPButton.addEventListener('click', (e) => {
-          console.log('🖱️ PIP button clicked - using our toggle');
           e.stopPropagation(); // 기존 이벤트 중단
           e.preventDefault();
           this.togglePIP();
         }, true); // capture phase에서 먼저 실행
         
-        console.log('✅ Native PIP button hijacked successfully!');
-        console.log('📋 Final button HTML:', nativePIPButton.outerHTML);
         return;
       }
       
       // 기본 PIP 버튼이 없으면 커스텀 버튼 생성 (폴백)
-      console.log('❌ Native PIP button not found, creating custom button...');
       
       const controlsRight = document.querySelector('.ytp-right-controls');
       if (!controlsRight) return;
@@ -170,9 +157,7 @@ class PIPController {
       // PIP 버튼은 폴백이므로 툴팁 없이 사용
       // this.registerTooltipForButton(pipButton);
       
-      console.log('PIP button added (fallback)');
     } catch (error) {
-      console.error('Failed to add PIP button:', error);
     }
   }
 
@@ -183,13 +168,10 @@ class PIPController {
 
       if (document.pictureInPictureElement) {
         await document.exitPictureInPicture();
-        console.log('Exited PIP mode');
       } else {
         await video.requestPictureInPicture();
-        console.log('Entered PIP mode');
       }
     } catch (error) {
-      console.error('PIP toggle failed:', error.message || error);
     }
   }
 
@@ -256,7 +238,6 @@ class PIPController {
 
       smallPlayerButton.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('소형 플레이어 활성화 중...');
         this.triggerSmallPlayerFromMenu();
       });
 
@@ -280,9 +261,7 @@ class PIPController {
       // 폴백 툴팁 시스템 제거 - YouTube 시스템 간섭 방지
       // this.registerTooltipForButton(smallPlayerButton);
       
-      console.log('Small player button added');
     } catch (error) {
-      console.error('Failed to add small player button:', error);
     }
   }
 
@@ -291,7 +270,6 @@ class PIPController {
       // 1. 우클릭 컨텍스트 메뉴 시뮬레이션
       const video = document.querySelector('video');
       if (!video) {
-        console.error('Video element not found');
         return;
       }
 
@@ -309,7 +287,6 @@ class PIPController {
       }, 150);
 
     } catch (error) {
-      console.error('Failed to trigger small player from menu:', error);
     }
   }
 
@@ -318,7 +295,6 @@ class PIPController {
       // 컨텍스트 메뉴에서 소형 플레이어 관련 항목 찾기
       const contextMenu = document.querySelector('.ytp-contextmenu');
       if (!contextMenu) {
-        console.log('Context menu not found');
         return;
       }
 
@@ -345,9 +321,7 @@ class PIPController {
       }
 
       if (smallPlayerItem) {
-        console.log('Small player menu item found:', smallPlayerItem.textContent);
         smallPlayerItem.click();
-        console.log('✅ 소형 플레이어가 활성화되었습니다');
         
         // 메뉴 숨기기
         setTimeout(() => {
@@ -355,14 +329,11 @@ class PIPController {
         }, 50);
         
       } else {
-        console.log('Small player menu item not found');
-        console.log('❌ 소형 플레이어 메뉴를 찾을 수 없습니다');
         // 메뉴 숨기기
         document.body.click();
       }
 
     } catch (error) {
-      console.error('Failed to click small player menu item:', error);
       // 오류 발생 시 메뉴 숨기기
       document.body.click();
     }
@@ -370,91 +341,66 @@ class PIPController {
 
   registerTooltipForButton(button) {
     try {
-      console.log('🔧 Registering tooltip for button:', button.className);
       
       // 1. YouTube의 전역 툴팁 시스템 찾기
       const player = document.querySelector('#movie_player');
       if (!player) {
-        console.log('❌ #movie_player not found');
         return;
       }
-      console.log('✅ Found #movie_player');
 
       // 2. YouTube 내부 API 접근 시도
-      console.log('🔍 Checking player.addTooltip...');
       if (player.addTooltip && typeof player.addTooltip === 'function') {
         player.addTooltip(button);
-        console.log('✅ YouTube internal tooltip system registered for:', button.className);
         return;
       }
-      console.log('❌ player.addTooltip not available');
 
       // 3. YouTube 내부 툴팁 초기화 시스템 호출 시도
-      console.log('🔍 Checking window.yt.www.watch...');
       if (window.yt && window.yt.www && window.yt.www.watch) {
         const watchPage = window.yt.www.watch;
         if (watchPage.initializeTooltips && typeof watchPage.initializeTooltips === 'function') {
           watchPage.initializeTooltips(button);
-          console.log('✅ YouTube watch page tooltip system registered for:', button.className);
           return;
         }
-        console.log('❌ watchPage.initializeTooltips not available');
       }
-      console.log('❌ window.yt.www.watch not available');
 
       // 4. YouTube 플레이어 내부 시스템에 버튼 등록 시도
-      console.log('🔍 Checking player tooltip manager...');
       if (player._tooltipManager || player.tooltipManager) {
         const tooltipManager = player._tooltipManager || player.tooltipManager;
-        console.log('✅ Found tooltip manager:', tooltipManager);
         if (tooltipManager.addButton && typeof tooltipManager.addButton === 'function') {
           tooltipManager.addButton(button);
-          console.log('✅ YouTube tooltip manager registered for:', button.className);
           return;
         }
-        console.log('❌ tooltipManager.addButton not available');
       }
-      console.log('❌ player tooltip manager not available');
 
       // 5. YouTube의 기존 이벤트 리스너를 우리 버튼에 복사 시도
-      console.log('🔍 Attempting to copy event listeners from reference button...');
       const referenceButton = document.querySelector('.ytp-settings-button');
       if (!referenceButton) {
-        console.log('❌ Reference button (.ytp-settings-button) not found');
       } else {
-        console.log('✅ Found reference button');
         
         // getEventListeners는 개발자 도구에서만 사용 가능
         if (typeof getEventListeners === 'function') {
           const listeners = getEventListeners(referenceButton);
-          console.log('📋 Reference button listeners:', Object.keys(listeners));
           
           if (listeners.mouseover && listeners.mouseover.length > 0) {
-            console.log('🔄 Copying mouseover listeners...');
             const originalListener = listeners.mouseover[0].listener;
             button.addEventListener('mouseover', originalListener);
             button.addEventListener('focus', originalListener);
             
             if (listeners.mouseout && listeners.mouseout.length > 0) {
-              console.log('🔄 Copying mouseout listeners...');
               const hideListener = listeners.mouseout[0].listener;
               button.addEventListener('mouseout', hideListener);
               button.addEventListener('blur', hideListener);
               button.addEventListener('mouseleave', hideListener);
             }
             
-            console.log('✅ Copied YouTube event listeners to:', button.className);
             return;
           } else {
-            console.log('❌ No mouseover listeners found on reference button');
           }
         } else {
-          console.log('❌ getEventListeners not available (console only)');
         }
       }
 
       // 6. 마지막 수단: 간단한 툴팁 시스템 직접 구현
-      console.log('🔧 Implementing fallback tooltip system...');
       const tooltipText = button.getAttribute('data-tooltip-title') || button.getAttribute('data-title-no-tooltip');
       
       if (tooltipText) {
@@ -505,13 +451,10 @@ class PIPController {
         button.addEventListener('blur', hideTooltip);
         button.addEventListener('mouseleave', hideTooltip);
         
-        console.log('✅ Fallback tooltip system implemented for:', button.className);
       } else {
-        console.log('❌ No tooltip text found for button');
       }
 
     } catch (error) {
-      console.error('❌ Failed to register tooltip for button:', error);
     }
   }
 
@@ -765,7 +708,6 @@ class PIPController {
     const hasPIPChanges = changedSettings.some(key => pipSettings.includes(key));
     
     if (hasPIPChanges) {
-      console.log('PIP settings changed, applying updates');
       
       // PIP 버튼 설정이 변경된 경우 즉시 처리
       if (changedSettings.includes('enablePIP')) {
@@ -833,7 +775,6 @@ class PIPController {
       document.body.classList.remove(`efyt-mini-player-${pos}`);
     });
 
-    console.log('PIP controller cleanup completed');
   }
 }
 

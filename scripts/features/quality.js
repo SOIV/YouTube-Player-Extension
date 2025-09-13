@@ -15,11 +15,9 @@ class QualityController {
   // 품질 제어 초기화
   init() {
     if (!this.isEnabled()) {
-      console.log('Quality control disabled, skipping setup');
       return;
     }
 
-    console.log('Quality control initialized');
     this.setupQualityControl();
   }
 
@@ -56,7 +54,6 @@ class QualityController {
         this.setVideoCodec(player);
       }
     } catch (error) {
-      console.error('Failed to apply quality settings:', error);
     }
   }
 
@@ -71,11 +68,9 @@ class QualityController {
         // 수동 품질 설정
         if (typeof player.setPlaybackQuality === 'function') {
           player.setPlaybackQuality(preferredQuality);
-          console.log(`Video quality set to: ${preferredQuality}`);
         }
       }
     } catch (error) {
-      console.error('Failed to set video quality:', error);
     }
   }
 
@@ -106,11 +101,9 @@ class QualityController {
         const availableQualities = player.getAvailableQualityLevels();
         if (availableQualities.includes(targetQuality)) {
           player.setPlaybackQuality(targetQuality);
-          console.log(`Auto quality set to: ${targetQuality} (network: ${connection?.effectiveType})`);
         }
       }
     } catch (error) {
-      console.error('Failed to set auto quality:', error);
     }
   }
 
@@ -126,7 +119,6 @@ class QualityController {
         this.forceCodec(preferredCodec);
       }
     } catch (error) {
-      console.error('Failed to set video codec:', error);
     }
   }
 
@@ -149,10 +141,8 @@ class QualityController {
         bestCodec = 'vp9';
       }
 
-      console.log(`Auto codec selected: ${bestCodec}`);
       this.forceCodec(bestCodec);
     } catch (error) {
-      console.error('Failed to set auto codec:', error);
     }
   }
 
@@ -177,12 +167,10 @@ class QualityController {
 
       // URL이 변경된 경우에만 새로고침
       if (url.toString() !== window.location.toString()) {
-        console.log(`Forcing codec: ${codecType}`);
         // 부드러운 코덱 변경을 위해 플레이어 API 사용
         this.requestCodecChange(codecType);
       }
     } catch (error) {
-      console.error('Failed to force codec:', error);
     }
   }
 
@@ -209,7 +197,6 @@ class QualityController {
         }
       }
     } catch (error) {
-      console.error('Failed to request codec change:', error);
     }
   }
 
@@ -219,7 +206,6 @@ class QualityController {
     const hasQualityChanges = changedSettings.some(key => qualitySettings.includes(key));
     
     if (hasQualityChanges) {
-      console.log('Quality settings changed, applying updates');
       setTimeout(() => {
         this.applyQualitySettings();
       }, 500);
@@ -229,7 +215,6 @@ class QualityController {
   // 정리
   cleanup() {
     // 품질 제어는 특별한 정리가 필요하지 않음
-    console.log('Quality controller cleanup completed');
   }
 }
 

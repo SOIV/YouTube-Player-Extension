@@ -33,7 +33,6 @@ class I18n {
       this.loadedLanguages.add(lang);
       return true;
     } catch (error) {
-      console.error(`Failed to load language ${lang}:`, error);
       return false;
     }
   }
@@ -65,7 +64,6 @@ class I18n {
         }
       }
     } catch (error) {
-      console.log('Chrome storage not available, falling back to localStorage');
     }
     
     // Chrome Storage가 없으면 localStorage 사용
@@ -105,14 +103,12 @@ class I18n {
           await chrome.storage.local.set({'ytpe-language': lang});
         }
       } catch (error) {
-        console.log('Chrome storage not available, using localStorage');
       }
       
       // localStorage에도 저장 (폴백)
       try {
         localStorage.setItem('ytpe-language', lang);
       } catch (error) {
-        console.log('localStorage not available');
       }
       
       return true;

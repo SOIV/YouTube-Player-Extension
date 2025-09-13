@@ -48,7 +48,6 @@ class SettingsManager {
       this.settings = result;
       return this.settings;
     } catch (error) {
-      console.error('Settings load failed:', error);
       this.settings = { ...this.defaultSettings };
       return this.settings;
     }
@@ -60,7 +59,6 @@ class SettingsManager {
       await chrome.storage.sync.set({ [key]: value });
       return true;
     } catch (error) {
-      console.error('Failed to save setting:', error);
       return false;
     }
   }

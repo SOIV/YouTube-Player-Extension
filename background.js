@@ -69,9 +69,7 @@ class BackgroundManager {
       //   url: chrome.runtime.getURL('welcome.html')
       // });
       
-      console.log('YouTube Bug Fixer installed with default settings');
     } catch (error) {
-      console.error('Failed to set default settings:', error);
     }
   }
 
@@ -92,9 +90,7 @@ class BackgroundManager {
         previousVersion: previousVersion
       });
       
-      console.log(`YouTube Bug Fixer updated from ${previousVersion} to 1.0.0`);
     } catch (error) {
-      console.error('Failed to handle update:', error);
     }
   }
 
@@ -137,13 +133,11 @@ class BackgroundManager {
           // 컨텐트 스크립트가 이미 로드되었는지 확인
           if (!window.youTubeBugFixerLoaded) {
             window.youTubeBugFixerLoaded = true;
-            console.log('YouTube Bug Fixer content script loaded');
           }
         }
       });
     } catch (error) {
       // 스크립트 주입 실패는 정상적인 경우일 수 있음 (권한 없는 페이지 등)
-      console.log('Failed to inject script:', error.message);
     }
   }
 
@@ -189,7 +183,6 @@ class BackgroundManager {
           sendResponse({ success: false, error: 'Unknown action' });
       }
     } catch (error) {
-      console.error('Error handling message:', error);
       sendResponse({ success: false, error: error.message });
     }
   }
@@ -266,7 +259,6 @@ class BackgroundManager {
           break;
       }
     } catch (error) {
-      console.error('Error handling context menu click:', error);
     }
   }
 
@@ -292,7 +284,6 @@ class BackgroundManager {
         message: `${this.getSettingDisplayName(settingName)} ${newValue ? '활성화' : '비활성화'}됨`
       });
     } catch (error) {
-      console.error('Failed to toggle setting:', error);
     }
   }
 
@@ -319,9 +310,7 @@ class BackgroundManager {
       });
       
       await chrome.storage.local.set({ bugReports: reports.bugReports });
-      console.log('Bug report saved:', bugData);
     } catch (error) {
-      console.error('Failed to save bug report:', error);
     }
   }
 
@@ -348,7 +337,6 @@ class BackgroundManager {
       
       return null;
     } catch (error) {
-      console.error('Failed to check for updates:', error);
       return null;
     }
   }

@@ -22,7 +22,6 @@ class YouTubePlayerEnhancer {
 
   async init() {
     try {
-      console.log('🚀 YouTube Player Extension starting (modular version)');
       
       // 1. 핵심 매니저 초기화
       await this.initCoreManagers();
@@ -40,10 +39,8 @@ class YouTubePlayerEnhancer {
       this.startMainLoop();
       
       this.isInitialized = true;
-      console.log('✅ YouTube Player Extension initialized successfully (modular)');
       
     } catch (error) {
-      console.error('❌ Failed to initialize YouTube Player Extension:', error);
     }
   }
 
@@ -57,19 +54,16 @@ class YouTubePlayerEnhancer {
     // 설정 매니저
     this.settingsManager = new window.YouTubeEnhancer.SettingsManager();
     
-    console.log('📦 Core managers initialized');
   }
 
   async loadSettings() {
     await this.settingsManager.loadSettings();
-    console.log('⚙️ Settings loaded');
   }
 
   setupMessageListener() {
     // 백그라운드 스크립트에서 오는 설정 변경 메시지 처리
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       if (message.action === 'settingsChanged') {
-        console.log('Settings changed:', message.changes);
         
         // 변경된 설정을 현재 설정에 반영
         Object.keys(message.changes).forEach(key => {
@@ -89,7 +83,6 @@ class YouTubePlayerEnhancer {
   }
 
   async initFeatureModules() {
-    console.log('🔧 Initializing feature modules...');
     
     // 오디오 향상 모듈
     if (this.settingsManager.isAudioEnabled()) {
@@ -99,7 +92,6 @@ class YouTubePlayerEnhancer {
         this.eventManager
       );
       await this.audioEnhancer.init();
-      console.log('🎵 Audio extension module loaded');
     }
     
     // 품질 제어 모듈
@@ -110,7 +102,6 @@ class YouTubePlayerEnhancer {
         this.eventManager
       );
       this.qualityController.init();
-      console.log('📺 Quality controller module loaded');
     }
     
     // PIP 및 미니플레이어 모듈
@@ -121,10 +112,8 @@ class YouTubePlayerEnhancer {
         this.eventManager
       );
       this.pipController.init();
-      console.log('🖼️ PIP controller module loaded');
     }
     
-    console.log('✅ All enabled feature modules initialized');
   }
 
   notifyModulesOfSettingsChange(changedKeys) {
@@ -150,7 +139,6 @@ class YouTubePlayerEnhancer {
       }
     }, 30000); // 30초마다
     
-    console.log('🔄 Main loop started (30s interval)');
   }
 
   runPeriodicChecks() {
@@ -164,18 +152,15 @@ class YouTubePlayerEnhancer {
     try {
       if (!this.audioEnhancer.audioContext || this.audioEnhancer.audioContext.state === 'closed') {
         if (this.settingsManager.isAudioEnabled()) {
-          console.log('🔧 Recreating audio context...');
           this.audioEnhancer.init();
         }
       }
     } catch (error) {
-      console.error('Audio context health check failed:', error);
     }
   }
 
   // 정리
   cleanup() {
-    console.log('🧹 Cleaning up YouTube Player Extension...');
     
     // 메인 루프 정리
     if (this.mainLoopInterval) {
@@ -205,7 +190,6 @@ class YouTubePlayerEnhancer {
       this.domCache.clear();
     }
     
-    console.log('✅ Cleanup completed');
   }
 }
 

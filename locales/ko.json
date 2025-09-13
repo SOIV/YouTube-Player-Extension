@@ -102,5 +102,5 @@
   "defaultSize": "기본값",
   "autoOption": "자동",
   "customThemePlaceholder": "/* 커스텀 CSS 코드를 입력하세요 */\n.ytp-chrome-bottom { \n  background: rgba(0,0,0,0.8) !important; \n}",
-  "customScriptsPlaceholder": "// 커스텀 JavaScript 코드를 입력하세요\nconsole.log(\"커스텀 스크립트 실행됨\");"
+  "customScriptsPlaceholder": "// 커스텀 JavaScript 코드를 입력하세요"
 }

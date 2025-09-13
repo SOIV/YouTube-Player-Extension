@@ -18,7 +18,6 @@ class AudioEnhancer {
   // 오디오 향상 기능 초기화
   async init() {
     if (!this.isEnabled()) {
-      console.log('Audio features disabled, skipping audio setup');
       return;
     }
 
@@ -26,9 +25,7 @@ class AudioEnhancer {
       this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
       this.setupAudioContextLifecycle();
       await this.setupAudioNodes();
-      console.log('Audio enhancement initialized');
     } catch (error) {
-      console.error('Failed to setup audio context:', error);
     }
   }
 
@@ -38,7 +35,6 @@ class AudioEnhancer {
     document.addEventListener('visibilitychange', () => {
       if (document.hidden && this.audioContext.state === 'running') {
         // 페이지가 숨겨져도 오디오 컨텍스트 유지 (음악 재생 중단 방지)
-        console.log('Page hidden but keeping audio context active');
       }
     });
   }
@@ -72,7 +68,6 @@ class AudioEnhancer {
       this.connectAudioNodes();
       
     } catch (error) {
-      console.error('Failed to setup audio nodes:', error);
     }
   }
 
@@ -82,7 +77,6 @@ class AudioEnhancer {
     
     // 오디오 기능이 모두 꺼져있으면 오디오 노드 연결 안함
     if (!this.isEnabled()) {
-      console.log('Audio features disabled, skipping audio node connection');
       return;
     }
 
@@ -103,7 +97,6 @@ class AudioEnhancer {
     // 최종 출력에 연결
     currentNode.connect(this.audioContext.destination);
     
-    console.log(`Audio chain: gainNode -> ${this.settings.getSetting('enableCompressor') ? 'compressor -> ' : ''}${this.settings.getSetting('enableStereoPan') ? 'stereoPanner -> ' : ''}destination`);
   }
 
   // 오디오 노드 연결 해제
@@ -113,7 +106,6 @@ class AudioEnhancer {
       if (this.audioNodes.compressor) this.audioNodes.compressor.disconnect();
       if (this.audioNodes.stereoPanner) this.audioNodes.stereoPanner.disconnect();
     } catch (error) {
-      console.log('Audio disconnect error (likely already disconnected):', error);
     }
   }
 
@@ -121,20 +113,12 @@ class AudioEnhancer {
   applyAudioSettings() {
     if (!this.audioContext || !this.audioNodes.gainNode) return;
 
-    console.log('Applying audio settings:', {
-      enableCompressor: this.settings.getSetting('enableCompressor'),
-      enableStereoPan: this.settings.getSetting('enableStereoPan'),
-      volumeBoost: this.settings.getSetting('volumeBoost'),
-      stereoPan: this.settings.getSetting('stereoPan'),
-      compressorRatio: this.settings.getSetting('compressorRatio')
-    });
 
     // 게인 노드 볼륨 설정
     if (this.settings.getSetting('enableCompressor')) {
       // 컴프레서 활성화 시 볼륨 부스트 적용 (50% ~ 200%)
       const volumeMultiplier = this.settings.getSetting('volumeBoost', 100) / 100;
       this.audioNodes.gainNode.gain.setValueAtTime(volumeMultiplier, this.audioContext.currentTime);
-      console.log(`Volume boost applied: ${volumeMultiplier}x`);
     } else {
       // 컴프레서 비활성화 시 기본 볼륨
       this.audioNodes.gainNode.gain.setValueAtTime(1.0, this.audioContext.currentTime);
@@ -144,7 +128,6 @@ class AudioEnhancer {
     if (this.settings.getSetting('enableCompressor') && this.audioNodes.compressor) {
       const ratio = this.settings.getSetting('compressorRatio', 12);
       this.audioNodes.compressor.ratio.setValueAtTime(ratio, this.audioContext.currentTime);
-      console.log(`Compressor ratio: ${ratio}:1`);
     }
 
     // 스테레오 패닝 조정
@@ -152,7 +135,6 @@ class AudioEnhancer {
       const panValue = this.settings.getSetting('stereoPan', 0) / 100;
       const clampedPan = Math.max(-1, Math.min(1, panValue));
       this.audioNodes.stereoPanner.pan.setValueAtTime(clampedPan, this.audioContext.currentTime);
-      console.log(`Stereo pan: ${clampedPan}`);
     }
   }
 
@@ -162,7 +144,6 @@ class AudioEnhancer {
     const hasAudioChanges = changedSettings.some(key => audioSettings.includes(key));
     
     if (hasAudioChanges) {
-      console.log('Audio settings changed, applying updates');
       if (this.audioContext && this.audioNodes.gainNode) {
         this.applyAudioSettings();
       }
@@ -180,13 +161,11 @@ class AudioEnhancer {
       
       if (this.audioContext && this.audioContext.state !== 'closed') {
         this.audioContext.close();
-        console.log('Audio context completely closed');
       }
       
       this.audioContext = null;
       this.audioNodes = {};
     } catch (error) {
-      console.error('Failed to cleanup audio context:', error);
     }
   }
 }

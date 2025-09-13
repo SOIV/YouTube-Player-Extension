@@ -26,7 +26,6 @@ class PopupManager {
         if (success) {
           this.updateTexts();
           // 언어 변경이 성공했음을 사용자에게 알림 (선택사항)
-          console.log(`Language changed to: ${e.target.value}`);
         } else {
           // 언어 변경 실패 시 이전 값으로 되돌림
           languageSelect.value = window.i18n.getCurrentLanguage();
@@ -123,7 +122,6 @@ class PopupManager {
       
       this.settings = result;
     } catch (error) {
-      console.error('Failed to load settings:', error);
       this.showStatus(window.i18n.t('settingsLoadFailed'), 'error');
     }
   }
@@ -376,7 +374,6 @@ class PopupManager {
         this.showStatus(window.i18n.t('extensionActivated'), 'success');
       }
     } catch (error) {
-      console.error('Failed to check current tab:', error);
     }
   }
 
@@ -460,7 +457,6 @@ class PopupManager {
         });
       }
     } catch (error) {
-      console.error('Failed to save setting:', error);
       this.showStatus(window.i18n.t('settingSaveFailed'), 'error');
     }
   }
@@ -623,7 +619,6 @@ class PopupManager {
       URL.revokeObjectURL(url);
       this.showStatus(window.i18n.t('settingsExported'), 'success');
     } catch (error) {
-      console.error('Failed to export settings:', error);
       this.showStatus(window.i18n.t('settingsExportFailed'), 'error');
     }
   }
@@ -646,7 +641,6 @@ class PopupManager {
       
       this.showStatus(window.i18n.t('settingsImported'), 'success');
     } catch (error) {
-      console.error('Failed to import settings:', error);
       this.showStatus(window.i18n.t('settingsImportFailed'), 'error');
     }
   }
@@ -657,7 +651,6 @@ class PopupManager {
         await chrome.storage.sync.clear();
         window.location.reload();
       } catch (error) {
-        console.error('Failed to reset settings:', error);
         this.showStatus(window.i18n.t('settingsResetFailed'), 'error');
       }
     }
