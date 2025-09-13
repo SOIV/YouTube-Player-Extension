@@ -49,7 +49,7 @@
   
   "web_accessible_resources": [
     {
-      "resources": ["about.html", "locales/*.js"],
+      "resources": ["about.html", "locales/*.json"],
       "matches": ["<all_urls>"]
     }
   ]

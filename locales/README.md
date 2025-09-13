@@ -6,15 +6,15 @@ This folder contains translation files for multi-language support.
 
 ## Supported Languages / 지원 언어
 
-- `ko.js` - 한국어 (Korean)
-- `en.js` - English (영어)
-- `example.js` - Template file for adding new languages / 새로운 언어 추가 시 참고할 예제 파일
+- `ko.json` - 한국어 (Korean)
+- `en.json` - English (영어)
+- `example.json` - Template file for adding new languages / 새로운 언어 추가 시 참고할 예제 파일
 
 ## Adding a New Language / 새로운 언어 추가하기
 
-1. Copy the `example.js` file and rename it with the language code (e.g., `ja.js`, `zh.js`)
+1. Copy the `example.json` file and rename it with the language code (e.g., `ja.json`, `zh.json`)
    
-   `example.js` 파일을 복사하여 언어 코드로 이름을 바꿉니다 (예: `ja.js`, `zh.js`)
+   `example.json` 파일을 복사하여 언어 코드로 이름을 바꿉니다 (예: `ja.json`, `zh.json`)
 
 2. Translate all text content in the file to the target language
    
@@ -30,17 +30,16 @@ This folder contains translation files for multi-language support.
 
 ## File Format / 파일 형식
 
-Each language file must be written as an ES6 module:
+Each language file must be a valid JSON file:
 
-각 언어 파일은 ES6 모듈 형태로 작성되어야 합니다:
+각 언어 파일은 올바른 JSON 파일 형태여야 합니다:
 
-```javascript
-// example.js
-export default {
-  key1: 'Translation 1',
-  key2: 'Translation 2',
-  // ...
-};
+```json
+{
+  "key1": "Translation 1",
+  "key2": "Translation 2",
+  "_comment": "Comments can be added with underscore prefix (ignored by parser)"
+}
 ```
 
 ## Dynamic Loading / 동적 로딩

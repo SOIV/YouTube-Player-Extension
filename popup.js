@@ -22,8 +22,15 @@ class PopupManager {
     if (languageSelect) {
       languageSelect.value = window.i18n.getCurrentLanguage();
       languageSelect.addEventListener('change', async (e) => {
-        await window.i18n.setLanguage(e.target.value);
-        this.updateTexts();
+        const success = await window.i18n.setLanguage(e.target.value);
+        if (success) {
+          this.updateTexts();
+          // 언어 변경이 성공했음을 사용자에게 알림 (선택사항)
+          console.log(`Language changed to: ${e.target.value}`);
+        } else {
+          // 언어 변경 실패 시 이전 값으로 되돌림
+          languageSelect.value = window.i18n.getCurrentLanguage();
+        }
       });
     }
     
@@ -38,6 +45,12 @@ class PopupManager {
       
       element.textContent = translation;
     });
+
+    // 언어 선택기 값 동기화
+    const languageSelect = document.getElementById('languageSelect');
+    if (languageSelect && languageSelect.value !== window.i18n.getCurrentLanguage()) {
+      languageSelect.value = window.i18n.getCurrentLanguage();
+    }
 
     // 슬라이더 값 표시 업데이트
     this.updateSliderValues();

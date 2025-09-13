@@ -11,7 +11,7 @@ class I18n {
   }
   
   async init() {
-    this.detectLanguage();
+    await this.detectLanguage();
     await this.loadLanguage(this.currentLanguage);
   }
   
@@ -22,18 +22,14 @@ class I18n {
     }
     
     try {
-      // locales 폴더에서 언어 파일을 동적으로 로드
-      const response = await fetch(chrome.runtime.getURL(`locales/${lang}.js`));
+      // JSON 파일로 로드 (CSP 안전)
+      const response = await fetch(chrome.runtime.getURL(`locales/${lang}.json`));
       if (!response.ok) {
-        throw new Error(`Failed to load ${lang}.js`);
+        throw new Error(`Failed to load ${lang}.json`);
       }
       
-      const text = await response.text();
-      
-      // ES6 모듈 형태의 파일을 동적으로 평가
-      const module = new Function('', `${text.replace('export default', 'return')}`);
-      this.translations[lang] = module();
-      
+      const translations = await response.json();
+      this.translations[lang] = translations;
       this.loadedLanguages.add(lang);
       return true;
     } catch (error) {
@@ -57,19 +53,38 @@ class I18n {
     return [...this.supportedLanguages];
   }
   
-  detectLanguage() {
-    // 브라우저 언어 감지
+  async detectLanguage() {
+    // Chrome Extension Storage를 사용하여 저장된 언어 확인
+    try {
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+        const result = await chrome.storage.local.get(['ytpe-language']);
+        const savedLang = result['ytpe-language'];
+        if (savedLang && this.supportedLanguages.includes(savedLang)) {
+          this.currentLanguage = savedLang;
+          return;
+        }
+      }
+    } catch (error) {
+      console.log('Chrome storage not available, falling back to localStorage');
+    }
+    
+    // Chrome Storage가 없으면 localStorage 사용
+    try {
+      const savedLang = localStorage.getItem('ytpe-language');
+      if (savedLang && this.supportedLanguages.includes(savedLang)) {
+        this.currentLanguage = savedLang;
+        return;
+      }
+    } catch (error) {
+      console.log('localStorage not available');
+    }
+    
+    // 저장된 언어가 없으면 브라우저 언어 감지
     const browserLang = navigator.language || navigator.userLanguage;
     if (browserLang.startsWith('ko')) {
       this.currentLanguage = 'ko';
     } else {
       this.currentLanguage = 'en';
-    }
-    
-    // 저장된 언어 설정 확인
-    const savedLang = localStorage.getItem('ytpe-language');
-    if (savedLang && this.translations[savedLang]) {
-      this.currentLanguage = savedLang;
     }
   }
   
@@ -83,7 +98,23 @@ class I18n {
     const loaded = await this.loadLanguage(lang);
     if (loaded) {
       this.currentLanguage = lang;
-      localStorage.setItem('ytpe-language', lang);
+      
+      // Chrome Extension Storage에 저장 시도
+      try {
+        if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+          await chrome.storage.local.set({'ytpe-language': lang});
+        }
+      } catch (error) {
+        console.log('Chrome storage not available, using localStorage');
+      }
+      
+      // localStorage에도 저장 (폴백)
+      try {
+        localStorage.setItem('ytpe-language', lang);
+      } catch (error) {
+        console.log('localStorage not available');
+      }
+      
       return true;
     }
     return false;
