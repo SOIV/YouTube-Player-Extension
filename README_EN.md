@@ -28,6 +28,12 @@ A browser extension that enhances various features of the YouTube player.
 
 ## Installation
 
+> ※ This extension does not support automatic updates.
+
+### 🏪 Chrome Web Store (Coming Soon)
+
+> 📅 **Chrome Web Store Upload Planned**: We're preparing to register on the Chrome Web Store for easier installation and updates.
+
 ### 📦 Download from Releases (Recommended)
 
 1. Download the latest version from [Releases page](https://github.com/SOIV/YouTube-Player-Extension/releases)
@@ -58,7 +64,12 @@ cd YouTube-Player-Extension
 3. Enable/disable desired features
 4. Settings are automatically saved
 
-> ※ This extension does not support automatic updates.
+## Screenshots
+
+![Screenshot 1](docs/screenshot/스크린샷%202025-09-13%20163509.png)
+![Screenshot 2](docs/screenshot/스크린샷%202025-09-13%20163528.png)
+![Screenshot 3](docs/screenshot/스크린샷%202025-09-13%20163546.png)
+![Screenshot 4](docs/screenshot/스크린샷%202025-09-13%20163555.png)
 
 ## Browser Compatibility
 
@@ -116,6 +127,37 @@ YouTube Player Extension/
 ### Host Permissions
 - `*.youtube.com/*`: Access YouTube site
 - `*.googlevideo.com/*`: Access video streams
+
+## Frequently Asked Questions (FAQ)
+
+### ❓ I installed the extension but it's not working on YouTube
+- Go to `chrome://extensions/` in Chrome browser
+- Check if YouTube Player Extension is **enabled**
+- Refresh the page and try again
+- Completely close and restart the browser
+
+### ❓ I can't see the extension icon
+- Click the **puzzle piece icon (Extensions)** on the right side of Chrome's address bar
+- Click the **pin icon** next to YouTube Player Extension to pin it to the toolbar
+
+### ❓ Settings don't apply after changing them
+- **Refresh** the YouTube page
+- If multiple YouTube tabs are open, refresh all tabs
+- Clear browser cache and try again
+
+### ❓ Audio compressor is not working
+- Check if the tab is not muted in the browser
+- Check if system volume is at an appropriate level
+- Check for potential conflicts when using with other audio enhancement features
+
+### ❓ Some features don't work in Firefox
+- Firefox has **limited support** and some features may not work properly
+- We recommend using **Chromium-based browsers** (Chrome, Edge, Whale, etc.) for the best experience
+
+### ❓ Does the extension auto-update?
+- Currently **does not support automatic updates**
+- Download new versions from [Releases page](https://github.com/SOIV/YouTube-Player-Extension/releases)
+- Auto-update will be supported after Chrome Web Store registration
 
 ## Contributing
 
