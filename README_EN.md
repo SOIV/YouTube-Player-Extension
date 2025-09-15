@@ -66,10 +66,10 @@ cd YouTube-Player-Extension
 
 ## Screenshots
 
-![Screenshot 1](docs/screenshot/스크린샷%202025-09-13%20163509.png)
-![Screenshot 2](docs/screenshot/스크린샷%202025-09-13%20163528.png)
-![Screenshot 3](docs/screenshot/스크린샷%202025-09-13%20163546.png)
-![Screenshot 4](docs/screenshot/스크린샷%202025-09-13%20163555.png)
+![Screenshot 1](docs/screenshot/en/스크린샷%202025-09-15%20232038.png)
+![Screenshot 2](docs/screenshot/en/스크린샷%202025-09-15%20232105.png)
+![Screenshot 3](docs/screenshot/en/스크린샷%202025-09-15%20232132.png)
+![Screenshot 4](docs/screenshot/en/스크린샷%202025-09-15%20232144.png)
 
 ## Browser Compatibility
 
