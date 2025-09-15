@@ -227,6 +227,14 @@
   color: #ff0000;
 }
 
+/* PIP 프로그레스 바 숨김 (보라색 슬라이더) */
+#efyt-progress,
+efyt-progress-tooltip {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
 /* 오디오 향상 표시기 */
 .ype-audio-indicator {
   position: absolute;
