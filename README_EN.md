@@ -1,6 +1,9 @@
 # YouTube Player Extension
 
 [![한국어](https://img.shields.io/badge/README-한국어-red)](README.md)
+[![Latest Release](https://img.shields.io/github/v/release/SOIV/YouTube-Player-Extension)](https://github.com/SOIV/YouTube-Player-Extension/releases)
+[![Total Downloads](https://img.shields.io/github/downloads/SOIV/YouTube-Player-Extension/total)](https://github.com/SOIV/YouTube-Player-Extension/releases)
+[![Latest Version Downloads](https://img.shields.io/github/downloads/SOIV/YouTube-Player-Extension/latest/total)](https://github.com/SOIV/YouTube-Player-Extension/releases)
 
 A browser extension that enhances various features of the YouTube player.
 
