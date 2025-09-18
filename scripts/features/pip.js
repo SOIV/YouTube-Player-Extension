@@ -670,6 +670,29 @@ class PIPController {
       body.efyt-mini-player #movie_player:not(.ytp-fullscreen) {
         border-radius: 8px !important;
       }
+
+      /* 미니플레이어에서 특정 UI 요소들 숨기기 */
+      body.efyt-mini-player #movie_player:not(.ytp-fullscreen) .ytp-autoplay-icon {
+        display: none !important;
+      }
+
+      body.efyt-mini-player #movie_player:not(.ytp-fullscreen) .ytp-settings-button {
+        display: none !important;
+      }
+
+      body.efyt-mini-player #movie_player:not(.ytp-fullscreen) .ytp-right-controls > *:not(.ytp-subtitles-button) {
+        display: none !important;
+      }
+
+      body.efyt-mini-player #movie_player:not(.ytp-fullscreen) .ytp-cards-teaser,
+      body.efyt-mini-player #movie_player:not(.ytp-fullscreen) .ytp-ce-element,
+      body.efyt-mini-player #movie_player:not(.ytp-fullscreen) .ytp-cards-button {
+        display: none !important;
+      }
+
+      body.efyt-mini-player #movie_player:not(.ytp-fullscreen) .ytp-watermark {
+        display: none !important;
+      }
     `;
     
     document.head.appendChild(style);
