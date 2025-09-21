@@ -49,10 +49,6 @@ class QualityController {
         this.setVideoQuality(player);
       }
 
-      // 자동 코덱 설정 적용
-      if (this.settings.getSetting('autoCodec')) {
-        this.setVideoCodec(player);
-      }
     } catch (error) {
     }
   }
@@ -107,102 +103,10 @@ class QualityController {
     }
   }
 
-  setVideoCodec(player) {
-    try {
-      const preferredCodec = this.settings.getSetting('preferredCodec', 'auto');
-      
-      if (preferredCodec === 'auto') {
-        // 자동 코덱: 브라우저와 성능에 따라 최적 코덱 선택
-        this.setAutoCodec();
-      } else {
-        // 수동 코덱 설정
-        this.forceCodec(preferredCodec);
-      }
-    } catch (error) {
-    }
-  }
-
-  setAutoCodec() {
-    try {
-      // 브라우저 지원 여부 확인
-      const video = document.createElement('video');
-      const codecs = {
-        av01: 'video/mp4; codecs="av01.0.08M.08"',
-        vp9: 'video/webm; codecs="vp9"',
-        h264: 'video/mp4; codecs="avc1.42E01E"'
-      };
-
-      let bestCodec = 'h264'; // 기본값
-
-      // AV1 > VP9 > H.264 순서로 선호
-      if (video.canPlayType(codecs.av01) === 'probably') {
-        bestCodec = 'av01';
-      } else if (video.canPlayType(codecs.vp9) === 'probably') {
-        bestCodec = 'vp9';
-      }
-
-      this.forceCodec(bestCodec);
-    } catch (error) {
-    }
-  }
-
-  forceCodec(codecType) {
-    try {
-      // URL 파라미터로 코덱 강제 설정
-      const url = new URL(window.location);
-      
-      switch (codecType) {
-        case 'av01':
-          url.searchParams.set('vq', 'av01');
-          break;
-        case 'vp9':
-          url.searchParams.set('vq', 'vp9');
-          break;
-        case 'h264':
-          url.searchParams.set('vq', 'h264');
-          break;
-        default:
-          url.searchParams.delete('vq');
-      }
-
-      // URL이 변경된 경우에만 새로고침
-      if (url.toString() !== window.location.toString()) {
-        // 부드러운 코덱 변경을 위해 플레이어 API 사용
-        this.requestCodecChange(codecType);
-      }
-    } catch (error) {
-    }
-  }
-
-  requestCodecChange(codecType) {
-    try {
-      // YouTube 플레이어 API를 통한 코덱 변경 요청
-      const player = this.domCache.get('player');
-      if (player && typeof player.setPlaybackQuality === 'function') {
-        // 현재 재생 시간 저장
-        const currentTime = player.getCurrentTime();
-        
-        // 품질 변경으로 코덱 변경 유도
-        const qualities = player.getAvailableQualityLevels();
-        if (qualities.length > 0) {
-          // 잠시 다른 품질로 변경 후 원래 품질로 복구
-          const currentQuality = player.getPlaybackQuality();
-          const tempQuality = qualities.find(q => q !== currentQuality) || qualities[0];
-          
-          player.setPlaybackQuality(tempQuality);
-          setTimeout(() => {
-            player.setPlaybackQuality(currentQuality);
-            player.seekTo(currentTime);
-          }, 100);
-        }
-      }
-    } catch (error) {
-    }
-  }
 
   // 설정 변경 시 호출
   onSettingsChanged(changedSettings) {
-    const qualitySettings = ['autoQuality', 'preferredQuality', 'autoCodec', 'preferredCodec'];
+    const qualitySettings = ['autoQuality', 'preferredQuality'];
     const hasQualityChanges = changedSettings.some(key => qualitySettings.includes(key));
     
     if (hasQualityChanges) {

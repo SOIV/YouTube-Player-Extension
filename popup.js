@@ -392,9 +392,9 @@ class PopupManager {
     this.settings[setting] = newValue;
     await this.saveSetting(setting, newValue);
     
-    // 컨트롤 가시성 업데이트 (컴프레서, 스테레오 패닝, 미니플레이어, 품질, 코덱 토글용)
-    if (setting === 'enableCompressor' || setting === 'enableStereoPan' || 
-        setting === 'popupPlayer' || setting === 'autoQuality' || setting === 'autoCodec') {
+    // 컨트롤 가시성 업데이트 (컴프레서, 스테레오 패닝, 미니플레이어, 품질 토글용)
+    if (setting === 'enableCompressor' || setting === 'enableStereoPan' ||
+        setting === 'popupPlayer' || setting === 'autoQuality') {
       this.updateControlVisibility();
     }
     
@@ -414,7 +414,24 @@ class PopupManager {
     this.settings[setting] = newValue;
     await this.saveSetting(setting, newValue);
     
-    this.showStatus(`${this.getSettingDisplayName(setting)} ${window.i18n.t('changed')}: ${newValue}`, 'success');
+    // 품질/코덱 설정은 사용자 친화적 이름으로 표시
+    let displayValue = newValue;
+    if (setting === 'preferredQuality') {
+      const qualityMap = {
+        'hd2160': '2160p (4K)',
+        'hd1440': '1440p (2K)',
+        'hd1080': '1080p (Full HD)',
+        'hd720': '720p (HD)',
+        'large': '480p',
+        'medium': '360p',
+        'small': '240p',
+        'tiny': '144p',
+        'auto': 'Auto'
+      };
+      displayValue = qualityMap[newValue] || newValue;
+    }
+
+    this.showStatus(`${this.getSettingDisplayName(setting)} ${window.i18n.t('changed')}: ${displayValue}`, 'success');
   }
 
   async handleSliderChange(slider) {
@@ -470,8 +487,6 @@ class PopupManager {
         enableStereoPan: '스테레오 패닝',
         autoQuality: '자동 품질 선택',
         preferredQuality: '선호 화질',
-        autoCodec: '자동 코덱 선택',
-        preferredCodec: '선호 코덱',
         popupPlayer: '미니플레이어',
         miniPlayerSize: '미니플레이어 크기',
         miniPlayerPosition: '미니플레이어 위치',
@@ -493,8 +508,6 @@ class PopupManager {
       // 품질
       autoQuality: window.i18n.t('autoQualityName'),
       preferredQuality: window.i18n.t('preferredQualityName'),
-      autoCodec: window.i18n.t('autoCodecName'),
-      preferredCodec: window.i18n.t('preferredCodecName'),
       
       // 팝업/미니 재생기
       popupPlayer: window.i18n.t('miniPlayerName'),

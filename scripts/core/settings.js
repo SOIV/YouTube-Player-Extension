@@ -16,8 +16,6 @@ class SettingsManager {
       // 재생 품질
       autoQuality: true,
       preferredQuality: 'auto',
-      autoCodec: true,
-      preferredCodec: 'auto', // vp9, h264, av01
       
       // 팝업/미니 재생기
       popupPlayer: true,
@@ -73,7 +71,7 @@ class SettingsManager {
   }
 
   isQualityControlEnabled() {
-    return this.settings.autoQuality || this.settings.autoCodec;
+    return this.settings.autoQuality;
   }
 
   isPIPEnabled() {

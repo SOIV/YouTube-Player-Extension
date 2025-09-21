@@ -478,10 +478,11 @@
     </div>
 
 
-    <!-- 재생 품질 섹션 -->
+    <!-- 플레이어 설정 섹션 -->
     <div class="section">
-      <div class="section-title" data-i18n="playbackQuality">📺 재생 품질</div>
-      
+      <div class="section-title" data-i18n="playerSettings">📺 플레이어 설정</div>
+
+      <!-- 자동 품질 선택 -->
       <div class="option">
         <div>
           <div class="option-label" data-i18n="autoQuality">자동 품질 선택</div>
@@ -504,26 +505,7 @@
         </div>
       </div>
 
-      <div class="option">
-        <div>
-          <div class="option-label" data-i18n="videoCodec">비디오 코덱</div>
-          <div class="option-description" data-i18n="videoCodecDesc">선호하는 비디오 코덱 선택</div>
-        </div>
-        <div class="control-group">
-          <select data-setting="preferredCodec">
-            <option value="auto" data-i18n="autoOption">자동</option>
-            <option value="h264">H.264 (호환성)</option>
-            <option value="vp9">VP9 (효율성)</option>
-            <option value="av01">AV1 (최신)</option>
-          </select>
-          <div class="toggle" data-setting="autoCodec"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PIP 및 미니플레이어 섹션 -->
-    <div class="section">
-      <div class="section-title" data-i18n="pipMiniPlayer">📱 Picture-in-Picture(PIP) & 미니플레이어</div>
+      <!-- Picture-in-Picture -->
       
       <div class="option">
         <div>
