@@ -14,15 +14,9 @@ A browser extension that enhances various features of the YouTube player.
 - **Audio Compressor**: Dynamic range control for more consistent volume levels
 - **Stereo Panning**: Adjust left-right audio balance (-100% ~ +100%)
 
-### 📺 Quality Control
-- **Auto Quality Selection**: Automatically set optimal quality based on network conditions
-- **Preferred Quality Setting**: Auto-set preferred quality from 240p to 4K
-- **Auto Codec Selection**: Automatically select optimal codec among VP9, H.264, AV1
-
-### 🖼️ Picture-in-Picture (PiP)
-- **Enhanced PiP Feature**: Improved native PiP button
-- **Small Player**: Added YouTube's native small player button
-- **Mini Player**: Customizable size and position (7 sizes, 4 positions)
+### 📱 Player Features
+- **Picture-in-Picture**: Watch video in a small floating window
+- **Mini Player**: Continue watching with small player while scrolling (customizable size and position)
 
 ### 🛠️ Advanced Settings
 - **Custom Scripts**: Execute JavaScript code for additional functionality
@@ -100,7 +94,6 @@ YouTube Player Extension/
 │   │   └── settings.js   # Settings manager
 │   └── features/
 │       ├── audio.js      # Audio enhancement module
-│       ├── quality.js    # Quality control module
 │       └── pip.js        # PiP and mini player module
 ├── locales/              # Language files
 │   ├── ko.json          # Korean
