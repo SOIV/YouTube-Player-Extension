@@ -92,9 +92,6 @@ class PopupManager {
         enableStereoPan: false,
         stereoPan: 0,
         
-        // 재생 품질
-        autoQuality: true,
-        preferredQuality: 'auto',
         autoCodec: true,
         preferredCodec: 'auto',
         
@@ -334,20 +331,6 @@ class PopupManager {
       miniPlayerPositionControl.style.cursor = isActive ? 'pointer' : 'not-allowed';
     }
 
-    // 자동 품질 선택 컨트롤 활성화/비활성화
-    const autoQualityToggle = document.querySelector('[data-setting="autoQuality"]');
-    const qualityControl = document.querySelector('[data-setting="preferredQuality"]');
-    
-    if (autoQualityToggle && qualityControl) {
-      const isActive = autoQualityToggle.classList.contains('active');
-      
-      // 비활성화 상태 설정
-      qualityControl.disabled = !isActive;
-      
-      // 시각적 스타일 적용
-      qualityControl.style.opacity = isActive ? '1' : '0.5';
-      qualityControl.style.cursor = isActive ? 'pointer' : 'not-allowed';
-    }
 
     // 자동 코덱 선택 컨트롤 활성화/비활성화
     const autoCodecToggle = document.querySelector('[data-setting="autoCodec"]');
@@ -394,7 +377,7 @@ class PopupManager {
     
     // 컨트롤 가시성 업데이트 (컴프레서, 스테레오 패닝, 미니플레이어, 품질 토글용)
     if (setting === 'enableCompressor' || setting === 'enableStereoPan' ||
-        setting === 'popupPlayer' || setting === 'autoQuality') {
+        setting === 'popupPlayer') {
       this.updateControlVisibility();
     }
     
@@ -414,22 +397,8 @@ class PopupManager {
     this.settings[setting] = newValue;
     await this.saveSetting(setting, newValue);
     
-    // 품질/코덱 설정은 사용자 친화적 이름으로 표시
+    // 코덱 설정은 사용자 친화적 이름으로 표시
     let displayValue = newValue;
-    if (setting === 'preferredQuality') {
-      const qualityMap = {
-        'hd2160': '2160p (4K)',
-        'hd1440': '1440p (2K)',
-        'hd1080': '1080p (Full HD)',
-        'hd720': '720p (HD)',
-        'large': '480p',
-        'medium': '360p',
-        'small': '240p',
-        'tiny': '144p',
-        'auto': 'Auto'
-      };
-      displayValue = qualityMap[newValue] || newValue;
-    }
 
     this.showStatus(`${this.getSettingDisplayName(setting)} ${window.i18n.t('changed')}: ${displayValue}`, 'success');
   }
@@ -485,8 +454,6 @@ class PopupManager {
       const fallbackNames = {
         enableCompressor: '오디오 컴프레서',
         enableStereoPan: '스테레오 패닝',
-        autoQuality: '자동 품질 선택',
-        preferredQuality: '선호 화질',
         popupPlayer: '미니플레이어',
         miniPlayerSize: '미니플레이어 크기',
         miniPlayerPosition: '미니플레이어 위치',
@@ -505,9 +472,6 @@ class PopupManager {
       enableCompressor: window.i18n.t('audioCompressorName'), // 전 volumeBoost
       enableStereoPan: window.i18n.t('stereoPanningName'), // 전 stereoPan
       
-      // 품질
-      autoQuality: window.i18n.t('autoQualityName'),
-      preferredQuality: window.i18n.t('preferredQualityName'),
       
       // 팝업/미니 재생기
       popupPlayer: window.i18n.t('miniPlayerName'),

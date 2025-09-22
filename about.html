@@ -10,8 +10,8 @@
     }
 
     body {
-      width: 380px;
-      min-height: 500px;
+      width: 405px;
+      min-height: 510px;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
@@ -31,18 +31,28 @@
       left: 15px;
       top: 50%;
       transform: translateY(-50%);
-      background: none;
-      border: 1px solid rgba(255,255,255,0.3);
-      color: white;
-      padding: 6px 10px;
-      border-radius: 4px;
+      background: white;
+      border: 1px solid rgba(255,255,255,1);
+      color: #000000;
+      padding: 8px 12px;
+      border-radius: 6px;
       font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .back-btn:hover {
-      background: rgba(255,255,255,0.1);
+      background: white;
+      color: #000000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transform: translateY(-50%) translateY(-1px);
+    }
+
+    .back-btn:active {
+      transform: translateY(-50%) translateY(0px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .header h1 {
@@ -219,8 +229,6 @@
         <li data-i18n="stereoPanningFeature">스테레오 패닝 - 좌우 음향 균형 조정 (L/R)</li>
         <li data-i18n="pipFeature">Picture-in-Picture - 작은 창으로 비디오 시청</li>
         <li data-i18n="miniPlayerFeature">미니플레이어 - 스크롤 시 작은 플레이어로 계속 시청</li>
-        <li data-i18n="autoQualityFeature">자동 품질 선택 - 선호 화질로 자동 설정</li>
-        <li data-i18n="codecSelectionFeature">비디오 코덱 선택 - H.264, VP9, AV1 중 선택</li>
       </ul>
     </div>
 

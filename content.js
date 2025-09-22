@@ -12,7 +12,6 @@ class YouTubePlayerEnhancer {
     
     // 기능 모듈들
     this.audioEnhancer = null;
-    this.qualityController = null;
     this.pipController = null;
     
     this.mainLoopInterval = null;
@@ -94,15 +93,6 @@ class YouTubePlayerEnhancer {
       await this.audioEnhancer.init();
     }
     
-    // 품질 제어 모듈
-    if (this.settingsManager.isQualityControlEnabled()) {
-      this.qualityController = new window.YouTubeEnhancer.QualityController(
-        this.settingsManager, 
-        this.domCache, 
-        this.eventManager
-      );
-      this.qualityController.init();
-    }
     
     // PIP 및 미니플레이어 모듈
     if (this.settingsManager.isPIPEnabled() || this.settingsManager.isMiniPlayerEnabled()) {
@@ -122,9 +112,6 @@ class YouTubePlayerEnhancer {
       this.audioEnhancer.onSettingsChanged(changedKeys);
     }
     
-    if (this.qualityController) {
-      this.qualityController.onSettingsChanged(changedKeys);
-    }
     
     if (this.pipController) {
       this.pipController.onSettingsChanged(changedKeys);
@@ -172,9 +159,6 @@ class YouTubePlayerEnhancer {
       this.audioEnhancer.cleanup();
     }
     
-    if (this.qualityController) {
-      this.qualityController.cleanup();
-    }
     
     if (this.pipController) {
       this.pipController.cleanup();

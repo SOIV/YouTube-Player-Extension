@@ -10,8 +10,8 @@
     }
 
     body {
-      width: 380px;
-      min-height: 500px;
+      width: 405px;
+      min-height: 510px;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
@@ -359,29 +359,6 @@
       height: 100%;
     }
 
-    .quality-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5px;
-      margin-top: 5px;
-    }
-
-    .quality-option {
-      padding: 4px 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      text-align: center;
-      font-size: 11px;
-      cursor: pointer;
-      background: white;
-      transition: all 0.2s;
-    }
-
-    .quality-option.active {
-      background: #ff0000;
-      color: white;
-      border-color: #cc0000;
-    }
 
     /* 접을 수 있는 섹션 스타일 */
     .section-title.collapsible {
@@ -478,32 +455,9 @@
     </div>
 
 
-    <!-- 플레이어 설정 섹션 -->
+    <!-- PIP & 미니플레이어 섹션 -->
     <div class="section">
-      <div class="section-title" data-i18n="playerSettings">📺 플레이어 설정</div>
-
-      <!-- 자동 품질 선택 -->
-      <div class="option">
-        <div>
-          <div class="option-label" data-i18n="autoQuality">자동 품질 선택</div>
-          <div class="option-description" data-i18n="autoQualityDesc">선호 화질로 자동 설정</div>
-        </div>
-        <div class="control-group">
-          <select data-setting="preferredQuality">
-            <option value="auto" data-i18n="autoOption">자동</option>
-            <option value="small">240p</option>
-            <option value="medium">360p</option>
-            <option value="large">480p</option>
-            <option value="hd720">720p</option>
-            <option value="hd1080">1080p</option>
-            <option value="hd1440">1440p</option>
-            <option value="hd2160">4K</option>
-            <option value="hd2880">5K</option>
-            <option value="hd4320">8K</option>
-          </select>
-          <div class="toggle" data-setting="autoQuality"></div>
-        </div>
-      </div>
+      <div class="section-title" data-i18n="pipMiniPlayer">📱 Picture-in-Picture (PIP) & 미니플레이어</div>
 
       <!-- Picture-in-Picture -->
       

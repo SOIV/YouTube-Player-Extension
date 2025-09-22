@@ -13,9 +13,6 @@ class SettingsManager {
       enableStereoPan: false, // 스테레오 패닝 ON/OFF
       stereoPan: 0, // -100 (왼쪽) ~ 100 (오른쪽)
       
-      // 재생 품질
-      autoQuality: true,
-      preferredQuality: 'auto',
       
       // 팝업/미니 재생기
       popupPlayer: true,
@@ -70,9 +67,6 @@ class SettingsManager {
     return this.settings.enableCompressor || this.settings.enableStereoPan;
   }
 
-  isQualityControlEnabled() {
-    return this.settings.autoQuality;
-  }
 
   isPIPEnabled() {
     return this.settings.enablePIP;
