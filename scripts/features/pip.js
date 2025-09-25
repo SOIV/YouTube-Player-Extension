@@ -483,7 +483,7 @@ class PIPController {
       const entry = entries[0];
       const video = this.domCache.get('video');
       const player = this.domCache.get('player');
-      
+
       if (!video || !player) return;
 
       const isWatch = window.location.pathname.includes('/watch');
@@ -493,7 +493,7 @@ class PIPController {
       // 미니플레이어 활성화 조건 (원본 로직)
       if ((entry.intersectionRatio === 0 && !document.body.classList.contains('efyt-mini-player') && scrollY > 0) ||
           (entry.intersectionRatio > 0 && entry.intersectionRatio < 0.12)) {
-        
+
         if (scrollY > playerHeight - 100 && isWatch && !player.classList.contains('ended-mode')) {
           // 미니플레이어 활성화
           if (video) {
@@ -501,6 +501,10 @@ class PIPController {
             this.updateMiniPlayerProgress();
           }
           document.body.classList.add('efyt-mini-player');
+
+          // 세로 영상 감지 및 클래스 추가
+          this.updateVideoAspectRatio();
+
           window.dispatchEvent(new Event('resize'));
         }
       } else if (entry.intersectionRatio !== 0) {
@@ -509,6 +513,7 @@ class PIPController {
           video.removeEventListener('timeupdate', this.updateMiniPlayerProgress.bind(this));
         }
         document.body.classList.remove('efyt-mini-player');
+        document.body.classList.remove('efyt-mini-player-vertical');
         window.dispatchEvent(new Event('resize'));
       }
     }, { threshold: 0.12 });
@@ -516,11 +521,39 @@ class PIPController {
     playerContainer.efytObserver.observe(playerContainer);
   }
 
+  // 영상 비율 감지 및 업데이트
+  updateVideoAspectRatio() {
+    const video = this.domCache.get('video');
+    if (!video) return;
+
+    // 비디오가 로드되지 않은 경우 잠시 후 다시 시도
+    if (video.videoWidth === 0 || video.videoHeight === 0) {
+      setTimeout(() => this.updateVideoAspectRatio(), 500);
+      return;
+    }
+
+    const aspectRatio = video.videoWidth / video.videoHeight;
+    const isVertical = aspectRatio < 1; // 세로 영상 (높이가 너비보다 큰 경우)
+
+    // 쇼츠는 제외 (URL에 /shorts가 포함된 경우)
+    const isShorts = window.location.pathname.includes('/shorts');
+
+    if (isVertical && !isShorts) {
+      document.body.classList.add('efyt-mini-player-vertical');
+      // CSS 변수 업데이트
+      document.documentElement.style.setProperty('--efyt-mini-player-aspect-ratio', aspectRatio);
+    } else {
+      document.body.classList.remove('efyt-mini-player-vertical');
+      // 기본 16:9 비율로 복원
+      document.documentElement.style.setProperty('--efyt-mini-player-aspect-ratio', 16/9);
+    }
+  }
+
   // 미니플레이어 진행률 업데이트
   updateMiniPlayerProgress() {
     const video = this.domCache.get('video');
     const progressBar = document.querySelector('#efyt-progress');
-    
+
     if (video && progressBar) {
       if (video.duration > 0) {
         progressBar.value = video.currentTime / video.duration;
@@ -693,8 +726,64 @@ class PIPController {
       body.efyt-mini-player #movie_player:not(.ytp-fullscreen) .ytp-watermark {
         display: none !important;
       }
+
+      /* 세로 영상(9:16) 지원 스타일 */
+      body.efyt-mini-player-vertical #movie_player:not(.ytp-fullscreen),
+      body.efyt-mini-player-vertical #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: auto !important;
+        width: auto !important;
+        aspect-ratio: var(--efyt-mini-player-aspect-ratio) !important;
+      }
+
+      /* 세로 영상용 크기 조정 */
+      body.efyt-mini-player-vertical.efyt-mini-player-256x144 #movie_player:not(.ytp-fullscreen),
+      body.efyt-mini-player-vertical.efyt-mini-player-256x144 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: 256px !important;
+        width: auto !important;
+      }
+
+      body.efyt-mini-player-vertical.efyt-mini-player-320x180 #movie_player:not(.ytp-fullscreen),
+      body.efyt-mini-player-vertical.efyt-mini-player-320x180 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: 320px !important;
+        width: auto !important;
+      }
+
+      body.efyt-mini-player-vertical.efyt-mini-player-400x225 #movie_player:not(.ytp-fullscreen),
+      body.efyt-mini-player-vertical.efyt-mini-player-400x225 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: 400px !important;
+        width: auto !important;
+      }
+
+      body.efyt-mini-player-vertical.efyt-mini-player-426x240 #movie_player:not(.ytp-fullscreen),
+      body.efyt-mini-player-vertical.efyt-mini-player-426x240 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: 426px !important;
+        width: auto !important;
+      }
+
+      body.efyt-mini-player-vertical.efyt-mini-player-480x270 #movie_player:not(.ytp-fullscreen),
+      body.efyt-mini-player-vertical.efyt-mini-player-480x270 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: 480px !important;
+        width: auto !important;
+      }
+
+      body.efyt-mini-player-vertical.efyt-mini-player-560x315 #movie_player:not(.ytp-fullscreen),
+      body.efyt-mini-player-vertical.efyt-mini-player-560x315 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: 560px !important;
+        width: auto !important;
+      }
+
+      body.efyt-mini-player-vertical.efyt-mini-player-640x360 #movie_player:not(.ytp-fullscreen),
+      body.efyt-mini-player-vertical.efyt-mini-player-640x360 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: 640px !important;
+        width: auto !important;
+      }
+
+      /* 세로 영상에서 컨트롤 바 너비 조정 */
+      body.efyt-mini-player-vertical #movie_player:not(.ytp-fullscreen) .ytp-chrome-bottom {
+        width: calc(100% - 24px) !important;
+      }
     `;
-    
+
     document.head.appendChild(style);
 
     // 미니플레이어 UI 요소 추가
@@ -793,6 +882,7 @@ class PIPController {
 
     // 미니플레이어 클래스 제거
     document.body.classList.remove('efyt-mini-player');
+    document.body.classList.remove('efyt-mini-player-vertical');
     const positionClasses = ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'];
     positionClasses.forEach(pos => {
       document.body.classList.remove(`efyt-mini-player-${pos}`);
