@@ -460,10 +460,15 @@ class PIPController {
 
   setupMiniPlayerFeatures() {
     if (!this.settings.getSetting('popupPlayer')) return;
-    
+
+    // 쇼츠에서는 미니플레이어 기능 완전 차단
+    if (this.isCurrentlyInShorts()) {
+      return;
+    }
+
     // 미니플레이어 CSS 및 기본 설정 적용
     this.addMiniPlayerCSS();
-    
+
     // 미니플레이어 스크롤 감지 설정
     setTimeout(() => {
       this.setupMiniPlayerObserver();
@@ -474,12 +479,22 @@ class PIPController {
 
   // 미니플레이어 스크롤 감지 (원본 로직 기반)
   setupMiniPlayerObserver() {
+    // 쇼츠에서는 미니플레이어 Observer 설정 차단
+    if (this.isCurrentlyInShorts()) {
+      return;
+    }
+
     const playerContainer = document.querySelector('#player-container');
     if (!playerContainer) return;
 
     if (playerContainer.efytObserver) return; // 이미 설정된 경우
 
     playerContainer.efytObserver = new IntersectionObserver((entries) => {
+      // 쇼츠에서는 미니플레이어 동작 차단
+      if (this.isCurrentlyInShorts()) {
+        return;
+      }
+
       const entry = entries[0];
       const video = this.domCache.get('video');
       const player = this.domCache.get('player');
@@ -521,8 +536,40 @@ class PIPController {
     playerContainer.efytObserver.observe(playerContainer);
   }
 
+  // 쇼츠 감지 로직 강화
+  isCurrentlyInShorts() {
+    // URL 체크
+    if (window.location.pathname.includes('/shorts')) {
+      return true;
+    }
+
+    // DOM 요소로 쇼츠 감지
+    if (document.querySelector('ytd-shorts') ||
+        document.querySelector('[is-shorts]') ||
+        document.querySelector('#shorts-player') ||
+        document.querySelector('ytd-reel-video-renderer')) {
+      return true;
+    }
+
+    // body 클래스로 쇼츠 감지
+    if (document.body.classList.contains('shorts') ||
+        document.documentElement.getAttribute('data-current-page-type') === 'shorts') {
+      return true;
+    }
+
+    return false;
+  }
+
   // 영상 비율 감지 및 업데이트
   updateVideoAspectRatio() {
+    // 쇼츠에서는 화면 비율 조정 완전 차단
+    if (this.isCurrentlyInShorts()) {
+      // 쇼츠에서 기존 설정 제거
+      document.body.classList.remove('efyt-mini-player-vertical');
+      document.documentElement.style.removeProperty('--efyt-mini-player-aspect-ratio');
+      return;
+    }
+
     const video = this.domCache.get('video');
     if (!video) return;
 
@@ -535,10 +582,7 @@ class PIPController {
     const aspectRatio = video.videoWidth / video.videoHeight;
     const isVertical = aspectRatio < 1; // 세로 영상 (높이가 너비보다 큰 경우)
 
-    // 쇼츠는 제외 (URL에 /shorts가 포함된 경우)
-    const isShorts = window.location.pathname.includes('/shorts');
-
-    if (isVertical && !isShorts) {
+    if (isVertical) {
       document.body.classList.add('efyt-mini-player-vertical');
       // CSS 변수 업데이트
       document.documentElement.style.setProperty('--efyt-mini-player-aspect-ratio', aspectRatio);
