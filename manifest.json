@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "YouTube™ Player Extension",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "유튜브 플레이어 버그를 수정하고 고급 오디오/비디오 기능을 제공하는 확장 프로그램",
   
   "permissions": [
