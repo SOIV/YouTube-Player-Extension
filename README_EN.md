@@ -10,8 +10,7 @@ A browser extension that enhances various features of the YouTube player.
 ## Key Features
 
 ### 🎵 Audio Enhancement
-- **Volume Boost**: Play at volumes higher than default (up to 500%)
-- **Audio Compressor**: Dynamic range control for more consistent volume levels
+- **Volume Boost (Audio Compressor)**: Play at volumes higher than default (up to 500%)
 - **Stereo Panning**: Adjust left-right audio balance (-100% ~ +100%)
 
 ### 📱 Player Features
@@ -141,7 +140,7 @@ YouTube Player Extension/
 - If multiple YouTube tabs are open, refresh all tabs
 - Clear browser cache and try again
 
-### ❓ Audio compressor is not working
+### ❓ Volume Boost (Audio Compressor) is not working
 - Check if the tab is not muted in the browser
 - Check if system volume is at an appropriate level
 - Check for potential conflicts when using with other audio enhancement features
