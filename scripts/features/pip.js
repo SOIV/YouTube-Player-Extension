@@ -164,7 +164,6 @@ class PIPController {
       }
 
       // this.registerTooltipForButton(pipButton);
-
     } catch (error) {
     }
   }
@@ -254,7 +253,6 @@ class PIPController {
       }
 
       // this.registerTooltipForButton(smallPlayerButton);
-
     } catch (error) {
     }
   }
