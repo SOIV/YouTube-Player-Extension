@@ -65,50 +65,59 @@ class PIPController {
     try {
       // YouTube 기본 PIP 버튼 찾기 및 하이재킹
       const nativePIPButton = document.querySelector('.ytp-pip-button');
-      
+
       if (nativePIPButton) {
-        
+
         // 기본 PIP 버튼을 보이게 만들기
         nativePIPButton.style.display = '';
         nativePIPButton.style.visibility = 'visible';
         nativePIPButton.style.opacity = '1';
-        
-        
+
+        // 버튼을 올바른 컨테이너로 이동
+        const controlsRightContainer = document.querySelector('.ytp-right-controls-right');
+        const fullscreenButton = controlsRightContainer?.querySelector('.ytp-fullscreen-button');
+
+        if (controlsRightContainer && fullscreenButton && nativePIPButton.parentElement !== controlsRightContainer) {
+          // 전체화면 버튼 앞으로 이동
+          controlsRightContainer.insertBefore(nativePIPButton, fullscreenButton);
+        }
+
         // SVG 요소만 찾아서 path 내용만 교체 (툴팁 시스템 보존)
         const existingSvg = nativePIPButton.querySelector('svg');
         if (existingSvg) {
-          
+
           // 기존 SVG의 path만 교체 (CSS 조정 없이)
           const existingPath = existingSvg.querySelector('path');
           if (existingPath) {
             // PIP 아이콘 전체를 오른쪽으로 6 이동
-            existingPath.setAttribute('d', 'M27 9H9c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V11c0-1.1-.9-2-2-2zm0 16H9V11h18v14zM24 14h-6c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V15c0-.55-.45-1-1-1z');
+            existingPath.setAttribute('d', 'M25,17 L17,17 L17,23 L25,23 L25,17 L25,17 Z M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 Z');
             existingPath.setAttribute('fill', 'white');
           } else {
           }
         } else {
           // SVG가 없으면 전체 교체 (폴백)
           nativePIPButton.innerHTML = `
-            <svg height="100%" version="1.1" viewBox="0 0 24 24" width="100%">
-              <path d="M27 9H9c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V11c0-1.1-.9-2-2-2zm0 16H9V11h18v14zM24 14h-6c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V15c0-.55-.45-1-1-1z" fill="white"/>
+            <svg height="100%" version="1.1" viewBox="0 0 36 36" width="100%">
+              <path d="M25,17 L17,17 L17,23 L25,23 L25,17 L25,17 Z M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 Z" fill="white"/>
             </svg>
           `;
         }
-        
+
         // 기존 클릭 이벤트에 우리 기능 추가 (기존 이벤트 제거하지 않음)
         nativePIPButton.addEventListener('click', (e) => {
           e.stopPropagation(); // 기존 이벤트 중단
           e.preventDefault();
           this.togglePIP();
         }, true); // capture phase에서 먼저 실행
-        
+
         return;
       }
       
       // 기본 PIP 버튼이 없으면 커스텀 버튼 생성 (폴백)
-      
-      const controlsRight = document.querySelector('.ytp-right-controls');
-      if (!controlsRight) return;
+
+      // ytp-right-controls-right 안에 버튼을 넣어야 함
+      const controlsRightContainer = document.querySelector('.ytp-right-controls-right');
+      if (!controlsRightContainer) return;
 
       // 기존 커스텀 PIP 버튼 제거
       const existingButton = document.querySelector('.ytp-efyt-pip-button');
@@ -120,16 +129,11 @@ class PIPController {
       pipButton.setAttribute('data-title-no-tooltip', 'PIP 모드');
       pipButton.setAttribute('data-tooltip-title', 'PIP 모드');
       pipButton.setAttribute('data-tooltip-target-id', 'ytp-pip-button');
-      // 다른 버튼들과 같은 크기로 자동 조정
-      pipButton.style.width = '';
-      pipButton.style.height = '';
-      pipButton.style.display = 'inline-flex';
-      pipButton.style.alignItems = 'center';
-      pipButton.style.justifyContent = 'center';
-      pipButton.style.verticalAlign = 'top';
+      pipButton.setAttribute('aria-label', 'PIP 모드');
+      pipButton.setAttribute('data-priority', '11');
       pipButton.innerHTML = `
-        <svg height="66%" version="1.1" viewBox="0 0 24 24" width="66%" style="pointer-events: none;">
-          <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM19 8h-6c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1z" fill="white"/>
+        <svg height="100%" version="1.1" viewBox="0 0 36 36" width="100%">
+          <path d="M25,17 L17,17 L17,23 L25,23 L25,17 L25,17 Z M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 Z" fill="white"/>
         </svg>
       `;
 
@@ -138,20 +142,12 @@ class PIPController {
         this.togglePIP();
       });
 
-      // 설정 버튼 바로 뒤에 추가
-      const settingsButton = controlsRight.querySelector('.ytp-settings-button');
-      if (settingsButton && settingsButton.nextSibling) {
-        controlsRight.insertBefore(pipButton, settingsButton.nextSibling);
-      } else if (settingsButton) {
-        controlsRight.appendChild(pipButton);
+      // 전체화면 버튼 바로 앞에 추가
+      const fullscreenButton = controlsRightContainer.querySelector('.ytp-fullscreen-button');
+      if (fullscreenButton) {
+        controlsRightContainer.insertBefore(pipButton, fullscreenButton);
       } else {
-        // 풀스크린 버튼 앞에 추가
-        const fullscreenButton = controlsRight.querySelector('.ytp-fullscreen-button');
-        if (fullscreenButton) {
-          controlsRight.insertBefore(pipButton, fullscreenButton);
-        } else {
-          controlsRight.appendChild(pipButton);
-        }
+        controlsRightContainer.appendChild(pipButton);
       }
 
       // PIP 버튼은 폴백이므로 툴팁 없이 사용
@@ -205,10 +201,11 @@ class PIPController {
 
   addSmallPlayerButton() {
     if (!this.settings.getSetting('enableSmallPlayerButton')) return;
-    
+
     try {
-      const controlsRight = document.querySelector('.ytp-right-controls');
-      if (!controlsRight) return;
+      // ytp-right-controls-right 안에 버튼을 넣어야 함
+      const controlsRightContainer = document.querySelector('.ytp-right-controls-right');
+      if (!controlsRightContainer) return;
 
       // 기존 소형 플레이어 버튼 제거
       const existingButton = document.querySelector('.ytp-efyt-small-player-button');
@@ -220,18 +217,12 @@ class PIPController {
       smallPlayerButton.setAttribute('data-title-no-tooltip', '소형 플레이어');
       smallPlayerButton.setAttribute('data-tooltip-title', '소형 플레이어');
       smallPlayerButton.setAttribute('data-tooltip-target-id', 'ytp-small-player-button');
-      
-      // 다른 버튼들과 같은 크기로 자동 조정
-      smallPlayerButton.style.width = '';
-      smallPlayerButton.style.height = '';
-      smallPlayerButton.style.display = 'inline-flex';
-      smallPlayerButton.style.alignItems = 'center';
-      smallPlayerButton.style.justifyContent = 'center';
-      smallPlayerButton.style.verticalAlign = 'top';
-      
+      smallPlayerButton.setAttribute('aria-label', '소형 플레이어');
+      smallPlayerButton.setAttribute('data-priority', '11');
+
       // YouTube의 실제 소형 플레이어 SVG 아이콘 (메뉴에서 가져온 원본)
       smallPlayerButton.innerHTML = `
-        <svg height="100%" version="1.1" viewBox="0 0 36 36" width="100%" style="pointer-events: none;">
+        <svg height="100%" version="1.1" viewBox="0 0 36 36" width="100%">
           <path d="M25,17 L17,17 L17,23 L25,23 L25,17 L25,17 Z M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 Z" fill="white"/>
         </svg>
       `;
@@ -241,21 +232,12 @@ class PIPController {
         this.triggerSmallPlayerFromMenu();
       });
 
-      // 설정 버튼 오른쪽에 추가
-      const settingsButton = controlsRight.querySelector('.ytp-settings-button');
-      if (settingsButton && settingsButton.nextSibling) {
-        controlsRight.insertBefore(smallPlayerButton, settingsButton.nextSibling);
-      } else if (settingsButton) {
-        // 설정 버튼 다음에 추가 (설정 버튼이 마지막인 경우)
-        controlsRight.appendChild(smallPlayerButton);
+      // 전체화면 버튼 바로 앞에 추가
+      const fullscreenButton = controlsRightContainer.querySelector('.ytp-fullscreen-button');
+      if (fullscreenButton) {
+        controlsRightContainer.insertBefore(smallPlayerButton, fullscreenButton);
       } else {
-        // 설정 버튼이 없으면 풀스크린 버튼 앞에 추가
-        const fullscreenButton = controlsRight.querySelector('.ytp-fullscreen-button');
-        if (fullscreenButton) {
-          controlsRight.insertBefore(smallPlayerButton, fullscreenButton);
-        } else {
-          controlsRight.appendChild(smallPlayerButton);
-        }
+        controlsRightContainer.appendChild(smallPlayerButton);
       }
 
       // 폴백 툴팁 시스템 제거 - YouTube 시스템 간섭 방지
