@@ -63,13 +63,67 @@ class PIPController {
     if (!this.settings.getSetting('enablePIP')) return;
 
     try {
-      // YouTube 기본 PIP 버튼을 완전히 숨기기
+      // YouTube 기본 PIP 버튼 찾기 및 하이재킹
       const nativePIPButton = document.querySelector('.ytp-pip-button');
+
       if (nativePIPButton) {
-        nativePIPButton.style.display = 'none';
+        // 기본 PIP 버튼을 보이게 만들기
+        nativePIPButton.style.display = '';
+        nativePIPButton.style.visibility = 'visible';
+        nativePIPButton.style.opacity = '1';
+
+        // 버튼을 올바른 컨테이너로 이동
+        const controlsRightContainer = document.querySelector('.ytp-right-controls-right');
+        const fullscreenButton = controlsRightContainer?.querySelector('.ytp-fullscreen-button');
+
+        if (controlsRightContainer && fullscreenButton && nativePIPButton.parentElement !== controlsRightContainer) {
+          // 전체화면 버튼 앞으로 이동
+          controlsRightContainer.insertBefore(nativePIPButton, fullscreenButton);
+        }
+
+        // SVG 요소만 찾아서 path 내용만 교체 (툴팁 시스템 보존)
+        const existingSvg = nativePIPButton.querySelector('svg');
+        if (existingSvg) {
+          // 기존 SVG의 viewBox와 transform 적용
+          existingSvg.setAttribute('viewBox', '0 0 36 36');
+
+          // 기존 SVG의 path만 교체
+          const existingPath = existingSvg.querySelector('path');
+          if (existingPath) {
+            // g 태그로 감싸서 transform 적용
+            const gElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            gElement.setAttribute('transform', 'translate(-5, -5)');
+
+            const newPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            newPath.setAttribute('d', 'M25,17 L17,17 L17,23 L25,23 L25,17 L25,17 Z M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 Z');
+            newPath.setAttribute('fill', 'white');
+
+            gElement.appendChild(newPath);
+            existingSvg.innerHTML = '';
+            existingSvg.appendChild(gElement);
+          }
+        } else {
+          // SVG가 없으면 전체 교체 (폴백)
+          nativePIPButton.innerHTML = `
+            <svg viewBox="0 0 36 36">
+              <g transform="translate(-5, -5)">
+                <path d="M25,17 L17,17 L17,23 L25,23 L25,17 L25,17 Z M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 Z" fill="white"/>
+              </g>
+            </svg>
+          `;
+        }
+
+        // 기존 클릭 이벤트에 우리 기능 추가 (기존 이벤트 중단)
+        nativePIPButton.addEventListener('click', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          this.togglePIP();
+        }, true); // capture phase에서 먼저 실행
+
+        return;
       }
 
-      // 커스텀 PIP 버튼 생성
+      // 기본 PIP 버튼이 없으면 커스텀 버튼 생성 (폴백)
 
       // ytp-right-controls-right 안에 버튼을 넣어야 함
       const controlsRightContainer = document.querySelector('.ytp-right-controls-right');
@@ -110,7 +164,7 @@ class PIPController {
       }
 
       // this.registerTooltipForButton(pipButton);
-      
+
     } catch (error) {
     }
   }
@@ -200,7 +254,7 @@ class PIPController {
       }
 
       // this.registerTooltipForButton(smallPlayerButton);
-      
+
     } catch (error) {
     }
   }
