@@ -235,6 +235,30 @@ efyt-progress-tooltip {
   opacity: 0 !important;
 }
 
+/* 네이티브 PIP 버튼 숨기기 */
+.ytp-pip-button {
+  display: none !important;
+}
+
+/* 커스텀 PIP 및 소형 플레이어 버튼 스타일 */
+.ytp-efyt-pip-button,
+.ytp-efyt-small-player-button {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ytp-efyt-pip-button svg,
+.ytp-efyt-small-player-button svg {
+  width: 36px;
+  height: 36px;
+  display: block;
+  flex-shrink: 0;
+}
+
 /* 오디오 향상 표시기 */
 .ype-audio-indicator {
   position: absolute;
