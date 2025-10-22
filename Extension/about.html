@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - YouTube™ Player Extension</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 405px;
+      min-height: 510px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #ff0000, #cc0000);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      border: 1px solid rgba(255,255,255,1);
+      color: #000000;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .back-btn:hover {
+      background: white;
+      color: #000000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transform: translateY(-50%) translateY(-1px);
+    }
+
+    .back-btn:active {
+      transform: translateY(-50%) translateY(0px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .header p {
+      margin: 5px 0 0 0;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .app-info {
+      text-align: center;
+      margin-bottom: 25px;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .app-icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .app-name {
+      font-weight: 600;
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .app-version {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .app-description {
+      font-size: 14px;
+      color: #495057;
+      line-height: 1.5;
+    }
+
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-list {
+      margin: 0;
+      padding-left: 20px;
+      color: #495057;
+    }
+
+    .feature-list li {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .highlight-box {
+      background: #e7f3ff;
+      border: 1px solid #b8daff;
+      border-radius: 6px;
+      padding: 12px;
+      margin: 12px 0;
+    }
+
+    .highlight-box.warning {
+      background: #fff3cd;
+      border-color: #ffeaa7;
+    }
+
+    .highlight-title {
+      font-weight: 600;
+      font-size: 13px;
+      color: #0c5460;
+      margin-bottom: 6px;
+    }
+
+    .highlight-box.warning .highlight-title {
+      color: #856404;
+    }
+
+    .highlight-text {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #0c5460;
+    }
+
+    .highlight-box.warning .highlight-text {
+      color: #856404;
+    }
+
+    .footer {
+      padding: 15px 20px;
+      background: #e9ecef;
+      border-top: 1px solid #dee2e6;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 11px;
+      color: #6c757d;
+      line-height: 1.5;
+    }
+
+    .footer-text strong {
+      color: #495057;
+    }
+
+    .link-btn {
+      background: none;
+      border: none;
+      color: #007bff;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: inherit;
+      padding: 0;
+    }
+
+    .link-btn:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <button class="back-btn" id="backBtn" data-i18n="backButton">← 뒤로</button>
+    <h1 data-i18n="about">About</h1>
+    <p data-i18n="aboutInfo">YouTube™ Player Extension 정보</p>
+  </div>
+
+  <div class="content">
+    <div class="app-info">
+      <div class="app-icon">🎮</div>
+      <div class="app-name" data-i18n="appName">YouTube™ Player Extension</div>
+      <div class="app-version" data-i18n="version">버전 1.0.6</div>
+      <div class="app-description" data-i18n="appDescriptionLong">
+        YouTube의 플레이어 기능을 향상시키고<br>
+        실용적인 오디오 제어 기능을 제공하는 확장 프로그램
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        🎵 <span data-i18n="appFeatures">주요 기능</span>
+      </div>
+      <ul class="feature-list">
+        <li data-i18n="audioCompressorFeature">오디오 컴프레서 - 볼륨 증폭 및 다이나믹 레인지 압축 (50% ~ 200%)</li>
+        <li data-i18n="stereoPanningFeature">스테레오 패닝 - 좌우 음향 균형 조정 (L/R)</li>
+        <li data-i18n="pipFeature">Picture-in-Picture - 작은 창으로 비디오 시청</li>
+        <li data-i18n="miniPlayerFeature">미니플레이어 - 스크롤 시 작은 플레이어로 계속 시청</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        💡 <span data-i18n="developmentBackground">개발 배경</span>
+      </div>
+      <p style="font-size: 13px; color: #495057; line-height: 1.5; margin: 12px 0;" data-i18n="developmentText">
+        기존의 복잡한 YouTube 확장 프로그램들과 달리, 정말 필요한 기능만 엄선하여 
+        성능과 안정성에 중점을 둔 설계입니다.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        🎤 <span data-i18n="karaokeSuggestion">노래방 기능이 필요하다면?</span>
+      </div>
+      <div class="highlight-box warning">
+        <div class="highlight-title" data-i18n="transposeTitle">Transpose ▲▼ 추천</div>
+        <div class="highlight-text">
+          <span data-i18n="transposeDescription">노래 키 조정, 템포 변경, 반복 구간 설정 등의 노래방 기능이 필요하시면</span> 
+          <a href="https://chromewebstore.google.com/detail/ioimlbgefgadofblnajllknopjboejda?utm_source=item-share-cb" 
+             target="_blank" 
+             style="color: #856404; font-weight: bold; text-decoration: underline;">
+            <strong>Transpose ▲▼</strong>
+          </a> <span data-i18n="transposeRecommend">확장 프로그램을 추천드립니다.</span>
+        </div>
+      </div>
+      <p style="font-size: 12px; color: #666; margin: 8px 0 0 0;" data-i18n="transposeNote">
+        각 확장 프로그램이 각자의 전문 분야에서 최고의 성능을 발휘할 수 있도록 역할을 분담했습니다.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        🛠️ <span data-i18n="technicalInfo">기술 정보</span>
+      </div>
+      <ul class="feature-list">
+        <li data-i18n="manifestV3">Manifest V3 - 최신 크롬 확장 프로그램 표준</li>
+        <li data-i18n="modularDesign">모듈화 설계 - 기능별 분리된 JavaScript 모듈</li>
+        <li data-i18n="webAudioAPI">Web Audio API - 고품질 오디오 처리</li>
+        <li data-i18n="memoryOptimized">메모리 최적화 - 사용하지 않는 기능은 로드하지 않음</li>
+        <li data-i18n="youtubeCompatibility">YouTube 호환성 - YouTube 업데이트에 대응하는 안정적인 구조</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">
+      <strong data-i18n="madeBy">Made by SOIV Studio</strong><br>
+      <span data-i18n="youtubeTrademark">YouTube는 Google LLC의 상표입니다</span><br>
+      <span style="margin-top: 8px; display: inline-block;" data-i18n="disclaimer">
+        이 확장 프로그램은 YouTube와 공식적인 관련이 없습니다
+      </span>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="about.js"></script>
+</body>
+</html>
