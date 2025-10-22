@@ -14,7 +14,7 @@ A browser extension that enhances various features of the YouTube player.
 - **Stereo Panning**: Adjust left-right audio balance (-100% ~ +100%)
 
 ### 📱 Player Features
-- **Picture-in-Picture**: Watch video in a small floating window
+- **Picture-in-Picture(PIP)**: Watch video in a small floating window
 - **Mini Player**: Continue watching with small player while scrolling (customizable size and position)
 
 ### 🛠️ Advanced Settings
@@ -68,6 +68,8 @@ cd YouTube-Player-Extension
 ![Screenshot 4](docs/screenshot/en/스크린샷%202025-09-15%20232144.png)
 
 ## Browser Compatibility
+
+> Supports all browsers that use the Chromium engine.
 
 - ✅ **Chrome** (Recommended)
 - ✅ **Microsoft Edge**
