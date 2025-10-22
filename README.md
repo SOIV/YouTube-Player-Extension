@@ -40,19 +40,6 @@
 6. 압축 해제한 폴더 선택
 7. 확장 프로그램이 설치되고 YouTube에서 사용 가능
 
-### 🔧 개발자 설치 (소스코드 직접 설치)
-
-```bash
-# 레포지토리 클론
-git clone https://github.com/SOIV/YouTube-Player-Extension.git
-cd YouTube-Player-Extension
-```
-
-1. Chrome 브라우저에서 `chrome://extensions/` 페이지로 이동
-2. 우측 상단의 "개발자 모드" 활성화
-3. "압축해제된 확장 프로그램을 로드합니다" 클릭
-4. 클론한 프로젝트 폴더를 선택
-
 ## 사용 방법
 
 1. YouTube 페이지로 이동

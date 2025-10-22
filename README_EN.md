@@ -40,19 +40,6 @@ A browser extension that enhances various features of the YouTube player.
 6. Select the extracted folder
 7. Extension is installed and ready to use on YouTube
 
-### 🔧 Developer Installation (Direct Source Code)
-
-```bash
-# Clone repository
-git clone https://github.com/SOIV/YouTube-Player-Extension.git
-cd YouTube-Player-Extension
-```
-
-1. Open Chrome browser and go to `chrome://extensions/`
-2. Enable "Developer mode" in the top right
-3. Click "Load unpacked"
-4. Select the cloned project folder
-
 ## Usage
 
 1. Navigate to YouTube
