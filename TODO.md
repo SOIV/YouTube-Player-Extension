@@ -1,6 +1,8 @@
 - [x] 변경 및 업데이트 된 소형 플레이어 아이콘(SVG) 수정 (for YouTube default SVG)<br> Fixed and updated small player icons (SVG) (for YouTube default SVG)
 - [x] /live/* 에서 PIP, 소형 플레이어 버튼, 미니플레이어 가 작동하지 않는 문제를 해결<br> Fixed an issue where PIP, small player buttons, and miniplayer did not work in /live/*
 
+- [ ] 각 버튼 툴팁 및 일부 기능에서 다국어 지원이 안되고 있는 부분을 수정<br> Fixed the lack of multilingual support in each button tooltip and some functions.
+
 ---
 
 - [ ] V2 UI/UX Update - v2.0.0 (Settings window & About)
