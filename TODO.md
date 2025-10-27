@@ -1,4 +1,4 @@
-- [x] 변경 및 업데이트 된 소형 플레이어 아이콘(SVG) 수정<br> Fixed and updated small player icons (SVG) (for YouTube default SVG)
+- [x] 변경 및 업데이트 된 소형 플레이어 아이콘(SVG) 수정 (for YouTube default SVG)<br> Fixed and updated small player icons (SVG) (for YouTube default SVG)
 - [ ] /live/* 에서 PIP, 소형 플레이어 버튼, 미니플레이어 가 작동하지 않는 문제를 해결(안정성 업데이트)<br> Fixed an issue where PIP, small player buttons, and miniplayer did not work in /live/*(Stability Update)
 
 ---
