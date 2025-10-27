@@ -25,14 +25,14 @@ class PIPController {
     // YouTube 페이지 변경 감지
     this.eventManager.addEventListener(document, 'yt-navigate-finish', () => {
       setTimeout(() => {
-        if (window.location.pathname.includes('/watch')) {
+        if (window.location.pathname.includes('/watch') || window.location.pathname.includes('/live')) {
           this.applyPIPSettings();
         }
       }, 1000);
     });
 
     // 초기 적용
-    if (window.location.pathname.includes('/watch')) {
+    if (window.location.pathname.includes('/watch') || window.location.pathname.includes('/live')) {
       setTimeout(() => {
         this.applyPIPSettings();
       }, 2000);
@@ -560,7 +560,7 @@ class PIPController {
 
       if (!video || !player) return;
 
-      const isWatch = window.location.pathname.includes('/watch');
+      const isWatchOrLive = window.location.pathname.includes('/watch') || window.location.pathname.includes('/live');
       const scrollY = window.scrollY;
       const playerHeight = playerContainer.offsetHeight;
 
@@ -568,7 +568,7 @@ class PIPController {
       if ((entry.intersectionRatio === 0 && !document.body.classList.contains('efyt-mini-player') && scrollY > 0) ||
           (entry.intersectionRatio > 0 && entry.intersectionRatio < 0.12)) {
 
-        if (scrollY > playerHeight - 100 && isWatch && !player.classList.contains('ended-mode')) {
+        if (scrollY > playerHeight - 100 && isWatchOrLive && !player.classList.contains('ended-mode')) {
           // 미니플레이어 활성화
           if (video) {
             video.addEventListener('timeupdate', this.updateMiniPlayerProgress.bind(this));
