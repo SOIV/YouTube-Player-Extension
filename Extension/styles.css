@@ -265,8 +265,8 @@ efyt-progress-tooltip {
 
 .ytp-efyt-pip-button svg,
 .ytp-efyt-small-player-button svg {
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   display: block;
   flex-shrink: 0;
 }
