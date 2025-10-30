@@ -14,8 +14,9 @@ A browser extension that enhances various features of the YouTube player.
 - **Stereo Panning**: Adjust left-right audio balance (-100% ~ +100%)
 
 ### 📱 Player Features
-- **Picture-in-Picture(PIP)**: Watch video in a small floating window
-- **Mini Player**: Continue watching with small player while scrolling (customizable size and position)
+- **Picture-in-Picture (PIP) Button**: Added a button to launch the PIP.
+- **Mini Player Button**: Added a button to go to YouTube's mini player.
+- **Floating Player**: Continue watching with small player while scrolling (customizable size and position)
 
 ### 🛠️ Advanced Settings
 - **Custom Scripts**: Execute JavaScript code for additional functionality
