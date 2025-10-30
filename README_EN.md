@@ -29,7 +29,7 @@ A browser extension that enhances various features of the YouTube player.
 
 ### 🏪 Chrome Web Store (Coming Soon)
 
-> 📅 **Chrome Web Store Upload Planned**: We're preparing to register on the Chrome Web Store for easier installation and updates.
+> 📅 **Chrome Web Store Upload Planned**: We're preparing to register on the Chrome Web Store for easier installation and updates. It will be supported and registered in V2.
 
 ### 📦 Download from Releases (Recommended)
 
