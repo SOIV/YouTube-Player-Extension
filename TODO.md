@@ -10,6 +10,8 @@
 > [ v2 지원 이전 마지막 업데이트 - v1.0.8 ]<br> [ Last update before v2 support - v1.0.8 ]
 - [ ] 각 버튼 툴팁 및 일부 기능에서 다국어 지원이 안되고 있는 부분을 수정
     - Fixed the lack of multilingual support in each button tooltip and some functions.
+- [ ] 충돌 되는 미니 플레이어의 이름을 플로팅 플레이어(Floating Player)으로 변경<br> 해당 수정은 변수/함수명, CSS 클래스명, 설정/옵션 키, 텍스트(다국어), 주석 작성 내용을 전부 변경 및 수정을 해야되는 수정안이라 핫픽스(hotfix)으로 업데이트가 아닌 다음 업데이트에서 제공 됩니다.
+    - Rename the conflicting mini-player to Floating Player<br> This fix requires changing and modifying all variable/function names, CSS class names, setting/option keys, text (multilingual), and comment content, so it will be provided in the next update, not as a hotfix.
 
 ---
 
