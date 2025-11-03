@@ -166,6 +166,11 @@ YouTube Player Extension/
 
 이 프로젝트는 MIT License 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
 
+## 개발자에게 문의하기
+
+광고 문의 또는 기타 문의는 아레 이메일로 부탁드립니다.<br>
+Email: biz@soiv-studio.xyz
+
 ---
 
 **주의사항**: 이 확장 프로그램은 YouTube의 공식 제품이 아닙니다. YouTube는 Google Inc.의 상표입니다.
