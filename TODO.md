@@ -13,10 +13,13 @@
 - [ ] 충돌 되는 미니 플레이어의 이름을 플로팅 플레이어(Floating Player)으로 변경<br> 해당 수정은 변수/함수명, CSS 클래스명, 설정/옵션 키, 텍스트(다국어), 주석 작성 내용을 전부 변경 및 수정을 해야되는 수정안이라 핫픽스(hotfix)으로 업데이트가 아닌 다음 업데이트에서 제공 됩니다.
     - Rename the conflicting mini-player to Floating Player<br> This fix requires changing and modifying all variable/function names, CSS class names, setting/option keys, text (multilingual), and comment content, so it will be provided in the next update, not as a hotfix.
 
+## Help me!
+- [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
+    - Display Miniplayer's tooltip using YouTube's default tooltip
+
 ---
 
 ## v2.0.0 major update
-
 - [ ] V2 UI/UX Update - v2.0.0 (Settings window & About)
     - v2 UI/UX의 업데이트를 진행하면서 About 또는 일부 기능의 내용이 수정 될 수 있습니다.
         - As we update the v2 UI/UX, the About section or some features may be modified.
@@ -27,6 +30,16 @@
 
 ---
 
-### Help me!
-- [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
-    - Display Miniplayer's tooltip using YouTube's default tooltip
+## Idea? / updated List
+> This paragraph is not translated. If you wish to check the content, please use a translation tool.
+
+> 확장 프로그램인 [Transpose](https://chromewebstore.google.com/detail/transpose-%E2%96%B2%E2%96%BC-pitch-%E2%96%B9-spee/ioimlbgefgadofblnajllknopjboejda), [AHA Music](https://chromewebstore.google.com/detail/aha-music-song-finder-for/dpacanjfikmhoddligfbehkpomnbgblf), [Dark Reader](https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh)에 있는 기능들은 추가 및 작업하지 않을 예정입니다.<br> 
+(이미 충분히 잘 작동하고 많은 사람들이 사용하는 확장 프로그램이라 딱히 여기서 만들고자 하는 생각이 없음)
+
+> 아레 기능이 통합으로 추가 될 경우 확장 프로그램의 이름이 변경 될 수 있습니다. (ex. YouTube Player Extension -> Player Extension)<br>
+모든 기능은 모듈 형식으로 활성화시 동적으로 기능을 불러오는 방식을 사용합니다.
+- [ ] Live Stream Translator
+    - 별도 확장 프로그램으로 개발 중이였으나 v2 업데이트로 하나의 확장 프로그램으로 추후 통합 예정
+- [ ] YouTube Video Downloader / YouTube Mp3 Converter / Soundcloud Music Downloader
+    - [Flixmate](https://flixmate.net/)을 사용하여 다운로드하는 기능을 추후 추가 예정이 있음(확정이 아님)
+    - 기존 Emulator/sandboxed 환경에서 사용 가능한 [확장 프로그램](https://addoncrop.com/v34/)을 참고함
