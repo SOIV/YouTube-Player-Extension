@@ -1,0 +1,8 @@
+- [ ] 사용자겸 유사 개발자가 추천하는 확장 프로그램 리스트가 수정 및 추가가 될 예정
+    - 예정인 목록(이미 작성 되어 있는 확장 프로그램 포함)
+        - [Transpose](https://chromewebstore.google.com/detail/transpose-%E2%96%B2%E2%96%BC-pitch-%E2%96%B9-spee/ioimlbgefgadofblnajllknopjboejda)
+        - [AHA Music](https://chromewebstore.google.com/detail/aha-music-song-finder-for/dpacanjfikmhoddligfbehkpomnbgblf)
+        - [Dark Reader](https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh)
+- [ ] 특정 확장 프로그램 또는 일반 프로그램의 광고를 받는 중입니다!
+    - 광고의 문의는 저의 이메일인 'biz@soiv-studio.xyz'으로 연락주시면 확인후 답장을 드립니다.
+    - 해당 광고는 확장 프로그램 외에도 다른 서비스 중인 곳에서도 광고가 표시 될 수 있습니다.
