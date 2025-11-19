@@ -162,6 +162,10 @@ YouTube Player Extension/
 
 Please report bugs or feature requests at [Issues](https://github.com/SOIV/YouTube-Player-Extension/issues).
 
+## To-Do
+
+You can check the status of all scheduled tasks or updates in [ToDo](TODO.md).
+
 ## License
 
 This project is distributed under the MIT License. See [LICENSE](LICENSE) file for details.

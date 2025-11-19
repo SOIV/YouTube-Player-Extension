@@ -162,6 +162,10 @@ YouTube Player Extension/
 
 버그나 기능 요청은 [Issues](https://github.com/SOIV/YouTube-Player-Extension/issues)에서 신고해 주세요.
 
+## To-Do
+
+모든 예정된 작업 또는 업데이트 상태의 확인은 [ToDo](TODO.md)에서 확인 가능합니다.
+
 ## 라이선스
 
 이 프로젝트는 MIT License 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
