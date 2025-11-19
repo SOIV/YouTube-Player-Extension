@@ -12,6 +12,9 @@
     - Fixed the lack of multilingual support in each button tooltip and some functions.
 - [ ] 충돌 되는 미니 플레이어의 이름을 플로팅 플레이어(Floating Player)으로 변경<br> 해당 수정은 변수/함수명, CSS 클래스명, 설정/옵션 키, 텍스트(다국어), 주석 작성 내용을 전부 변경 및 수정을 해야되는 수정안이라 핫픽스(hotfix)으로 업데이트가 아닌 다음 업데이트에서 제공 됩니다.
     - Rename the conflicting mini-player to Floating Player<br> This fix requires changing and modifying all variable/function names, CSS class names, setting/option keys, text (multilingual), and comment content, so it will be provided in the next update, not as a hotfix.
+- [ ] 플로팅 플레이어(Floating Player)(구 미니 플레이어)가(이) 작동이 되지 않는 문제
+    - 최근 유튜브 업데이트로 인해 정상 작동하던 플로팅 플레이어(Floating Player)가 작동하지 않는 문제를 발견하였습니다.
+    - 플로팅 플레이어(Floating Player)와 같이 정상 작동하고 있던 기능들이 작동하지 않는 다면 이슈탭에 알려주세요.
 
 ## Help me!
 - [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
