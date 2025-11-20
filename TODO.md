@@ -14,6 +14,7 @@
     - Rename the conflicting mini-player to Floating Player<br> This fix requires changing and modifying all variable/function names, CSS class names, setting/option keys, text (multilingual), and comment content, so it will be provided in the next update, not as a hotfix.
 - [ ] 플로팅 플레이어(Floating Player)(구 미니 플레이어)가(이) 작동이 되지 않는 문제
     - 최근 유튜브 업데이트로 인해 정상 작동하던 플로팅 플레이어(Floating Player)가 작동하지 않는 문제를 발견하였습니다.
+    - 왜 실시간 스트리밍을 한 영상에서는 잘 작동하는가? 일반이랑 실시간 스트리밍을 한 영상이랑 별 다를빠가 없을텐데 이상하다..
     - 플로팅 플레이어(Floating Player)와 같이 정상 작동하고 있던 기능들이 작동하지 않는 다면 이슈탭에 알려주세요.
 
 ## Help me!
