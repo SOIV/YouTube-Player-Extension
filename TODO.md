@@ -36,6 +36,9 @@
         - The v2 update is a mandatory update designed to provide a more user-friendly and improved UI.<br> This update will also include updates to the control panel and additional features. (Additional features are not currently planned, but may be added depending on the situation.)
 - [ ] v2.0.0 기념 Chrome Web Store 설치 방식 지원
     - Support for Chrome Web Store installation method in commemoration of v2.0.0
+- [ ] 내부 파일 시스템 개선
+    - 일부 기능들끼리 하나의 파일로 통합되어 있는 것들을 분리합니다.
+    - 그 외 일부 시스템 및 기능 개선 작업
 
 ---
 
