@@ -1,20 +1,17 @@
 > 이 곳의 영어 작성은 Google Translate를 사용하였습니다.<br> The English text here was written using Google Translate.
 
-## Update completed
-- [x] 변경 및 업데이트 된 소형 플레이어 아이콘(SVG) 수정 (for YouTube default SVG)
-    - Fixed and updated small player icons (SVG) (for YouTube default SVG)
-- [x] /live/* 에서 PIP, 소형 플레이어 버튼, 미니플레이어 가 작동하지 않는 문제를 해결
-    - Fixed an issue where PIP, small player buttons, and miniplayer did not work in /live/*
+## Update & Fix completed
+- [x] 플로팅 플레이어(Floating Player)(구 미니 플레이어)가(이) 작동이 되지 않는 문제
+    - 문제가 되었던 조건부를 완화하여 정상적으로 작동할 수 있도록 수정되었습니다. 추가로 일부 관련 시스템에서도 개선을 진행하였습니다.
+    - 별도로 플로팅 플레이어(Floating Player)의 표시 위치가 변경 되었습니다.(최상단(15px) -> 헤더 하단으로(60px))
+- [x] 각 버튼 툴팁 및 일부 기능에서 다국어 지원이 안되고 있는 부분을 수정
+    - Fixed the lack of multilingual support in each button tooltip and some functions.
+    - 소형 플레이어 버튼(Mini Player Button)은 제외되었습니다(툴팁 표시 문제 해결이 안 된 상태이므로 제외됨)
 
 ## To be updated
 > [ v2 지원 이전 마지막 업데이트 - v1.0.8 ]<br> [ Last update before v2 support - v1.0.8 ]
-- [ ] 각 버튼 툴팁 및 일부 기능에서 다국어 지원이 안되고 있는 부분을 수정
-    - Fixed the lack of multilingual support in each button tooltip and some functions.
 - [ ] 충돌 되는 미니 플레이어의 이름을 플로팅 플레이어(Floating Player)으로 변경<br> 해당 수정은 변수/함수명, CSS 클래스명, 설정/옵션 키, 텍스트(다국어), 주석 작성 내용을 전부 변경 및 수정을 해야되는 수정안이라 핫픽스(hotfix)으로 업데이트가 아닌 다음 업데이트에서 제공 됩니다.
     - Rename the conflicting mini-player to Floating Player<br> This fix requires changing and modifying all variable/function names, CSS class names, setting/option keys, text (multilingual), and comment content, so it will be provided in the next update, not as a hotfix.
-- [x] 플로팅 플레이어(Floating Player)(구 미니 플레이어)가(이) 작동이 되지 않는 문제
-    - 문제가 되었던 조건부를 완화하여 정상적으로 작동할 수 있도록 수정되었습니다. 추가로 일부 관련 시스템에서도 개선을 진행하였습니다.
-    - 플로팅 플레이어(Floating Player)와 같이 정상 작동하고 있던 기능들이 작동하지 않는 다면 이슈탭에 알려주세요.
 
 ## Help me!
 - [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
@@ -55,3 +52,11 @@
 - [ ] YouTube Video Downloader / YouTube Mp3 Converter / Soundcloud Music Downloader
     - [Flixmate](https://flixmate.net/)을 사용하여 다운로드하는 기능을 추후 추가 예정이 있음(확정이 아님)
     - 기존 Emulator/sandboxed 환경에서 사용 가능한 [확장 프로그램](https://addoncrop.com/v34/)을 참고함
+
+---
+
+## Update & Version History
+- [x] 변경 및 업데이트 된 소형 플레이어 아이콘(SVG) 수정 (for YouTube default SVG)
+    - Fixed and updated small player icons (SVG) (for YouTube default SVG)
+- [x] /live/* 에서 PIP, 소형 플레이어 버튼, 미니플레이어 가 작동하지 않는 문제를 해결
+    - Fixed an issue where PIP, small player buttons, and miniplayer did not work in /live/*
