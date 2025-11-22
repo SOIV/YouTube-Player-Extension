@@ -164,7 +164,8 @@ Please report bugs or feature requests at [Issues](https://github.com/SOIV/YouTu
 
 ## To-Do
 
-You can check the status of all scheduled tasks or updates in [ToDo](TODO.md).
+You can check the status of all scheduled tasks or updates in [ToDo](TODO.md).<br>
+Notices can be found at [notification](notification.md).
 
 ## License
 
