@@ -5,6 +5,40 @@ class PIPController {
     this.settings = settingsManager;
     this.domCache = domCache;
     this.eventManager = eventManager;
+
+    // 언어 감지 및 다국어 텍스트 초기화
+    this.currentLang = this.detectYouTubeLanguage();
+    this.translations = this.getTranslations();
+  }
+
+  // 유튜브 언어 감지
+  detectYouTubeLanguage() {
+    // 방법 1: HTML lang 속성
+    const htmlLang = document.documentElement.lang;
+    if (htmlLang) {
+      return htmlLang.split('-')[0]; // 'ko-KR' -> 'ko'
+    }
+
+    // 방법 2: YouTube 내부 설정
+    if (window.yt && window.yt.config_ && window.yt.config_.HL) {
+      return window.yt.config_.HL.split('-')[0];
+    }
+
+    // 방법 3: 쿠키에서 읽기
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === 'PREF') {
+        const match = value.match(/hl=([^&]+)/);
+        if (match) {
+          return match[1].split('-')[0];
+        }
+      }
+    }
+
+    // 방법 4: 브라우저 언어
+    const browserLang = navigator.language || navigator.userLanguage;
+    return browserLang.split('-')[0];
   }
 
   // PIP 기능이 필요한지 확인
@@ -19,6 +53,43 @@ class PIPController {
     }
 
     this.setupPIP();
+  }
+
+    // 다국어 텍스트 정의
+  getTranslations() {
+    return {
+      ko: {
+        pipMode: 'PIP 모드',
+        pipModeExit: 'PIP 모드 종료',
+        smallPlayer: '소형 플레이어'
+      },
+      en: {
+        pipMode: 'Picture in Picture',
+        pipModeExit: 'Exit Picture in Picture',
+        smallPlayer: 'Miniplayer'
+      },
+      ja: {
+        pipMode: 'ピクチャー イン ピクチャー',
+        pipModeExit: 'ピクチャー イン ピクチャーを終了',
+        smallPlayer: 'ミニプレーヤー'
+      },
+      zh: {
+        pipMode: '画中画模式',
+        pipModeExit: '退出画中画',
+        smallPlayer: '迷你播放器'
+      }
+    };
+  }
+
+  // 번역 텍스트 가져오기
+  t(key) {
+    const lang = this.currentLang;
+    // 현재 언어에 해당하는 텍스트가 있으면 사용, 없으면 영어 사용
+    if (this.translations[lang] && this.translations[lang][key]) {
+      return this.translations[lang][key];
+    }
+    // 영어도 없으면 한국어 사용 (기본값)
+    return this.translations.en[key] || this.translations.ko[key] || key;
   }
 
   setupPIP() {
@@ -71,6 +142,11 @@ class PIPController {
         nativePIPButton.style.display = '';
         nativePIPButton.style.visibility = 'visible';
         nativePIPButton.style.opacity = '1';
+
+        // 툴팁 텍스트를 다국어로 설정
+        nativePIPButton.setAttribute('data-title-no-tooltip', this.t('pipMode'));
+        nativePIPButton.setAttribute('aria-label', this.t('pipMode'));
+        nativePIPButton.setAttribute('data-tooltip-title', this.t('pipMode'));
 
         // 버튼을 올바른 컨테이너로 이동
         const controlsRightContainer = document.querySelector('.ytp-right-controls-right');
@@ -133,13 +209,14 @@ class PIPController {
       const existingButton = document.querySelector('.ytp-efyt-pip-button');
       if (existingButton) existingButton.remove();
 
+      // 커스텀 버튼 생성 시에도 다국어 적용
       const pipButton = document.createElement('button');
       pipButton.className = 'ytp-efyt-pip-button ytp-button';
       pipButton.title = '';
       pipButton.setAttribute('data-priority', '11');
-      pipButton.setAttribute('data-title-no-tooltip', 'PIP 모드');
-      pipButton.setAttribute('aria-label', 'PIP 모드');
-      pipButton.setAttribute('data-tooltip-title', 'PIP 모드');
+      pipButton.setAttribute('data-title-no-tooltip', this.t('pipMode'));
+      pipButton.setAttribute('aria-label', this.t('pipMode'));
+      pipButton.setAttribute('data-tooltip-title', this.t('pipMode'));
       pipButton.setAttribute('data-tooltip-target-id', 'ytp-pip-button');
 
       pipButton.innerHTML = `
@@ -193,6 +270,7 @@ class PIPController {
     });
   }
 
+  // PIP 버튼 상태 업데이트 (수정된 부분)
   updatePIPButtonState() {
     const pipButton = document.querySelector('.ytp-efyt-pip-button');
     if (!pipButton) return;
@@ -200,13 +278,13 @@ class PIPController {
     if (document.pictureInPictureElement) {
       pipButton.classList.add('active');
       pipButton.style.backgroundColor = 'rgba(255,255,255,0.2)';
-      pipButton.setAttribute('data-title-no-tooltip', 'PIP 모드 종료');
-      pipButton.setAttribute('data-tooltip-title', 'PIP 모드 종료');
+      pipButton.setAttribute('data-title-no-tooltip', this.t('pipModeExit'));
+      pipButton.setAttribute('data-tooltip-title', this.t('pipModeExit'));
     } else {
       pipButton.classList.remove('active');
       pipButton.style.backgroundColor = '';
-      pipButton.setAttribute('data-title-no-tooltip', 'PIP 모드');
-      pipButton.setAttribute('data-tooltip-title', 'PIP 모드');
+      pipButton.setAttribute('data-title-no-tooltip', this.t('pipMode'));
+      pipButton.setAttribute('data-tooltip-title', this.t('pipMode'));
     }
   }
 
