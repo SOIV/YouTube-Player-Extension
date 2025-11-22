@@ -9,23 +9,12 @@
     - 소형 플레이어 버튼(Mini Player Button)은 제외되었습니다(툴팁 표시 문제 해결이 안 된 상태이므로 제외됨)
 
 ## To be updated
-> [ v2 지원 이전 마지막 업데이트 - v1.0.8 ]<br> [ Last update before v2 support - v1.0.8 ]
+### [ v2 지원 이전 마지막 업데이트 / Last update before v2 support - v1.0.8 ]
+> **This may not be the last update;; / 마지막 업데이트가 아닐 수도 있습니다;;**
 - [ ] 충돌 되는 미니 플레이어의 이름을 플로팅 플레이어(Floating Player)으로 변경<br> 해당 수정은 변수/함수명, CSS 클래스명, 설정/옵션 키, 텍스트(다국어), 주석 작성 내용을 전부 변경 및 수정을 해야되는 수정안이라 핫픽스(hotfix)으로 업데이트가 아닌 다음 업데이트에서 제공 됩니다.
     - Rename the conflicting mini-player to Floating Player<br> This fix requires changing and modifying all variable/function names, CSS class names, setting/option keys, text (multilingual), and comment content, so it will be provided in the next update, not as a hotfix.
 
-## Help me!
-- [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
-    - Display Miniplayer's tooltip using YouTube's default tooltip
-
-## Wiki page To be addition
-- v2.0.0 업데이트 이후 해당 Repo의 Wiki page에 FAQ 및 해당 Repo에 관련된 모든 내용을 작성을 하고자 합니다.<br> 해당 프로젝트는 오픈소스로 MIT License가 적용되어 있으며 비록 해당 작업이 AI를 사용하여 코딩이 진행되었지만 해당 관련 기능이 필요한 사람들과 이 오픈소스를 사용하여 무언가 만들어 보고 싶은 사람들을 위해 해당 프로젝트의 Wiki를 작성해 보고자 합니다.
-    - After the v2.0.0 update, I would like to write a FAQ and all contents related to the repo on the wiki page of the repo. <br> The project is open source and MIT License is applied, and although the work was coded using AI, I would like to write a wiki for the project for those who need the related functions and those who want to create something using this open source.
-- 작성은 언제가 될지는 모르겠으나 언젠간 작성을 해두겠죠?..
-    - I don't know when I'll write it, but I'll write it someday, right?
-
----
-
-## v2.0.0 major update
+### v2.0.0 major update
 - [ ] V2 UI/UX Update - v2.0.0 (Settings window & About)
     - v2 UI/UX의 업데이트를 진행하면서 About 또는 일부 기능의 내용이 수정 될 수 있습니다.
         - As we update the v2 UI/UX, the About section or some features may be modified.
@@ -36,6 +25,10 @@
 - [ ] 내부 파일 시스템 개선
     - 일부 기능들끼리 하나의 파일로 통합되어 있는 것들을 분리합니다.
     - 그 외 일부 시스템 및 기능 개선 작업
+
+## Help me!
+- [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
+    - Display Miniplayer's tooltip using YouTube's default tooltip
 
 ---
 
