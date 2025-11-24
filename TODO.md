@@ -14,6 +14,7 @@
 > **This may not be the last update;; / 마지막 업데이트가 아닐 수도 있습니다;;**
 - [ ] 충돌 되는 미니 플레이어의 이름을 플로팅 플레이어(Floating Player)으로 변경<br> 해당 수정은 변수/함수명, CSS 클래스명, 설정/옵션 키, 텍스트(다국어), 주석 작성 내용을 전부 변경 및 수정을 해야되는 수정안이라 핫픽스(hotfix)으로 업데이트가 아닌 다음 업데이트에서 제공 됩니다.
     - Rename the conflicting mini-player to Floating Player<br> This fix requires changing and modifying all variable/function names, CSS class names, setting/option keys, text (multilingual), and comment content, so it will be provided in the next update, not as a hotfix.
+    - 기능의 이름을 변경함에 따라 기존 사용하던 이름의 설정값들을 마이그레이션을 할 수 있도록 동시에 작업하여 업데이트가 진행될 예정입니다.<br> 다만 모든 작업을 진행하는데 기간은 약간 오래 걸릴 수도 있으며 현재 작업자가 사용하고 있는 Claude code를 사용하지 못하는 상태이므로 좀 더 시간이 걸릴 수 있음을 알립니다.
 
 ### v2.0.0 major update
 - [ ] V2 UI/UX Update - v2.0.0 (Settings window & About)
