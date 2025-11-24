@@ -1,4 +1,4 @@
-// YouTube Player Enhancer - PIP & Mini Player Module
+// YouTube Player Enhancer - PIP button & Mini Player Module
 
 class PIPController {
   constructor(settingsManager, domCache, eventManager) {
@@ -743,6 +743,7 @@ class PIPController {
   updateVideoAspectRatio() {
     // 쇼츠에서는 화면 비율 조정 완전 차단
     if (this.isCurrentlyInShorts()) {
+      // 쇼츠에서 기존 설정 제거
       document.body.classList.remove('efyt-mini-player-vertical');
       document.documentElement.style.removeProperty('--efyt-mini-player-aspect-ratio');
       return;
@@ -770,7 +771,7 @@ class PIPController {
     }
 
     const aspectRatio = video.videoWidth / video.videoHeight;
-    const isVertical = aspectRatio < 1;
+    const isVertical = aspectRatio < 1; // 세로 영상 (높이가 너비보다 큰 경우)
 
     console.log('비디오 비율:', {
       width: video.videoWidth,
@@ -781,9 +782,11 @@ class PIPController {
 
     if (isVertical) {
       document.body.classList.add('efyt-mini-player-vertical');
+      // CSS 변수 업데이트
       document.documentElement.style.setProperty('--efyt-mini-player-aspect-ratio', aspectRatio);
     } else {
       document.body.classList.remove('efyt-mini-player-vertical');
+      // 기본 16:9 비율로 복원
       document.documentElement.style.setProperty('--efyt-mini-player-aspect-ratio', 16/9);
     }
 
