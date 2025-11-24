@@ -26,6 +26,8 @@
     - Support for Chrome Web Store installation method in commemoration of v2.0.0
 - [ ] 내부 파일 시스템 개선
     - 일부 기능들끼리 하나의 파일로 통합되어 있는 것들을 분리합니다.
+        - PIP button, Mini Player button, Floating Player
+        - Audio Compressor, Stereo Panning (L/R)
     - 그 외 일부 시스템 및 기능 개선 작업
 
 ## Help me!
