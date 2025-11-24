@@ -1,4 +1,4 @@
-// YouTube Player Enhancer - PIP button & Mini Player Module
+// YouTube Player Enhancer - PIP button & Mini Player Module / backup
 
 class PIPController {
   constructor(settingsManager, domCache, eventManager) {
@@ -595,7 +595,6 @@ class PIPController {
     }
   }
 
-  // setupMiniPlayerFeatures도 수정
   setupMiniPlayerFeatures() {
     if (!this.settings.getSetting('popupPlayer')) return;
 
@@ -607,30 +606,15 @@ class PIPController {
     // 미니플레이어 CSS 및 기본 설정 적용
     this.addMiniPlayerCSS();
 
-    // 미니플레이어 스크롤 감지 설정 - 타이밍 개선
-    const setupObserver = () => {
-      const playerContainer = document.querySelector('#player-container');
-      const video = document.querySelector('video');
-      
-      if (playerContainer && video) {
-        this.setupMiniPlayerObserver();
-        // 미니플레이어 클래스 추가
-        document.body.classList.add(
-          `efyt-mini-player-${this.settings.getSetting('miniPlayerSize')}`, 
-          `efyt-mini-player-${this.settings.getSetting('miniPlayerPosition')}`
-        );
-        console.log('미니플레이어 초기 설정 완료');
-      } else {
-        // 요소가 없으면 재시도
-        setTimeout(setupObserver, 500);
-      }
-    };
-
-    // 초기 딜레이 후 설정
-    setTimeout(setupObserver, 1000);
+    // 미니플레이어 스크롤 감지 설정
+    setTimeout(() => {
+      this.setupMiniPlayerObserver();
+      // 미니플레이어 클래스 추가
+      document.body.classList.add(`efyt-mini-player-${this.settings.getSetting('miniPlayerSize')}`, `efyt-mini-player-${this.settings.getSetting('miniPlayerPosition')}`);
+    }, 1000);
   }
 
-  // 미니플레이어 스크롤 감지 (수정된 버전)
+  // 미니플레이어 스크롤 감지 (원본 로직 기반)
   setupMiniPlayerObserver() {
     // 쇼츠에서는 미니플레이어 Observer 설정 차단
     if (this.isCurrentlyInShorts()) {
@@ -640,9 +624,7 @@ class PIPController {
     const playerContainer = document.querySelector('#player-container');
     if (!playerContainer) return;
 
-    if (playerContainer.efytObserver) {
-      playerContainer.efytObserver.disconnect(); // 기존 observer 정리
-    }
+    if (playerContainer.efytObserver) return; // 이미 설정된 경우
 
     playerContainer.efytObserver = new IntersectionObserver((entries) => {
       // 쇼츠에서는 미니플레이어 동작 차단
@@ -660,40 +642,24 @@ class PIPController {
       const scrollY = window.scrollY;
       const playerHeight = playerContainer.offsetHeight;
 
-      // 수정된 미니플레이어 활성화 조건
-      // 1. 플레이어가 화면에서 거의 사라졌거나 (intersectionRatio < 0.15)
-      // 2. 플레이어 높이만큼 스크롤했을 때
-      const shouldActivate = (
-        entry.intersectionRatio < 0.15 && 
-        scrollY > playerHeight - 150 && 
-        isWatchOrLive && 
-        !player.classList.contains('ended-mode')
-      );
+      // 미니플레이어 활성화 조건 (원본 로직)
+      if ((entry.intersectionRatio === 0 && !document.body.classList.contains('efyt-mini-player') && scrollY > 0) ||
+          (entry.intersectionRatio > 0 && entry.intersectionRatio < 0.12)) {
 
-      // 미니플레이어 비활성화 조건
-      // 플레이어가 충분히 화면에 보일 때 (intersectionRatio > 0.3)
-      const shouldDeactivate = entry.intersectionRatio > 0.3;
+        if (scrollY > playerHeight - 100 && isWatchOrLive && !player.classList.contains('ended-mode')) {
+          // 미니플레이어 활성화
+          if (video) {
+            video.addEventListener('timeupdate', this.updateMiniPlayerProgress.bind(this));
+            this.updateMiniPlayerProgress();
+          }
+          document.body.classList.add('efyt-mini-player');
 
-      if (shouldActivate && !document.body.classList.contains('efyt-mini-player')) {
-        // 미니플레이어 활성화
-        if (video) {
-          video.addEventListener('timeupdate', this.updateMiniPlayerProgress.bind(this));
-          this.updateMiniPlayerProgress();
+          // 세로 영상 감지 및 클래스 추가
+          this.updateVideoAspectRatio();
+
+          window.dispatchEvent(new Event('resize'));
         }
-        document.body.classList.add('efyt-mini-player');
-
-        // 세로 영상 감지 및 클래스 추가
-        this.updateVideoAspectRatio();
-
-        window.dispatchEvent(new Event('resize'));
-        
-        console.log('미니플레이어 활성화:', {
-          intersectionRatio: entry.intersectionRatio,
-          scrollY: scrollY,
-          playerHeight: playerHeight
-        });
-        
-      } else if (shouldDeactivate && document.body.classList.contains('efyt-mini-player')) {
+      } else if (entry.intersectionRatio !== 0) {
         // 미니플레이어 비활성화
         if (video) {
           video.removeEventListener('timeupdate', this.updateMiniPlayerProgress.bind(this));
@@ -701,17 +667,10 @@ class PIPController {
         document.body.classList.remove('efyt-mini-player');
         document.body.classList.remove('efyt-mini-player-vertical');
         window.dispatchEvent(new Event('resize'));
-        
-        console.log('미니플레이어 비활성화:', {
-          intersectionRatio: entry.intersectionRatio
-        });
       }
-    }, { 
-      threshold: [0, 0.1, 0.15, 0.3, 0.5, 1] // 더 세밀한 threshold 설정
-    });
+    }, { threshold: 0.15 });
 
     playerContainer.efytObserver.observe(playerContainer);
-    console.log('미니플레이어 Observer 설정 완료');
   }
 
   // 쇼츠 감지 로직 강화
@@ -739,7 +698,6 @@ class PIPController {
   }
 
   // 영상 비율 감지 및 업데이트
-  // updateVideoAspectRatio도 개선
   updateVideoAspectRatio() {
     // 쇼츠에서는 화면 비율 조정 완전 차단
     if (this.isCurrentlyInShorts()) {
@@ -752,33 +710,14 @@ class PIPController {
     const video = this.domCache.get('video');
     if (!video) return;
 
-    // 비디오가 로드되지 않은 경우 재시도 (최대 5회)
-    if (!video.efytAspectRetryCount) {
-      video.efytAspectRetryCount = 0;
-    }
-
-    if ((video.videoWidth === 0 || video.videoHeight === 0) && video.efytAspectRetryCount < 5) {
-      video.efytAspectRetryCount++;
-      console.log(`비디오 로드 대기 중... (${video.efytAspectRetryCount}/5)`);
-      setTimeout(() => this.updateVideoAspectRatio(), 500);
-      return;
-    }
-
+    // 비디오가 로드되지 않은 경우 잠시 후 다시 시도
     if (video.videoWidth === 0 || video.videoHeight === 0) {
-      console.warn('비디오 크기를 가져올 수 없습니다. 기본 비율 사용');
-      document.documentElement.style.setProperty('--efyt-mini-player-aspect-ratio', 16/9);
+      setTimeout(() => this.updateVideoAspectRatio(), 500);
       return;
     }
 
     const aspectRatio = video.videoWidth / video.videoHeight;
     const isVertical = aspectRatio < 1; // 세로 영상 (높이가 너비보다 큰 경우)
-
-    console.log('비디오 비율:', {
-      width: video.videoWidth,
-      height: video.videoHeight,
-      aspectRatio: aspectRatio,
-      isVertical: isVertical
-    });
 
     if (isVertical) {
       document.body.classList.add('efyt-mini-player-vertical');
@@ -789,9 +728,6 @@ class PIPController {
       // 기본 16:9 비율로 복원
       document.documentElement.style.setProperty('--efyt-mini-player-aspect-ratio', 16/9);
     }
-
-    // 재시도 카운트 초기화
-    video.efytAspectRetryCount = 0;
   }
 
   // 미니플레이어 진행률 업데이트
