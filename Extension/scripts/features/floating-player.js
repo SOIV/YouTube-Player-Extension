@@ -1,1 +1,1 @@
-// YouTube Player Enhancer - Floating Player Module
+// YouTube Player Enhancer - Floating Player(MiniPlayer) Module

@@ -1,1 +1,1 @@
-// YouTube Player Enhancer - Mini Player button Module
+// YouTube Player Enhancer - Mini Player button(SmallPlayer) Module
