@@ -1,4 +1,4 @@
-// YouTube Player Enhancer - PIP button & Mini Player Module / backup
+// YouTube Player Enhancer - PIP button & Mini Player Module
 
 class PIPController {
   constructor(settingsManager, domCache, eventManager) {
