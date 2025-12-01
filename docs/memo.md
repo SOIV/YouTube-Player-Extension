@@ -6,3 +6,7 @@
 - [ ] 특정 확장 프로그램 또는 일반 프로그램의 광고를 받는 중입니다!
     - 광고의 문의는 저의 이메일인 'biz@soiv-studio.xyz'으로 연락주시면 확인후 답장을 드립니다.
     - 해당 광고는 확장 프로그램 외에도 다른 서비스 중인 곳에서도 광고가 표시 될 수 있습니다.
+
+- [ ] YouTube Video Downloader / YouTube Mp3 Converter / Soundcloud Music Downloader
+    - [Flixmate](https://flixmate.net/)을 사용하여 다운로드하는 기능을 추후 추가 예정이 있음(확정이 아님/웹스토어의 정책이라는 문제로 메인 버전에는 포함되지 않음)
+    - 기존 Emulator/sandboxed 환경에서 사용 가능한 [확장 프로그램](https://addoncrop.com/v34/)을 참고함
