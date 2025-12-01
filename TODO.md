@@ -53,6 +53,7 @@
 모든 기능은 모듈 형식으로 활성화시 동적으로 기능을 불러오는 방식을 사용합니다.
 - [ ] Live Stream Translator
     - 별도 확장 프로그램으로 개발 중이였으나 v2 업데이트로 하나의 확장 프로그램으로 추후 통합 예정
+    - 해당 프로젝트 파일을 정리 및 확장된 버전의 문서를 [LST](docs/LST)으로 이동
 - [ ] YouTube Video Downloader / YouTube Mp3 Converter / Soundcloud Music Downloader
     - [Flixmate](https://flixmate.net/)을 사용하여 다운로드하는 기능을 추후 추가 예정이 있음(확정이 아님/웹스토어의 정책이라는 문제로 메인 버전에는 포함되지 않음)
     - 기존 Emulator/sandboxed 환경에서 사용 가능한 [확장 프로그램](https://addoncrop.com/v34/)을 참고함
