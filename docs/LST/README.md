@@ -12,11 +12,11 @@
 
 이 폴더에 존재하는 문서 예:
 
-- 1. overview_project_document.md
-- 2. extension_document.md
-- 3. desktop_app_document.md
-- 4. subtitle_features.md
-- 5. community_caption_platform_idea.md
+- overview_project_document.md
+- extension_document.md
+- desktop_app_document.md
+- subtitle_features.md
+- community_caption_platform_idea.md
 - revenue-strategy.md
 - Sponsors.md
 - 기타 모든 .md 파일
