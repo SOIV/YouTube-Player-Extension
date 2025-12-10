@@ -1,10 +1,10 @@
 # 📘 LST Documentation
-> Live Stream Translator (LST) Extension Project
+> Live Stream Translator(LST) Extension Project
 
-이 디렉토리(docs/LST/)에 포함된 모든 문서(*.md)는<br>
+이 디렉토리(docs/LST/)에 포함된 모든 문서(*.md), 하위 폴더 및 그 내부의 모든 파일은<br>
 이 폴더 내부의 LICENSE 파일에 명시된 별도의 라이선스를 따릅니다.
 
-루트 디렉토리의 LICENSE는 이 폴더 내 문서에는 적용되지 않습니다.
+루트 디렉토리의 LICENSE는 이 폴더 및 그 하위 구성요소에는 적용되지 않습니다.
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL%203.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -15,11 +15,9 @@
 - overview_project_document.md
 - extension_document.md
 - desktop_app_document.md
+- community_caption_platform_document.md
 - subtitle_features.md
-- community_caption_platform_idea.md
-- revenue-strategy.md
-- Sponsors.md
-- 기타 모든 .md 파일
+- 기타 모든 .md 파일 및 상위 폴더
 
 ## 📌 이유
 
