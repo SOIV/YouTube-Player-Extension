@@ -17,7 +17,7 @@
 - desktop_app_document.md
 - community_caption_platform_document.md
 - subtitle_features.md
-- 기타 모든 .md 파일 및 상위 폴더
+- 기타 모든 .md 파일 및 하위 폴더 및 그 내부의 모든 파일
 
 ## 📌 이유
 
