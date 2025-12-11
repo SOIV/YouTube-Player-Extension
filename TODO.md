@@ -27,7 +27,6 @@
         - Audio Compressor, Stereo Panning (L/R)
     - 그 외 일부 시스템 및 기능 개선 작업
 
-
 ### v2.0.0 major update
 - [ ] V2 UI/UX Update - v2.0.0 (Settings window & About)
     - v2 UI/UX의 업데이트를 진행하면서 About 또는 일부 기능의 내용이 수정 될 수 있습니다.
@@ -36,6 +35,11 @@
         - The v2 update is a mandatory update designed to provide a more user-friendly and improved UI.<br> This update will also include updates to the control panel and additional features. (Additional features are not currently planned, but may be added depending on the situation.)
 - [ ] v2.0.0 기념 Chrome Web Store 설치 방식 지원
     - Support for Chrome Web Store installation method in commemoration of v2.0.0
+
+### v2.0.0 ~ update
+- [ ] v2.0.0 major update이후 업데이트로 제공될 가능성이 높은 기능 리스트
+    - 돌아온 유튜브 자동 화질 고정(자동 품질 선택) 기능
+    - and more...
 
 ## Help me!
 - [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
