@@ -35,10 +35,12 @@
         - The v2 update is a mandatory update designed to provide a more user-friendly and improved UI.<br> This update will also include updates to the control panel and additional features. (Additional features are not currently planned, but may be added depending on the situation.)
 - [ ] v2.0.0 기념 Chrome Web Store 설치 방식 지원
     - Support for Chrome Web Store installation method in commemoration of v2.0.0
+    - 개인정보처리방침(Privacy Policy) 추가 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
 
 ### v2.0.0 ~ update
 - [ ] v2.0.0 major update이후 업데이트로 제공될 가능성이 높은 기능 리스트
     - 돌아온 유튜브 자동 화질 고정(자동 품질 선택) 기능
+    - 연속 재생 버튼
     - and more...
 
 ## Help me!
