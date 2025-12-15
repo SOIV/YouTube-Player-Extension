@@ -127,6 +127,7 @@ class PIPController {
         this.setupMiniPlayerFeatures();
       }
 
+      // 소형 플레이어 버튼 추가 (YouTube 우클릭 메뉴의 소형 플레이어 기능)
       if (this.settings.getSetting('enableSmallPlayerButton')) {
         console.log('[EFYT Debug] 소형 플레이어 버튼 추가 중...');
         this.addSmallPlayerButton();
@@ -604,24 +605,26 @@ class PIPController {
   }
 
   // setupMiniPlayerFeatures() 메서드 수정
-setupMiniPlayerFeatures() {
-  console.log('[EFYT Debug] setupMiniPlayerFeatures 시작');
-  console.log('[EFYT Debug] popupPlayer 설정:', this.settings.getSetting('popupPlayer'));
-  
-  if (!this.settings.getSetting('popupPlayer')) {
-    console.log('[EFYT Debug] popupPlayer 설정이 비활성화되어 있습니다.');
-    return;
-  }
+  setupMiniPlayerFeatures() {
+    console.log('[EFYT Debug] setupMiniPlayerFeatures 시작');
+    console.log('[EFYT Debug] popupPlayer 설정:', this.settings.getSetting('popupPlayer'));
+    
+    if (!this.settings.getSetting('popupPlayer')) {
+      console.log('[EFYT Debug] popupPlayer 설정이 비활성화되어 있습니다.');
+      return;
+    }
 
-  // 쇼츠에서는 미니플레이어 기능 완전 차단
+    // 쇼츠에서는 미니플레이어 기능 완전 차단
     if (this.isCurrentlyInShorts()) {
       console.log('[EFYT Debug] 현재 쇼츠 페이지입니다. 미니플레이어 차단됨.');
       return;
     }
 
+    // 미니플레이어 CSS 및 기본 설정 적용
     console.log('[EFYT Debug] 미니플레이어 CSS 추가 중...');
     this.addMiniPlayerCSS();
 
+    // 미니플레이어 스크롤 감지 설정
     setTimeout(() => {
       console.log('[EFYT Debug] 미니플레이어 Observer 설정 중...');
       this.setupMiniPlayerObserver();
@@ -641,6 +644,7 @@ setupMiniPlayerFeatures() {
   setupMiniPlayerObserver() {
     console.log('[EFYT Debug] setupMiniPlayerObserver 시작');
     
+    // 쇼츠에서는 미니플레이어 Observer 설정 차단 
     if (this.isCurrentlyInShorts()) {
       console.log('[EFYT Debug] 쇼츠에서 Observer 설정 차단됨');
       return;
@@ -656,10 +660,11 @@ setupMiniPlayerFeatures() {
     if (playerContainer.efytObserver) {
       console.log('[EFYT Debug] Observer가 이미 설정되어 있습니다.');
       return;
-    }
+    } // 이미 설정된 경우
 
     console.log('[EFYT Debug] IntersectionObserver 생성 중...');
     playerContainer.efytObserver = new IntersectionObserver((entries) => {
+      // 쇼츠에서는 미니플레이어 동작 차단
       const entry = entries[0];
       console.log('[EFYT Debug] Observer 콜백 실행');
       console.log('[EFYT Debug] intersectionRatio:', entry.intersectionRatio);
@@ -678,6 +683,7 @@ setupMiniPlayerFeatures() {
         return;
       }
 
+      // 미니플레이어 활성화 조건 (원본 로직)
       const isWatchOrLive = window.location.pathname.includes('/watch') || window.location.pathname.includes('/live');
       const scrollY = window.scrollY;
       const playerHeight = playerContainer.offsetHeight;
@@ -710,6 +716,7 @@ setupMiniPlayerFeatures() {
         
         if (video) {
           video.addEventListener('timeupdate', this.updateMiniPlayerProgress.bind(this));
+          // 세로 영상 감지 및 클래스 추가
           this.updateMiniPlayerProgress();
         }
         document.body.classList.add('efyt-mini-player');
