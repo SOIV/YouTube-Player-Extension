@@ -39,8 +39,8 @@
 ### v1.0.9 update
 > **v2 지원 이전 마지막 업데이트 / Last update before v2 support**
 > **마지막 업데이트가 아닐 수도 있습니다 / This may not be the last update**
-- [ ] 돌아온 유튜브 자동 화질 고정(자동 품질 선택) 기능
-- [ ] 연속 재생 버튼
+- [ ] 돌아온 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
+- [ ] 연속 재생 버튼(Loop button)
 - [ ] Chrome Web Store 설치 방식 지원
     - Support for Chrome Web Store installation methods
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
