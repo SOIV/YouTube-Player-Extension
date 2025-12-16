@@ -8,8 +8,17 @@
     - 소형 플레이어 버튼(Mini Player Button)은 제외되었습니다(툴팁 표시 문제 해결이 안 된 상태이므로 제외됨)
 
 ## To be updated
-### [ v2 지원 이전 마지막 업데이트 / Last update before v2 support - v1.0.8 ]
-> **This may not be the last update;; / 마지막 업데이트가 아닐 수도 있습니다;;**
+### v1.0.8 updated
+> **< 해당 문제의 버그를 다음과 같이 업데이트를 진행합니다. >**
+> 1. 기능 별 파일 분리 작업을 진행하면서
+> 2. 파일 이름은 플로팅 플레이어(Floating Player)으로 하되 파일 분리 작업이 끝나면
+> 3. 즉시 플로팅 플레이어(Floating Player)으로 클래스명, 변수명, 주석, UI 문구 등을 변경하는 작업을 진행
+> 4. 3번의 작업이 종료되면 플로팅 플레이어(Floating Player)의 리펙토링 작업을 진행
+> 5. 리펙토링이 종료되면 테스트 진행
+> 6. 정상적으로 작동이 된다라는 결정이 될 경우 다른 수정 작업을 진행
+> 7. debug.js 파일을 추가하여 개발자 기능을 추가
+> 8. 개발자 기능을 테스트 후
+> 9. 버전 업을 진행 후 파일 압축하여 신규 버전을 업로드(v1.0.7 -> v1.0.8)
 - [ ] 플로팅 플레이어(Floating Player)(구 미니 플레이어(MiniPlayer))가(이) 작동이 되지 않는 문제
     - 문제가 되었던 조건부를 완화하여 정상적으로 작동할 수 있도록 수정되었습니다. 추가로 일부 관련 시스템에서도 개선을 진행하였습니다.
         - +)추가 업데이트1 : 여전히 사이트 로딩에 관련하여 작동 여부가 달라지는 이슈가 존제합니다, 추후 수정 될 예정입니다.(25. 11. 25. AM 12:00)
@@ -27,21 +36,21 @@
         - Audio Compressor, Stereo Panning (L/R)
     - 그 외 일부 시스템 및 기능 개선 작업
 
+### v1.0.9 update
+> **v2 지원 이전 마지막 업데이트 / Last update before v2 support**
+> **마지막 업데이트가 아닐 수도 있습니다 / This may not be the last update**
+- [ ] 돌아온 유튜브 자동 화질 고정(자동 품질 선택) 기능
+- [ ] 연속 재생 버튼
+- [ ] Chrome Web Store 설치 방식 지원
+    - Support for Chrome Web Store installation methods
+    - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
+
 ### v2.0.0 major update
 - [ ] V2 UI/UX Update - v2.0.0 (Settings window & About)
     - v2 UI/UX의 업데이트를 진행하면서 About 또는 일부 기능의 내용이 수정 될 수 있습니다.
         - As we update the v2 UI/UX, the About section or some features may be modified.
     - v2 업데이트에서는 사용자가 친화적으로 좀 더 좋은 UI에서 사용을 하고자 진행하는 필수 업데이트입니다.<br> 이러한 업데이트로 컨트롤 패널 및 기능 추가의 업데이트 또한 동시에 진행 될 예정입니다.(추가될 기능은 현제 계획되지 않았으나 상황에 따라 추가 될 예정이 존제함)
         - The v2 update is a mandatory update designed to provide a more user-friendly and improved UI.<br> This update will also include updates to the control panel and additional features. (Additional features are not currently planned, but may be added depending on the situation.)
-- [ ] v2.0.0 기념 Chrome Web Store 설치 방식 지원
-    - Support for Chrome Web Store installation method in commemoration of v2.0.0
-    - 개인정보처리방침(Privacy Policy) 추가 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
-
-### v2.0.0 ~ update
-- [ ] v2.0.0 major update이후 업데이트로 제공될 가능성이 높은 기능 리스트
-    - 돌아온 유튜브 자동 화질 고정(자동 품질 선택) 기능
-    - 연속 재생 버튼
-    - and more...
 
 ## Help me!
 - [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
