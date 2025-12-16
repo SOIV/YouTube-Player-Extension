@@ -29,7 +29,7 @@ A browser extension that enhances various features of the YouTube player.
 
 ### 🏪 Chrome Web Store (Coming Soon)
 
-> 📅 **Chrome Web Store Upload Planned**: We're preparing to register on the Chrome Web Store for easier installation and updates. It will be supported and registered in V2.
+> 📅 **Chrome Web Store Upload Planned**: We're preparing to register on the Chrome Web Store for easier installation and updates. It will be supported and registered in V1.0.9.
 
 ### 📦 Download from Releases (Recommended)
 
@@ -69,27 +69,30 @@ A browser extension that enhances various features of the YouTube player.
 
 ```
 YouTube Player Extension/
-├── manifest.json          # Extension manifest
-├── popup.html             # Popup UI
-├── popup.js               # Popup logic
-├── content.js             # Main content script
-├── background.js          # Background service worker
-├── about.html             # About page
-├── i18n.js               # Internationalization system
-├── styles.css            # Stylesheet
-├── scripts/
-│   ├── core/
-│   │   ├── base.js       # Basic utilities
-│   │   └── settings.js   # Settings manager
-│   └── features/
-│       ├── audio.js      # Audio enhancement module
-│       └── pip.js        # PiP and mini player module
-├── locales/              # Language files
-│   ├── ko.json          # Korean
-│   ├── en.json          # English
-│   └── example.json     # Translation template
-├── icons/               # Extension icons
-└── docs/                # Documentation
+├── Extension
+│   ├── manifest.json          # Extension manifest
+│   ├── popup.html             # Popup UI
+│   ├── popup.js               # Popup logic
+│   ├── content.js             # Main content script
+│   ├── background.js          # Background service worker
+│   ├── about.html             # About page
+│   ├── i18n.js                # Internationalization system
+│   ├── styles.css             # Stylesheet
+│   ├── scripts/
+│   │   ├── core/
+│   │   │   ├── base.js        # Basic utilities
+│   │   │   └── settings.js    # Settings manager
+│   │   └── features/
+│   │       ├── audio.js       # Audio enhancement module
+│   │       └── pip.js         # PiP and mini player module
+│   ├── locales/               # Language files
+│   │   ├── ko.json            # Korean
+│   │   ├── en.json            # English
+│   │   ├── example.json       # Translation template
+│   └── icons/                 # Extension icons
+├── legacy/                    # legacy/backup files
+├── docs/                      # Documentation
+└── Privacy-Policy.md          # Privacy Policy
 ```
 
 ## Tech Stack
