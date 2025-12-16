@@ -61,8 +61,7 @@
 ## Idea? / updated List
 > This paragraph is not translated. If you wish to check the content, please use a translation tool.
 
-> 확장 프로그램인 [Transpose](https://chromewebstore.google.com/detail/transpose-%E2%96%B2%E2%96%BC-pitch-%E2%96%B9-spee/ioimlbgefgadofblnajllknopjboejda), [AHA Music](https://chromewebstore.google.com/detail/aha-music-song-finder-for/dpacanjfikmhoddligfbehkpomnbgblf), [Dark Reader](https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh)에 있는 기능들은 추가 및 작업하지 않을 예정입니다.<br> 
-(이미 충분히 잘 작동하고 많은 사람들이 사용하는 확장 프로그램이라 딱히 여기서 만들고자 하는 생각이 없음)
+> 이미 충분히 잘 작동하고 있는 확장 프로그램인 기능들은 추가 및 작업하지 않을 예정입니다.
 
 > 아레 기능이 통합으로 추가 될 경우 확장 프로그램의 이름이 변경 될 수 있습니다. (ex. YouTube Player Extension -> Player Extension)<br>
 모든 기능은 모듈 형식으로 활성화시 동적으로 기능을 불러오는 방식을 사용합니다.
