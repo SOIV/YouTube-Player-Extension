@@ -722,6 +722,37 @@ class PIPController {
         document.body.classList.add('efyt-mini-player');
         console.log('[EFYT Debug] efyt-mini-player 클래스 추가됨');
 
+        // Z-index 디버깅 (활성화 직후)
+        setTimeout(() => {
+          const player = document.querySelector('#movie_player');
+          const ytdPlayer = document.querySelector('ytd-player');
+          const secondary = document.querySelector('#secondary');
+          const related = document.querySelector('#related');
+          const masthead = document.querySelector('#masthead-container');
+          
+          console.log('[EFYT Debug] === Z-index 분석 ===');
+          console.log('[EFYT Debug] #movie_player:', {
+            zIndex: player ? window.getComputedStyle(player).zIndex : 'null',
+            position: player ? window.getComputedStyle(player).position : 'null'
+          });
+          console.log('[EFYT Debug] ytd-player:', {
+            zIndex: ytdPlayer ? window.getComputedStyle(ytdPlayer).zIndex : 'null',
+            position: ytdPlayer ? window.getComputedStyle(ytdPlayer).position : 'null'
+          });
+          console.log('[EFYT Debug] #secondary:', {
+            zIndex: secondary ? window.getComputedStyle(secondary).zIndex : 'null',
+            position: secondary ? window.getComputedStyle(secondary).position : 'null'
+          });
+          console.log('[EFYT Debug] #related:', {
+            zIndex: related ? window.getComputedStyle(related).zIndex : 'null',
+            position: related ? window.getComputedStyle(related).position : 'null'
+          });
+          console.log('[EFYT Debug] #masthead:', {
+            zIndex: masthead ? window.getComputedStyle(masthead).zIndex : 'null',
+            position: masthead ? window.getComputedStyle(masthead).position : 'null'
+          });
+        }, 500);
+
         this.updateVideoAspectRatio();
         window.dispatchEvent(new Event('resize'));
       } else if (shouldDeactivate && isMiniPlayerActive) {
@@ -1049,6 +1080,7 @@ class PIPController {
     document.head.appendChild(style);
     console.log('[EFYT Debug] 미니플레이어 스타일 추가 완료');
     
+    // 미니플레이어 UI 요소 추가
     this.addMiniPlayerElements();
   }
 
