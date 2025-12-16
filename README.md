@@ -29,7 +29,7 @@
 
 ### 🏪 Chrome 웹 스토어 (예정)
 
-> 📅 **Chrome 웹 스토어 업로드 예정**: 더 편리한 설치와 업데이트를 위해 Chrome 웹 스토어 등록을 준비 중입니다. V2에서 지원 및 등록될 예정입니다.
+> 📅 **Chrome 웹 스토어 업로드 예정**: 더 편리한 설치와 업데이트를 위해 Chrome 웹 스토어 등록을 준비 중입니다. V1.0.9에서 지원 및 등록될 예정입니다.
 
 ### 📦 릴리즈에서 다운로드 (권장)
 
@@ -69,27 +69,30 @@
 
 ```
 YouTube Player Extension/
-├── manifest.json          # 확장 프로그램 매니페스트
-├── popup.html             # 팝업 UI
-├── popup.js               # 팝업 로직
-├── content.js             # 메인 콘텐츠 스크립트
-├── background.js          # 백그라운드 서비스 워커
-├── about.html             # 정보 페이지
-├── i18n.js               # 다국어 지원 시스템
-├── styles.css            # 스타일시트
-├── scripts/
-│   ├── core/
-│   │   ├── base.js       # 기본 유틸리티
-│   │   └── settings.js   # 설정 관리자
-│   └── features/
-│       ├── audio.js      # 오디오 향상 모듈
-│       └── pip.js        # PiP 및 미니플레이어 모듈
-├── locales/              # 언어 파일
-│   ├── ko.json          # 한국어
-│   ├── en.json          # 영어
-│   └── example.json     # 번역 템플릿
-├── icons/               # 확장 프로그램 아이콘
-└── docs/                # 문서
+├── Extension
+│   ├── manifest.json          # 확장 프로그램 매니페스트
+│   ├── popup.html             # 팝업 UI
+│   ├── popup.js               # 팝업 로직
+│   ├── content.js             # 메인 콘텐츠 스크립트
+│   ├── background.js          # 백그라운드 서비스 워커
+│   ├── about.html             # 정보 페이지
+│   ├── i18n.js                # 다국어 지원 시스템
+│   ├── styles.css             # 스타일시트
+│   ├── scripts/
+│   │   ├── core/
+│   │   │   ├── base.js        # 기본 유틸리티
+│   │   │   └── settings.js    # 설정 관리자
+│   │   └── features/
+│   │       ├── audio.js       # 오디오 향상 모듈
+│   │       └── pip.js         # PiP 및 미니플레이어 모듈
+│   ├── locales/               # 언어 파일
+│   │   ├── ko.json            # 한국어
+│   │   ├── en.json            # 영어
+│   │   ├── example.json       # 번역 템플릿
+│   └── icons/                 # 확장 프로그램 아이콘
+├── legacy/                    # legacy/backup 파일
+├── docs/                      # 문서
+└── Privacy-Policy.md          # 개인정보처리방침(Privacy Policy)
 ```
 
 ## 기술 스택
