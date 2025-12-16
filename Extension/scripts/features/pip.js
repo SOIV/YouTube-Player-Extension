@@ -110,32 +110,23 @@ class PIPController {
     }
   }
 
-  // applyPIPSettings() 메서드 수정
   applyPIPSettings() {
-    console.log('[EFYT Debug] applyPIPSettings 시작');
-    console.log('[EFYT Debug] 현재 URL:', window.location.pathname);
-    
     try {
       if (this.settings.getSetting('enablePIP')) {
-        console.log('[EFYT Debug] PIP 버튼 추가 중...');
         this.addPIPButton();
         this.setupPIPCommands();
       }
 
       if (this.settings.getSetting('popupPlayer')) {
-        console.log('[EFYT Debug] 미니플레이어 기능 설정 중...');
         this.setupMiniPlayerFeatures();
       }
 
       // 소형 플레이어 버튼 추가 (YouTube 우클릭 메뉴의 소형 플레이어 기능)
       if (this.settings.getSetting('enableSmallPlayerButton')) {
-        console.log('[EFYT Debug] 소형 플레이어 버튼 추가 중...');
         this.addSmallPlayerButton();
       }
       
-      console.log('[EFYT Debug] applyPIPSettings 완료');
     } catch (error) {
-      console.error('[EFYT Debug] applyPIPSettings 오류:', error);
     }
   }
 
@@ -604,177 +595,84 @@ class PIPController {
     }
   }
 
-  // setupMiniPlayerFeatures() 메서드 수정
   setupMiniPlayerFeatures() {
-    console.log('[EFYT Debug] setupMiniPlayerFeatures 시작');
-    console.log('[EFYT Debug] popupPlayer 설정:', this.settings.getSetting('popupPlayer'));
-    
-    if (!this.settings.getSetting('popupPlayer')) {
-      console.log('[EFYT Debug] popupPlayer 설정이 비활성화되어 있습니다.');
-      return;
-    }
+    if (!this.settings.getSetting('popupPlayer')) return;
 
     // 쇼츠에서는 미니플레이어 기능 완전 차단
     if (this.isCurrentlyInShorts()) {
-      console.log('[EFYT Debug] 현재 쇼츠 페이지입니다. 미니플레이어 차단됨.');
       return;
     }
 
     // 미니플레이어 CSS 및 기본 설정 적용
-    console.log('[EFYT Debug] 미니플레이어 CSS 추가 중...');
     this.addMiniPlayerCSS();
 
     // 미니플레이어 스크롤 감지 설정
     setTimeout(() => {
-      console.log('[EFYT Debug] 미니플레이어 Observer 설정 중...');
       this.setupMiniPlayerObserver();
-      
-      const size = this.settings.getSetting('miniPlayerSize');
-      const position = this.settings.getSetting('miniPlayerPosition');
-      console.log('[EFYT Debug] 미니플레이어 크기:', size);
-      console.log('[EFYT Debug] 미니플레이어 위치:', position);
-      
-      document.body.classList.add(`efyt-mini-player-${size}`, `efyt-mini-player-${position}`);
-      console.log('[EFYT Debug] body 클래스 추가 완료');
+      // 미니플레이어 클래스 추가
+      document.body.classList.add(`efyt-mini-player-${this.settings.getSetting('miniPlayerSize')}`, `efyt-mini-player-${this.settings.getSetting('miniPlayerPosition')}`);
     }, 1000);
   }
 
   // 미니플레이어 스크롤 감지 (원본 로직 기반)
-  // setupMiniPlayerObserver() 메서드 수정
   setupMiniPlayerObserver() {
-    console.log('[EFYT Debug] setupMiniPlayerObserver 시작');
-    
-    // 쇼츠에서는 미니플레이어 Observer 설정 차단 
+    // 쇼츠에서는 미니플레이어 Observer 설정 차단
     if (this.isCurrentlyInShorts()) {
-      console.log('[EFYT Debug] 쇼츠에서 Observer 설정 차단됨');
       return;
     }
 
     const playerContainer = document.querySelector('#player-container');
-    if (!playerContainer) {
-      console.error('[EFYT Debug] #player-container를 찾을 수 없습니다!');
-      return;
-    }
-    console.log('[EFYT Debug] #player-container 찾음:', playerContainer);
+    if (!playerContainer) return;
 
-    if (playerContainer.efytObserver) {
-      console.log('[EFYT Debug] Observer가 이미 설정되어 있습니다.');
-      return;
-    } // 이미 설정된 경우
+    if (playerContainer.efytObserver) return; // 이미 설정된 경우
 
-    console.log('[EFYT Debug] IntersectionObserver 생성 중...');
     playerContainer.efytObserver = new IntersectionObserver((entries) => {
       // 쇼츠에서는 미니플레이어 동작 차단
-      const entry = entries[0];
-      console.log('[EFYT Debug] Observer 콜백 실행');
-      console.log('[EFYT Debug] intersectionRatio:', entry.intersectionRatio);
-      console.log('[EFYT Debug] scrollY:', window.scrollY);
-      
       if (this.isCurrentlyInShorts()) {
-        console.log('[EFYT Debug] 쇼츠에서 Observer 동작 차단됨');
         return;
       }
 
+      const entry = entries[0];
       const video = this.domCache.get('video');
       const player = this.domCache.get('player');
 
-      if (!video || !player) {
-        console.error('[EFYT Debug] video 또는 player를 찾을 수 없습니다!', {video, player});
-        return;
-      }
+      if (!video || !player) return;
 
-      // 미니플레이어 활성화 조건 (원본 로직)
       const isWatchOrLive = window.location.pathname.includes('/watch') || window.location.pathname.includes('/live');
       const scrollY = window.scrollY;
       const playerHeight = playerContainer.offsetHeight;
-      const isMiniPlayerActive = document.body.classList.contains('efyt-mini-player');
-      
-      console.log('[EFYT Debug] 현재 상태:', {
-        isWatchOrLive,
-        scrollY,
-        playerHeight,
-        intersectionRatio: entry.intersectionRatio,
-        isMiniPlayerActive
-      });
 
-      // 미니플레이어 활성화 조건 개선
-      const shouldActivate = (
-        scrollY > playerHeight - 100 && 
-        isWatchOrLive && 
-        !player.classList.contains('ended-mode') &&
-        (entry.intersectionRatio === 0 || entry.intersectionRatio < 0.5)
-      );
+      // 미니플레이어 활성화 조건 (원본 로직)
+      if ((entry.intersectionRatio === 0 && !document.body.classList.contains('efyt-mini-player') && scrollY > 0) ||
+          (entry.intersectionRatio > 0 && entry.intersectionRatio < 0.12)) {
 
-      const shouldDeactivate = (
-        entry.intersectionRatio > 0.5
-      );
+        if (scrollY > playerHeight - 100 && isWatchOrLive && !player.classList.contains('ended-mode')) {
+          // 미니플레이어 활성화
+          if (video) {
+            video.addEventListener('timeupdate', this.updateMiniPlayerProgress.bind(this));
+            this.updateMiniPlayerProgress();
+          }
+          document.body.classList.add('efyt-mini-player');
 
-      console.log('[EFYT Debug] 활성화 조건:', shouldActivate, '/ 비활성화 조건:', shouldDeactivate);
-
-      if (shouldActivate && !isMiniPlayerActive) {
-        console.log('[EFYT Debug] 미니플레이어 활성화!');
-        
-        if (video) {
-          video.addEventListener('timeupdate', this.updateMiniPlayerProgress.bind(this));
           // 세로 영상 감지 및 클래스 추가
-          this.updateMiniPlayerProgress();
+          this.updateVideoAspectRatio();
+
+          window.dispatchEvent(new Event('resize'));
         }
-        document.body.classList.add('efyt-mini-player');
-        console.log('[EFYT Debug] efyt-mini-player 클래스 추가됨');
-
-        // Z-index 디버깅 (활성화 직후)
-        setTimeout(() => {
-          const player = document.querySelector('#movie_player');
-          const ytdPlayer = document.querySelector('ytd-player');
-          const secondary = document.querySelector('#secondary');
-          const related = document.querySelector('#related');
-          const masthead = document.querySelector('#masthead-container');
-          
-          console.log('[EFYT Debug] === Z-index 분석 ===');
-          console.log('[EFYT Debug] #movie_player:', {
-            zIndex: player ? window.getComputedStyle(player).zIndex : 'null',
-            position: player ? window.getComputedStyle(player).position : 'null'
-          });
-          console.log('[EFYT Debug] ytd-player:', {
-            zIndex: ytdPlayer ? window.getComputedStyle(ytdPlayer).zIndex : 'null',
-            position: ytdPlayer ? window.getComputedStyle(ytdPlayer).position : 'null'
-          });
-          console.log('[EFYT Debug] #secondary:', {
-            zIndex: secondary ? window.getComputedStyle(secondary).zIndex : 'null',
-            position: secondary ? window.getComputedStyle(secondary).position : 'null'
-          });
-          console.log('[EFYT Debug] #related:', {
-            zIndex: related ? window.getComputedStyle(related).zIndex : 'null',
-            position: related ? window.getComputedStyle(related).position : 'null'
-          });
-          console.log('[EFYT Debug] #masthead:', {
-            zIndex: masthead ? window.getComputedStyle(masthead).zIndex : 'null',
-            position: masthead ? window.getComputedStyle(masthead).position : 'null'
-          });
-        }, 500);
-
-        this.updateVideoAspectRatio();
-        window.dispatchEvent(new Event('resize'));
-      } else if (shouldDeactivate && isMiniPlayerActive) {
-        console.log('[EFYT Debug] 미니플레이어 비활성화!');
-        
+      } else if (entry.intersectionRatio !== 0) {
+        // 미니플레이어 비활성화
         if (video) {
           video.removeEventListener('timeupdate', this.updateMiniPlayerProgress.bind(this));
         }
         document.body.classList.remove('efyt-mini-player');
         document.body.classList.remove('efyt-mini-player-vertical');
-        console.log('[EFYT Debug] 미니플레이어 클래스 제거됨');
-        
         window.dispatchEvent(new Event('resize'));
-      } else {
-        console.log('[EFYT Debug] 조건 미충족 - 상태 유지');
       }
-    }, { threshold: [0, 0.5] });
+    }, { threshold: [0, 0.2] });
 
     playerContainer.efytObserver.observe(playerContainer);
-    console.log('[EFYT Debug] Observer 설정 완료 및 관찰 시작');
   }
-  
+
   // 쇼츠 감지 로직 강화
   isCurrentlyInShorts() {
     // URL 체크
@@ -845,16 +743,9 @@ class PIPController {
   }
 
   // 미니플레이어 CSS 추가 (원본 스타일)
-  // addMiniPlayerCSS() 메서드 시작 부분에 추가
   addMiniPlayerCSS() {
-    console.log('[EFYT Debug] addMiniPlayerCSS 시작');
-    
-    if (document.getElementById('efyt-mini-player-styles')) {
-      console.log('[EFYT Debug] 미니플레이어 스타일이 이미 존재합니다.');
-      return;
-    }
+    if (document.getElementById('efyt-mini-player-styles')) return;
 
-    console.log('[EFYT Debug] 미니플레이어 스타일 생성 중...');
     const style = document.createElement('style');
     style.id = 'efyt-mini-player-styles';
     
@@ -868,11 +759,8 @@ class PIPController {
       '560x315': ['560', '315'],
       '640x360': ['640', '360']
     };
-    const currentSize = this.settings.getSetting('miniPlayerSize');
-    const sizes = sizeMap[currentSize] || sizeMap['480x270'];
+    const sizes = sizeMap[this.settings.getSetting('miniPlayerSize')] || sizeMap['480x270']; // 기본값
     const aspectRatio = 16/9; // 기본 비율
-    console.log('[EFYT Debug] 미니플레이어 크기:', currentSize, '→', sizes);
-    console.log('[EFYT Debug] 기본 화면 비율:', aspectRatio);
     
     style.textContent = `
       :root {
@@ -1076,10 +964,9 @@ class PIPController {
         width: calc(100% - 24px) !important;
       }
     `;
-    
+
     document.head.appendChild(style);
-    console.log('[EFYT Debug] 미니플레이어 스타일 추가 완료');
-    
+
     // 미니플레이어 UI 요소 추가
     this.addMiniPlayerElements();
   }
