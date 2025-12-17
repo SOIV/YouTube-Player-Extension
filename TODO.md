@@ -40,6 +40,7 @@
 > **v2 지원 이전 마지막 업데이트 / Last update before v2 support**
 > **마지막 업데이트가 아닐 수도 있습니다 / This may not be the last update**
 - [ ] 돌아온 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
+    - 비디오 코덱 선택하는 기능은 추가되지 않습니다.
 - [ ] 연속 재생 버튼(Loop button)
 - [ ] 플로팅 플레이어(Floating Player)의 추가 미지원 기능 업데이트
     - 자동 영상 비율 인식 추가 / 16:9, 21:9 등 영상 사이즈에 맞게 표시 될 수 있도록
@@ -48,7 +49,7 @@
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
 
 ### v2.0.0 major update
-> Notice : v1.0.9 업데이트 이후로 당분간 v2 업데이트 준비로 인해 v1의 업데이트가 지연 또는 불가할 수 있습니다.
+> Notice : v1.0.9 업데이트 이후로 당분간 v2 업데이트 준비로 인해 v1의 업데이트가 지연 될 수 있습니다.
 - [ ] V2 UI/UX Update - v2.0.0 (Settings window & About)
     - v2 UI/UX의 업데이트를 진행하면서 About 또는 일부 기능의 내용이 수정 될 수 있습니다.
         - As we update the v2 UI/UX, the About section or some features may be modified.
