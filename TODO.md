@@ -46,6 +46,7 @@
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
 
 ### v2.0.0 major update
+> Notice : v1.0.9 업데이트 이후로 당분간 v2 업데이트 준비로 인해 v1의 업데이트가 지연 또는 불가할 수 있습니다.
 - [ ] V2 UI/UX Update - v2.0.0 (Settings window & About)
     - v2 UI/UX의 업데이트를 진행하면서 About 또는 일부 기능의 내용이 수정 될 수 있습니다.
         - As we update the v2 UI/UX, the About section or some features may be modified.
