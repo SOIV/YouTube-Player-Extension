@@ -168,7 +168,7 @@ YouTube Player Extension/
 ## To-Do
 
 모든 예정된 작업 또는 업데이트 상태의 확인은 [ToDo](TODO.md)에서 확인 가능합니다.<br>
-공지는 [notification](notification.md)에서 확인 가능합니다.
+공지는 [Notice](Notice.md)에서 확인 가능합니다.
 
 ## 라이선스
 
