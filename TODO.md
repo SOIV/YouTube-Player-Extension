@@ -41,6 +41,8 @@
 > **마지막 업데이트가 아닐 수도 있습니다 / This may not be the last update**
 - [ ] 돌아온 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
 - [ ] 연속 재생 버튼(Loop button)
+- [ ] 플로팅 플레이어(Floating Player)의 추가 미지원 기능 업데이트
+    - 자동 영상 비율 인식 추가 / 16:9, 21:9 등 영상 사이즈에 맞게 표시 될 수 있도록
 - [ ] Chrome Web Store 설치 방식 지원
     - Support for Chrome Web Store installation methods
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
@@ -69,6 +71,7 @@
 - [ ] Live Stream Translator
     - 별도 확장 프로그램으로 개발 중이였으나 v2 업데이트로 하나의 확장 프로그램으로 추후 통합 예정
     - 해당 프로젝트 파일을 정리 및 확장된 버전의 문서를 [LST](docs/LST)으로 이동
+    - 프로젝트의 계획이 방대해짐에 따라 기존대로 별도 확장 프로그램 및 데스크탑 APP으로 개발 될 가능성이 있음
 
 ---
 
