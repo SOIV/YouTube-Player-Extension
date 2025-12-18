@@ -33,3 +33,10 @@
   "transposeLink": "Transpose ▲▼",
   "transposeRecommend": "확장 프로그램을 추천드립니다.",
   "transposeNote": "각 확장 프로그램이 각자의 전문 분야에서 최고의 성능을 발휘할 수 있도록 역할을 분담했습니다.",
+
+  "karaokeSuggestion": "Need karaoke features?",
+  "transposeTitle": "Transpose ▲▼ Recommended",
+  "transposeDescription": "If you need karaoke features such as key adjustment, tempo change, and repeat section settings, we recommend",
+  "transposeLink": "Transpose ▲▼",
+  "transposeRecommend": "extension.",
+  "transposeNote": "Each extension is designed to perform best in their respective specialized areas by dividing roles.",
