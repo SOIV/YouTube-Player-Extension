@@ -5,7 +5,7 @@
 [![총 다운로드](https://img.shields.io/github/downloads/SOIV/YouTube-Player-Extension/total)](https://github.com/SOIV/YouTube-Player-Extension/releases)
 [![최신 버전 다운로드](https://img.shields.io/github/downloads/SOIV/YouTube-Player-Extension/latest/total)](https://github.com/SOIV/YouTube-Player-Extension/releases)
 
-유튜브 재생기의 다양한 기능을 향상시키는 브라우저 확장 프로그램입니다.
+유튜브 플레이어의 다양한 기능을 향상시키는 브라우저 확장 프로그램입니다.
 
 ## 주요 기능
 
@@ -131,7 +131,7 @@ YouTube Player Extension/
 ### ❓ 설정을 변경했는데 적용되지 않아요
 - YouTube 페이지를 **새로고침** 해주세요
 - 여러 개의 YouTube 탭이 열려있다면 모든 탭을 새로고침
-- 브라우저 캐시 삭제 후 재시도
+- 그럼에도 안되면 브라우저 캐시 삭제 후 재시도
 
 ### ❓ 볼륨 부스트(오디오 컴프레서)가 작동하지 않아요
 - 브라우저에서 해당 탭의 음소거가 해제되어 있는지 확인
@@ -142,8 +142,8 @@ YouTube Player Extension/
 - Firefox는 **제한적 지원**으로 일부 기능이 정상 작동하지 않을 수 있습니다
 - 최적의 경험을 위해 **Chromium 기반 브라우저** (Chrome, Edge, Whale 등) 사용을 권장합니다
 
-### ❓ 미니플레이어에서 오류나 버그가 발생해요
-- YouTube 사이트가 **완전히 로딩되기 전에 스크롤**을 내리면 미니플레이어 관련 오류가 발생할 수 있습니다
+### ❓ 플로팅 플레이어(Floating Player)에서 오류나 버그가 발생해요
+- YouTube 사이트가 **완전히 로딩되기 전에 스크롤**을 내리면 플로팅 플레이어 관련 오류가 발생할 수 있습니다
 - **해결 방법**: YouTube 페이지가 완전히 로딩된 후 스크롤하거나 확장 프로그램 기능을 사용해주세요
 - 페이지 새로고침 후 잠시 기다린 다음 사용하시면 문제를 피할 수 있습니다
 - 해당 이슈는 **향후 업데이트**에서 수정될 수 있습니다.

@@ -142,8 +142,8 @@ YouTube Player Extension/
 - Firefox has **limited support** and some features may not work properly
 - We recommend using **Chromium-based browsers** (Chrome, Edge, Whale, etc.) for the best experience
 
-### ❓ I'm experiencing errors or bugs with the mini player
-- **Scrolling before YouTube site fully loads** may cause mini player related errors or bugs
+### ❓ I'm experiencing errors or bugs with the Floating Player
+- **Scrolling before YouTube site fully loads** may cause Floating Player related errors or bugs
 - **Solution**: Wait for the YouTube page to fully load before scrolling or using extension features
 - Refresh the page and wait a moment before using to avoid the issue
 - This issue may be fixed in a **future update**
