@@ -69,10 +69,10 @@
 
 > 아레 기능이 통합으로 추가 될 경우 확장 프로그램의 이름이 변경 될 수 있습니다. (ex. YouTube Player Extension -> Player Extension)<br>
 모든 기능은 모듈 형식으로 활성화시 동적으로 기능을 불러오는 방식을 사용합니다.
-- [ ] Live Stream Translator
-    - 별도 확장 프로그램으로 개발 중이였으나 v2 업데이트로 하나의 확장 프로그램으로 추후 통합 예정
-    - 해당 프로젝트 파일을 정리 및 확장된 버전의 문서를 [LST](docs/LST)으로 이동
-    - 프로젝트의 계획이 방대해짐에 따라 기존대로 별도 확장 프로그램 및 데스크탑 APP으로 개발 될 가능성이 있음
+- [ ] LST_PJ < Live Stream Translator(LST) Extension Project >
+    - 프로젝트의 계획이 방대해짐에 따라 기존대로 독립 프로젝트로 재 변경 되었습니다.
+    - LST 프로젝트 문서는 [LST](docs/LST)에서 계속 확인을 하실 수 있습니다.
+    - GitHub Repositories : https://github.com/SOIV/LST_Extension-Project - (Private / 추후 Public으로 변경 예정)
 
 ---
 
