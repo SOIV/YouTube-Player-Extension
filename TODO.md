@@ -71,8 +71,8 @@
 모든 기능은 모듈 형식으로 활성화시 동적으로 기능을 불러오는 방식을 사용합니다.
 - [ ] LST_PJ < Live Stream Translator(LST) Extension Project >
     - 프로젝트의 계획이 방대해짐에 따라 기존대로 독립 프로젝트로 재 변경 되었습니다.
-    - LST 프로젝트 문서는 [LST](docs/LST)에서 계속 확인을 하실 수 있습니다.
-    - GitHub Repositories : https://github.com/SOIV/LST_Extension-Project - (Private / 추후 Public으로 변경 예정)
+    - LST 프로젝트 문서는 [LST-docs](https://github.com/SOIV/LST_Extension-Project/tree/main/docs/LST-PJ_V3)에서 계속 확인을 하실 수 있습니다.
+    - GitHub Repositories : https://github.com/SOIV/LST_Extension-Project
 
 ---
 
