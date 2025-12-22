@@ -43,7 +43,8 @@
     - 비디오 코덱 선택하는 기능은 추가되지 않습니다.
 - [ ] 연속 재생 버튼(Loop button)
 - [ ] 플로팅 플레이어(Floating Player)의 추가 미지원 기능 업데이트
-    - 자동 영상 비율 인식 추가 / 16:9, 21:9 등 영상 사이즈에 맞게 표시 될 수 있도록
+    - 자동 영상 비율 인식 추가 / 16:9, 21:9, 4:3 등 영상 사이즈에 맞게 표시 될 수 있도록
+    - 화면 크기 추가 / 모니터 QHD, 4K 사용자를 위한 업데이트(thx for friend)
 - [ ] Chrome Web Store 설치 방식 지원
     - Support for Chrome Web Store installation methods
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
