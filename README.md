@@ -31,6 +31,9 @@
 
 > 📅 **Chrome 웹 스토어 업로드 예정**: 더 편리한 설치와 업데이트를 위해 Chrome 웹 스토어 등록을 준비 중입니다. V1.0.9에서 지원 및 등록될 예정입니다.
 
+Bata 버전 상태이지만 편하게 설치를 하고 싶으시면 아레 배너를 통하여 크롬 웹 스토어에서 설치가 가능합니다.<br>
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://chromewebstore.google.com/detail/ndbapfoppojondcmkgdmgmkcanogjfof?utm_source=item-share-cb)
+
 ### 📦 릴리즈에서 다운로드 (권장)
 
 1. [Releases 페이지](https://github.com/SOIV/YouTube-Player-Extension/releases)에서 최신 버전 다운로드
