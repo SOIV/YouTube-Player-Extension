@@ -54,9 +54,10 @@
 > Notice : v1.0.9 업데이트 이후로 당분간 v2 업데이트 준비로 인해 v1의 업데이트가 지연 될 수 있습니다.
 - [ ] V2 UI/UX Update - v2.0.0 (Settings window & About)
     - v2 UI/UX의 업데이트를 진행하면서 About 또는 일부 기능의 내용이 수정 될 수 있습니다.
-        - As we update the v2 UI/UX, the About section or some features may be modified.
     - v2 업데이트에서는 사용자가 친화적으로 좀 더 좋은 UI에서 사용을 하고자 진행하는 필수 업데이트입니다.<br> 이러한 업데이트로 컨트롤 패널 및 기능 추가의 업데이트 또한 동시에 진행 될 예정입니다.(추가될 기능은 현제 계획되지 않았으나 상황에 따라 추가 될 예정이 존제함)
-        - The v2 update is a mandatory update designed to provide a more user-friendly and improved UI.<br> This update will also include updates to the control panel and additional features. (Additional features are not currently planned, but may be added depending on the situation.)
+- [ ] Chrome 공식 i18n 마이그레이션
+- [ ] 파일 구조 개선 (_locales/)
+- [ ] manifest.json 다국어 적용
 
 ## Help me!
 - [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
