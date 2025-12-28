@@ -1,6 +1,7 @@
 > 이 곳의 영어 작성은 Google Translate를 사용하였습니다.<br> The English text here was written using Google Translate.
 
 ## Update & Fix completed
+> **v1.0.8 updated**
 - [x] 플로팅 플레이어(Floating Player)(구 미니 플레이어(MiniPlayer))의 표시 위치가 변경 되었습니다.
     - 최상단(15px) -> 헤더 하단으로(60px)
 - [x] 각 버튼 툴팁 및 일부 기능에서 다국어 지원이 안되고 있는 부분을 수정
@@ -86,6 +87,7 @@
 ---
 
 ## Update & Version History
+### v1.0.0 ~ v1.0.7 Update History
 - [x] 변경 및 업데이트 된 소형 플레이어 아이콘(SVG) 수정 (for YouTube default SVG)
     - Fixed and updated small player icons (SVG) (for YouTube default SVG)
 - [x] /live/* 에서 PIP, 소형 플레이어 버튼, 미니플레이어 가 작동하지 않는 문제를 해결
