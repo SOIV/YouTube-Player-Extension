@@ -1,11 +1,8 @@
-> 이 곳의 영어 작성은 Google Translate를 사용하였습니다.<br> The English text here was written using Google Translate.
-
 ## Update & Fix completed
 > **v1.0.8 updated**
 - [x] 플로팅 플레이어(Floating Player)(구 미니 플레이어(MiniPlayer))의 표시 위치가 변경 되었습니다.
     - 최상단(15px) -> 헤더 하단으로(60px)
 - [x] 각 버튼 툴팁 및 일부 기능에서 다국어 지원이 안되고 있는 부분을 수정
-    - Fixed the lack of multilingual support in each button tooltip and some functions.
     - 소형 플레이어 버튼(Mini Player Button)은 제외되었습니다(툴팁 표시 문제 해결이 안 된 상태이므로 제외됨)
 
 ## To be updated
@@ -30,7 +27,6 @@
     - 기존 2개(PIP 모드 / PIP 모드 종료)로 표시되고 있는 부분을 한가지(PIP 모드)로 변경
     - 위 2가지 표시 방식에 대한 이슈로 PIP 모드 종료의 툴팁 표시에 정상적이지 않음을 해결
 - [ ] 충돌 되는 미니 플레이어의 이름을 플로팅 플레이어(Floating Player)으로 변경<br> 해당 수정은 변수/함수명, CSS 클래스명, 설정/옵션 키, 텍스트(다국어), 주석 작성 내용을 전부 변경 및 수정을 해야되는 수정안이라 핫픽스(hotfix) 업데이트가 아닌 다음 업데이트(v1.0.8)에서 제공 됩니다.
-    - Change the name of the conflicting mini player to Floating Player<br> This fix requires changing and modifying all variable/function names, CSS class names, setting/option keys, text (multilingual), and comment content, so it will be provided in the next update (v1.0.8) rather than a hotfix update.
     - 기능의 이름을 변경함에 따라 기존 사용하던 이름의 설정값들을 마이그레이션을 할 수 있도록 동시에 작업하여 업데이트가 진행될 예정입니다.<br> 다만 모든 작업을 진행하는데 기간은 약간 오래 걸릴 수도 있으며 현재 작업자가 사용하고 있는 Claude code를 사용하지 못하는 상태이므로 좀 더 시간이 걸릴 수 있음을 알립니다.
 - [ ] 내부 파일 시스템 개선
     - 일부 기능들끼리 하나의 파일로 통합되어 있는 것들을 분리합니다.
@@ -53,8 +49,7 @@
 - [ ] 버튼 최적화
     - 버튼을 추가 할 때 처음 창을 띄우게 되면 플레이어에서의 메뉴를 한번 표시해야 되는 문제를 해결해보기
     - 각 버튼 svg 코드를 추가
-- [ ] Chrome Web Store 설치 방식 지원
-    - Support for Chrome Web Store installation methods
+- [ ] Chrome Web Store 설치 방식 지원(Support for Chrome Web Store installation methods)
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
 
 ### v2.0.0 major update
@@ -73,8 +68,6 @@
 ---
 
 ## Idea? / updated List
-> This paragraph is not translated. If you wish to check the content, please use a translation tool.
-
 > 이미 충분히 잘 작동하고 있는 확장 프로그램인 기능들은 추가 및 작업하지 않을 예정입니다.
 
 > 아레 기능이 통합으로 추가 될 경우 확장 프로그램의 이름이 변경 될 수 있습니다. (ex. YouTube Player Extension -> Player Extension)<br>
