@@ -33,6 +33,8 @@
         - PIP button, Mini Player button, Floating Player
         - Audio Compressor, Stereo Panning (L/R)
     - 그 외 일부 시스템 및 기능 개선 작업
+- [ ] 오디오 제어 관련 기능 미작동에 대한 이슈
+    - 컴프, 스테레오 패닝 미작동 버그 해결
 
 ### v1.0.9 update
 > **v2 지원 이전 마지막 업데이트 / Last update before v2 support**
