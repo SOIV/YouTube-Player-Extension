@@ -6,7 +6,7 @@
     - 소형 플레이어 버튼(Mini Player Button)은 제외되었습니다(툴팁 표시 문제 해결이 안 된 상태이므로 제외됨)
 
 ## To be updated
-### v1.0.8 updated
+### v1.0.8 updated - 2~3월 중 작업 시작 예정
 > **< 해당 문제의 버그를 다음과 같이 업데이트를 진행합니다. >**
 > 1. MiniPlayer 파일 이름을 플로팅 플레이어(Floating Player)으로 하되
 > 2. 기능 별 파일 분리 작업을 진행, 작업 종료 후
@@ -17,6 +17,14 @@
 > 7. debug.js 파일을 추가하여 개발자 기능을 추가
 > 8. 개발자 기능을 테스트 후 (UI/UX 추가)
 > 9. 버전 업을 진행 후 파일 압축하여 신규 버전을 업로드(v1.0.7 -> v1.0.8)
+- [ ] 내부 파일 시스템 개선
+    - 일부 기능들끼리 하나의 파일로 통합되어 있는 것들을 분리합니다.
+        - PIP button, Mini Player button, Floating Player
+        - Audio Compressor, Stereo Panning (L/R)
+    - 그 외 일부 시스템 및 기능 개선 작업
+- [ ] 충돌 되는 미니 플레이어의 이름을 플로팅 플레이어(Floating Player)으로 변경<br> 
+    > 해당 수정은 변수/함수명, CSS 클래스명, 설정/옵션 키, 텍스트(다국어), 주석 작성 내용을 전부 변경 및 수정을 해야되는 수정안이라 핫픽스(hotfix) 업데이트가 아닌 다음 업데이트(v1.0.8)에서 제공 됩니다.
+    - 기능의 이름을 변경함에 따라 기존 사용하던 이름의 설정값들을 마이그레이션을 할 수 있도록 동시에 작업하여 업데이트가 진행될 예정입니다.<br> 다만 모든 작업을 진행하는데 기간은 약간 오래 걸릴 수도 있으며 현재 작업자가 사용하고 있는 Claude code를 사용하지 못하는 상태이므로 좀 더 시간이 걸릴 수 있음을 알립니다.
 - [ ] 플로팅 플레이어(Floating Player)(구 미니 플레이어(MiniPlayer))가(이) 작동이 되지 않는 문제
     - 문제가 되었던 조건부를 완화하여 정상적으로 작동할 수 있도록 수정되었습니다. 추가로 일부 관련 시스템에서도 개선을 진행하였습니다.
         - +)추가 업데이트1 : 여전히 사이트 로딩에 관련하여 작동 여부가 달라지는 이슈가 존제합니다, 추후 수정 될 예정입니다.(25. 11. 25. AM 12:00)
@@ -26,15 +34,11 @@
 - [ ] PIP 버튼의 툴팁을 수정
     - 기존 2개(PIP 모드 / PIP 모드 종료)로 표시되고 있는 부분을 한가지(PIP 모드)로 변경
     - 위 2가지 표시 방식에 대한 이슈로 PIP 모드 종료의 툴팁 표시에 정상적이지 않음을 해결
-- [ ] 충돌 되는 미니 플레이어의 이름을 플로팅 플레이어(Floating Player)으로 변경<br> 해당 수정은 변수/함수명, CSS 클래스명, 설정/옵션 키, 텍스트(다국어), 주석 작성 내용을 전부 변경 및 수정을 해야되는 수정안이라 핫픽스(hotfix) 업데이트가 아닌 다음 업데이트(v1.0.8)에서 제공 됩니다.
-    - 기능의 이름을 변경함에 따라 기존 사용하던 이름의 설정값들을 마이그레이션을 할 수 있도록 동시에 작업하여 업데이트가 진행될 예정입니다.<br> 다만 모든 작업을 진행하는데 기간은 약간 오래 걸릴 수도 있으며 현재 작업자가 사용하고 있는 Claude code를 사용하지 못하는 상태이므로 좀 더 시간이 걸릴 수 있음을 알립니다.
-- [ ] 내부 파일 시스템 개선
-    - 일부 기능들끼리 하나의 파일로 통합되어 있는 것들을 분리합니다.
-        - PIP button, Mini Player button, Floating Player
-        - Audio Compressor, Stereo Panning (L/R)
-    - 그 외 일부 시스템 및 기능 개선 작업
 - [ ] 오디오 제어 관련 기능 미작동에 대한 이슈
     - 컴프, 스테레오 패닝 미작동 버그 해결
+    - 슬라이더(Slider) 이동시에 상단에 알림이 지속적으로 표시 되려고 하는 부분을 수정
+
+---
 
 ### v1.0.9 update
 > **v2 지원 이전 마지막 업데이트 / Last update before v2 support**
@@ -54,6 +58,8 @@
 - [ ] Chrome Web Store 설치 방식 지원(Support for Chrome Web Store installation methods)
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
 
+---
+
 ### v2.0.0 major update
 > Notice : v1.0.9 업데이트 이후로 당분간 v2 업데이트 준비로 인해 v1의 업데이트가 지연 될 수 있습니다.
 - [ ] V2 UI/UX Update - v2.0.0 (Settings window & About)
@@ -67,8 +73,6 @@
 - [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
     - Display Miniplayer's tooltip using YouTube's default tooltip
 
----
-
 ## Idea? / updated List
 > 이미 충분히 잘 작동하고 있는 확장 프로그램인 기능들은 추가 및 작업하지 않을 예정입니다.
 
@@ -78,8 +82,6 @@
     - 프로젝트의 계획이 방대해짐에 따라 기존대로 독립 프로젝트로 재 변경 되었습니다.
     - LST 프로젝트 문서는 [LST-docs](https://github.com/SOIV/LST_Extension-Project/tree/main/docs/LST-PJ_V3)에서 계속 확인을 하실 수 있습니다.
     - GitHub Repositories : https://github.com/SOIV/LST_Extension-Project
-
----
 
 ## Update & Version History
 ### v1.0.0 ~ v1.0.7 Update History
