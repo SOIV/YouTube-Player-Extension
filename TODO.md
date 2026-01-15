@@ -55,6 +55,7 @@
 - [ ] Chrome Web Store 설치 방식 지원(Support for Chrome Web Store installation methods)
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
 
+### v1.0.x Idea / updated List
 - [ ] 볼륨 퍼센트 표시 설정
     - 확정 추가 예정이 아님
     - 볼륨 조절시 퍼센트가 표시가 되지 않았던 것을 보여줄 수 있도록
