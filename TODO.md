@@ -52,6 +52,7 @@
 - [ ] 버튼 최적화
     - 버튼을 추가 할 때 처음 창을 띄우게 되면 플레이어에서의 메뉴를 한번 표시해야 되는 문제를 해결해보기
     - 각 버튼 svg 코드를 추가
+    - PIP 버튼의 위치 정렬
 - [ ] Chrome Web Store 설치 방식 지원(Support for Chrome Web Store installation methods)
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
 
