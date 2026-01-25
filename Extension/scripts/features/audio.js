@@ -23,6 +23,9 @@ class AudioEnhancer {
     this.visibilityChangeHandler = null;
     this.videoPlayHandler = null;
     this.documentClickHandler = null;
+    
+    // 재시도 카운터
+    this.retryCount = 0;
   }
 
   // 오디오 기능이 필요한지 확인
@@ -121,10 +124,61 @@ class AudioEnhancer {
     } catch (error) {
       console.error('Error connecting to video:', error);
       
-      // 이미 다른 곳에서 연결된 경우
+      // 이미 다른 곳에서 연결된 경우 - 비디오 복제로 해결
       if (error.name === 'InvalidStateError') {
-        console.warn('Video element already has a MediaElementSource. This is normal if another extension is also processing audio.');
+        console.warn('Video element already has a MediaElementSource');
+        console.log('Attempting to recreate video element...');
+        
+        // 비디오 복제 후 재시도
+        await this.recreateVideoElement();
+        
+        // 재귀 호출로 다시 시도 (1회만)
+        if (!this.retryCount) {
+          this.retryCount = 1;
+          await this.connectToVideo();
+          this.retryCount = 0;
+        }
       }
+    }
+  }
+  
+  // 비디오 요소 재생성
+  async recreateVideoElement() {
+    try {
+      const video = document.querySelector('video');
+      if (!video) return;
+      
+      const currentTime = video.currentTime;
+      const wasPaused = video.paused;
+      const volume = video.volume;
+      const muted = video.muted;
+      
+      // 비디오 복제
+      const newVideo = video.cloneNode(true);
+      newVideo.currentTime = currentTime;
+      newVideo.volume = volume;
+      newVideo.muted = muted;
+      
+      // 교체
+      video.parentNode.replaceChild(newVideo, video);
+      
+      // DOM 캐시 갱신
+      if (this.domCache) {
+        this.domCache.delete('video');
+        this.domCache.delete('player');
+      }
+      
+      // connectedVideoElement 초기화
+      this.connectedVideoElement = null;
+      
+      // 재생 상태 복원
+      if (!wasPaused) {
+        await newVideo.play().catch(() => {});
+      }
+      
+      console.log('Video element recreated');
+    } catch (error) {
+      console.error('Failed to recreate video element:', error);
     }
   }
 
@@ -350,59 +404,26 @@ class AudioEnhancer {
 
   // 설정 변경 시 호출 (디바운스 + 쓰로틀 적용)
   async onSettingsChanged(changedSettings) {
-    const audioSettings = ['enableCompressor', 'enableStereoPan', 'volumeBoost', 'compressorRatio', 'stereoPan'];
+    const audioSettings = ['volumeBoost', 'compressorRatio', 'stereoPan'];
     const hasAudioChanges = changedSettings.some(key => audioSettings.includes(key));
     
     if (!hasAudioChanges) return;
 
-    // 모든 오디오 기능이 꺼진 경우 - 시스템 종료
-    if (!this.isFullyEnabled()) {
-      console.log('All audio features disabled, cleaning up...');
-      this.cleanup();
-      return;
-    }
+    // ON/OFF 토글은 무시 (페이지 새로고침 필요)
+    // enableCompressor, enableStereoPan 변경은 처리하지 않음
 
-    // 오디오 시스템이 초기화되지 않았으면 초기화
+    // 오디오 시스템이 없으면 종료
     if (!this.audioContext) {
-      console.log('Audio system not initialized, initializing now...');
-      await this.init();
       return;
     }
 
-    // 노드 활성화/비활성화 관련 설정이 변경되었는지 확인
-    const structuralChanges = ['enableCompressor', 'enableStereoPan'];
-    const hasStructuralChanges = changedSettings.some(key => structuralChanges.includes(key));
+    // 파라미터 변경만 처리 (쓰로틀 + 디바운스 적용)
+    const now = Date.now();
+    const timeSinceLastApply = now - this.lastApplyTime;
     
-    if (hasStructuralChanges) {
-      // 구조 변경은 디바운스 적용
-      if (this.reconnectDebounceTimer) {
-        clearTimeout(this.reconnectDebounceTimer);
-      }
-      
-      this.reconnectDebounceTimer = setTimeout(async () => {
-        console.log('Structural changes detected, reconnecting audio nodes...');
-        await this.reconnectAudioNodes();
-        this.reconnectDebounceTimer = null;
-      }, 150);
-    } else {
-      // 파라미터 변경은 쓰로틀 + 디바운스 적용
-      const now = Date.now();
-      const timeSinceLastApply = now - this.lastApplyTime;
-      
-      // 이미 설정 적용 중이거나, 마지막 적용 후 100ms 이내면 대기
-      if (this.isApplyingSettings || timeSinceLastApply < 100) {
-        // 디바운스 타이머만 갱신
-        if (this.settingsDebounceTimer) {
-          clearTimeout(this.settingsDebounceTimer);
-        }
-        
-        this.settingsDebounceTimer = setTimeout(() => {
-          this.applyAudioSettingsThrottled();
-        }, 150);
-        return;
-      }
-      
-      // 즉시 적용 + 디바운스 설정
+    // 이미 설정 적용 중이거나, 마지막 적용 후 100ms 이내면 대기
+    if (this.isApplyingSettings || timeSinceLastApply < 100) {
+      // 디바운스 타이머만 갱신
       if (this.settingsDebounceTimer) {
         clearTimeout(this.settingsDebounceTimer);
       }
@@ -410,7 +431,17 @@ class AudioEnhancer {
       this.settingsDebounceTimer = setTimeout(() => {
         this.applyAudioSettingsThrottled();
       }, 150);
+      return;
     }
+    
+    // 즉시 적용 + 디바운스 설정
+    if (this.settingsDebounceTimer) {
+      clearTimeout(this.settingsDebounceTimer);
+    }
+    
+    this.settingsDebounceTimer = setTimeout(() => {
+      this.applyAudioSettingsThrottled();
+    }, 150);
   }
 
   // 쓰로틀링이 적용된 설정 적용 메서드
@@ -431,6 +462,8 @@ class AudioEnhancer {
 
   // 정리
   cleanup() {
+    console.log('Cleaning up audio system...');
+    
     // 디바운스 타이머 정리
     if (this.settingsDebounceTimer) {
       clearTimeout(this.settingsDebounceTimer);
@@ -442,6 +475,45 @@ class AudioEnhancer {
     }
     
     this.cleanupAudioContext();
+    
+    // 비디오 오디오 복구 - 오디오 시스템이 완전히 꺼질 때만
+    if (!this.isFullyEnabled()) {
+      console.log('Restoring video audio to default...');
+      this.restoreVideoAudio();
+    }
+  }
+  
+  // 비디오 오디오 복구
+  restoreVideoAudio() {
+    try {
+      const video = document.querySelector('video');
+      if (!video) return;
+      
+      // 현재 재생 시간과 상태 저장
+      const currentTime = video.currentTime;
+      const wasPaused = video.paused;
+      
+      // 비디오 요소를 복제해서 교체 (오디오 라우팅 초기화)
+      const newVideo = video.cloneNode(true);
+      newVideo.currentTime = currentTime;
+      
+      video.parentNode.replaceChild(newVideo, video);
+      
+      // DOM 캐시 갱신 (중요!)
+      if (this.domCache) {
+        this.domCache.delete('video');
+        this.domCache.delete('player');
+      }
+      
+      // 재생 상태 복원
+      if (!wasPaused) {
+        newVideo.play().catch(() => {});
+      }
+      
+      console.log('Video audio restored');
+    } catch (error) {
+      console.error('Failed to restore video audio:', error);
+    }
   }
 
   cleanupAudioContext() {
@@ -465,14 +537,16 @@ class AudioEnhancer {
         this.documentClickHandler = null;
       }
       
-      // 오디오 소스 및 노드 정리
+      // 오디오 노드 연결 해제
+      this.disconnectAudioNodes();
+      
+      // sourceNode 정리
       if (this.sourceNode) {
         this.sourceNode.disconnect();
         this.sourceNode = null;
       }
       
-      this.disconnectAudioNodes();
-      
+      // AudioContext 닫기
       if (this.audioContext && this.audioContext.state !== 'closed') {
         this.audioContext.close();
       }
@@ -480,6 +554,8 @@ class AudioEnhancer {
       this.audioContext = null;
       this.audioNodes = {};
       this.connectedVideoElement = null;
+      
+      console.log('Audio context cleaned up');
     } catch (error) {
       console.error('Cleanup error:', error);
     }
