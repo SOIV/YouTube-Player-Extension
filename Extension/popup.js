@@ -2,6 +2,11 @@
 class PopupManager {
   constructor() {
     this.settings = {};
+    
+    // 디바운스 타이머 추가
+    this.sliderDebounceTimer = null;
+    this.statusDebounceTimer = null;
+    
     this.init();
   }
 
@@ -180,9 +185,15 @@ class PopupManager {
       });
     });
 
-    // 슬라이더 이벤트
+    // 슬라이더 이벤트 - 디바운싱 적용
     document.querySelectorAll('.slider').forEach(slider => {
+      // 실시간 UI 업데이트용 (디바운싱 없음)
       slider.addEventListener('input', (e) => {
+        this.handleSliderInput(slider);
+      });
+      
+      // 설정 저장 및 알림용 (디바운싱 적용)
+      slider.addEventListener('change', (e) => {
         this.handleSliderChange(slider);
       });
     });
@@ -237,6 +248,12 @@ class PopupManager {
         window.location.href = 'about.html';
       }
     });
+  }
+
+  // 슬라이더 실시간 UI 업데이트 (디바운싱 없음)
+  handleSliderInput(slider) {
+    // 실시간 표시만 업데이트 (저장 안 함)
+    this.updateSliderDisplays();
   }
 
   updateSliderDisplays() {
@@ -403,20 +420,49 @@ class PopupManager {
     this.showStatus(`${this.getSettingDisplayName(setting)} ${window.i18n.t('changed')}: ${displayValue}`, 'success');
   }
 
+  // 슬라이더 최종 값 저장 및 알림 (디바운싱 적용)
   async handleSliderChange(slider) {
     const setting = slider.dataset.setting;
     const newValue = parseInt(slider.value);
     
-    this.settings[setting] = newValue;
-    await this.saveSetting(setting, newValue);
-    
-    // 실시간 표시 업데이트
-    this.updateSliderDisplays();
-    
-    // 오디오 설정은 즉시 적용 피드백
-    if (['volumeBoost', 'stereoPan'].includes(setting)) {
-      this.showStatus(`${this.getSettingDisplayName(setting)} ${window.i18n.t('adjusted')}`, 'success');
+    // 기존 타이머 취소
+    if (this.sliderDebounceTimer) {
+      clearTimeout(this.sliderDebounceTimer);
     }
+    
+    // 디바운싱 적용 (드래그 끝나고 500ms 후 실행)
+    this.sliderDebounceTimer = setTimeout(async () => {
+      // 설정 저장
+      this.settings[setting] = newValue;
+      await this.saveSetting(setting, newValue);
+      
+      // 실시간 표시 업데이트
+      this.updateSliderDisplays();
+      
+      // 오디오 설정은 적용 피드백 (디바운싱 적용)
+      if (['volumeBoost', 'stereoPan', 'compressorRatio'].includes(setting)) {
+        this.showStatusDebounced(
+          `${this.getSettingDisplayName(setting)} ${window.i18n.t('adjusted')}`,
+          'success'
+        );
+      }
+      
+      this.sliderDebounceTimer = null;
+    }, 500);
+  }
+
+  // 디바운싱이 적용된 상태 표시 메서드
+  showStatusDebounced(message, type) {
+    // 기존 타이머 취소
+    if (this.statusDebounceTimer) {
+      clearTimeout(this.statusDebounceTimer);
+    }
+    
+    // 200ms 디바운싱
+    this.statusDebounceTimer = setTimeout(() => {
+      this.showStatus(message, type);
+      this.statusDebounceTimer = null;
+    }, 200);
   }
 
   async handleTextareaChange(textarea) {
@@ -547,6 +593,7 @@ class PopupManager {
     return sectionMap[toggleId];
   }
 
+  // 기존 showStatus 메서드는 그대로 유지
   showStatus(message, type) {
     // 기존 토스트 제거
     const existingToast = document.querySelector('.toast-notification');
