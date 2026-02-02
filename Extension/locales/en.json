@@ -10,7 +10,7 @@
   "stereoPanningName": "Stereo Panning",
   "stereoPanningDesc": "Adjust left/right audio balance",
 
-"pipMiniPlayer": "📱 Player control & function",
+  "pipMiniPlayer": "📱 Player control & function",
   "pipMode": "PIP(Picture-in-Picture) Mode",
   "pipModeName": "PIP(Picture-in-Picture)",
   "pipModeDesc": "Watch video in a small floating window (adds PIP button)",
@@ -95,8 +95,8 @@
   "youtubeTrademark": "YouTube is a trademark of Google LLC",
   "disclaimer": "This extension is not officially affiliated with YouTube",
 
-  "version": "Version 1.0.8-beta",
-  "footerText": "YouTube™ Player Extension v1.0.8-beta",
+  "version": "Version 1.0.8-beta_260203",
+  "footerText": "YouTube™ Player Extension v1.0.8-beta_260203",
 
   "customThemePlaceholder": "/* Enter your custom CSS code here */\n.ytp-chrome-bottom { \n  background: rgba(0,0,0,0.8) !important; \n}",
   "customScriptsPlaceholder": "// Enter your custom JavaScript code here"
