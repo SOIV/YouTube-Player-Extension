@@ -86,8 +86,16 @@ YouTube Player Extension/
 │   │   │   ├── base.js        # 기본 유틸리티
 │   │   │   └── settings.js    # 설정 관리자
 │   │   └── features/
-│   │       ├── audio.js       # 오디오 향상 모듈
-│   │       └── pip.js         # PiP 및 미니플레이어 모듈
+│   │       ├── audio-control/
+│   │       │   ├── audio-compressor.js   # 오디오 컴프레서
+│   │       │   └── stereo-panning.js     # 스테레오 패닝
+│   │       └── player-control/
+│   │           ├── pip-button.js         # PIP 버튼
+│   │           ├── mini-player-button.js # 소형 플레이어 버튼
+│   │           ├── floating-player.js    # 플로팅 플레이어
+│   │           ├── mini-player-button.js # 미니 플레이어 버튼(legacy)
+│   │           ├── Loop-button.js        # 반복 재생 버튼
+│   │           └── Automatic-quality-selection.js # 자동 화질 선택
 │   ├── locales/               # 언어 파일
 │   │   ├── ko.json            # 한국어
 │   │   ├── en.json            # 영어

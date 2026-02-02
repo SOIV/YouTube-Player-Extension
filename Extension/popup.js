@@ -500,9 +500,9 @@ class PopupManager {
       const fallbackNames = {
         enableCompressor: '오디오 컴프레서',
         enableStereoPan: '스테레오 패닝',
-        popupPlayer: '미니플레이어',
-        miniPlayerSize: '미니플레이어 크기',
-        miniPlayerPosition: '미니플레이어 위치',
+        popupPlayer: '플로팅 플레이어',
+        miniPlayerSize: '플로팅 플레이어 크기',
+        miniPlayerPosition: '플로팅 플레이어 위치',
         enablePIP: 'Picture-in-Picture(PIP)',
         enableSmallPlayerButton: '소형 플레이어 버튼',
         volumeBoost: '볼륨 부스트',
@@ -519,10 +519,10 @@ class PopupManager {
       enableStereoPan: window.i18n.t('stereoPanningName'), // 전 stereoPan
       
       
-      // 팝업/미니 재생기
-      popupPlayer: window.i18n.t('miniPlayerName'),
-      miniPlayerSize: window.i18n.t('miniPlayerSizeName'),
-      miniPlayerPosition: window.i18n.t('miniPlayerPositionName'),
+      // 팝업/플로팅 재생기
+      popupPlayer: window.i18n.t('floatingPlayerName'),
+      miniPlayerSize: window.i18n.t('floatingPlayerSizeName'),
+      miniPlayerPosition: window.i18n.t('floatingPlayerPositionName'),
       enablePIP: window.i18n.t('pipModeName'),
       enableSmallPlayerButton: window.i18n.t('smallPlayerButton'),
       

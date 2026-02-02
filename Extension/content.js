@@ -5,14 +5,15 @@ class YouTubePlayerEnhancer {
     this.isInitialized = false;
     this.modules = {};
     
-    // 핵심 매니저들
     this.settingsManager = null;
     this.domCache = null;
     this.eventManager = null;
     
-    // 기능 모듈들
-    this.audioEnhancer = null;
-    this.pipController = null;
+    this.audioCompressorController = null;
+    this.stereoPanningController = null;
+    this.pipButtonController = null;
+    this.smallPlayerButtonController = null;
+    this.floatingPlayerController = null;
     
     this.mainLoopInterval = null;
     
@@ -22,19 +23,14 @@ class YouTubePlayerEnhancer {
   async init() {
     try {
       
-      // 1. 핵심 매니저 초기화
       await this.initCoreManagers();
       
-      // 2. 설정 로드
       await this.loadSettings();
       
-      // 3. 메시지 리스너 설정
       this.setupMessageListener();
       
-      // 4. 기능 모듈들 초기화 (설정에 따라 선택적)
       await this.initFeatureModules();
       
-      // 5. 메인 루프 시작 (최소한의 체크만)
       this.startMainLoop();
       
       this.isInitialized = true;
@@ -44,13 +40,10 @@ class YouTubePlayerEnhancer {
   }
 
   async initCoreManagers() {
-    // DOM 캐시 매니저
     this.domCache = new window.YouTubeEnhancer.DOMCache();
     
-    // 이벤트 매니저
     this.eventManager = new window.YouTubeEnhancer.EventManager();
     
-    // 설정 매니저
     this.settingsManager = new window.YouTubeEnhancer.SettingsManager();
     
   }
@@ -60,11 +53,9 @@ class YouTubePlayerEnhancer {
   }
 
   setupMessageListener() {
-    // 백그라운드 스크립트에서 오는 설정 변경 메시지 처리
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       if (message.action === 'settingsChanged') {
         
-        // 변경된 설정을 현재 설정에 반영
         Object.keys(message.changes).forEach(key => {
           const change = message.changes[key];
           if (change.newValue !== undefined) {
@@ -72,104 +63,144 @@ class YouTubePlayerEnhancer {
           }
         });
         
-        // 각 모듈에 설정 변경 알림
         this.notifyModulesOfSettingsChange(Object.keys(message.changes));
         
         sendResponse({ success: true });
       }
-      return true; // 비동기 응답을 위해
+      return true;
     });
   }
 
   async initFeatureModules() {
     
-    // 오디오 향상 모듈
-    if (this.settingsManager.isAudioEnabled()) {
-      this.audioEnhancer = new window.YouTubeEnhancer.AudioEnhancer(
+    if (this.settingsManager.getSetting('enableCompressor')) {
+      this.audioCompressorController = new window.YouTubeEnhancer.AudioCompressorController(
         this.settingsManager, 
         this.domCache, 
         this.eventManager
       );
-      await this.audioEnhancer.init();
+      await this.audioCompressorController.init();
     }
     
-    
-    // PIP 및 미니플레이어 모듈
-    if (this.settingsManager.isPIPEnabled() || this.settingsManager.isMiniPlayerEnabled()) {
-      this.pipController = new window.YouTubeEnhancer.PIPController(
+    if (this.settingsManager.getSetting('enableStereoPan')) {
+      this.stereoPanningController = new window.YouTubeEnhancer.StereoPanningController(
         this.settingsManager, 
         this.domCache, 
         this.eventManager
       );
-      this.pipController.init();
+      await this.stereoPanningController.init();
+    }
+    
+    if (this.settingsManager.getSetting('enablePIP')) {
+      this.pipButtonController = new window.YouTubeEnhancer.PIPButtonController(
+        this.settingsManager, 
+        this.domCache, 
+        this.eventManager
+      );
+      this.pipButtonController.init();
+    }
+    
+    if (this.settingsManager.getSetting('enableSmallPlayerButton')) {
+      this.smallPlayerButtonController = new window.YouTubeEnhancer.SmallPlayerButtonController(
+        this.settingsManager, 
+        this.domCache, 
+        this.eventManager
+      );
+      this.smallPlayerButtonController.init();
+    }
+    
+    if (this.settingsManager.getSetting('popupPlayer')) {
+      this.floatingPlayerController = new window.YouTubeEnhancer.FloatingPlayerController(
+        this.settingsManager, 
+        this.domCache, 
+        this.eventManager
+      );
+      this.floatingPlayerController.init();
     }
     
   }
 
   notifyModulesOfSettingsChange(changedKeys) {
-    // 각 모듈에 설정 변경 알림
-    if (this.audioEnhancer) {
-      this.audioEnhancer.onSettingsChanged(changedKeys);
+    if (this.audioCompressorController) {
+      this.audioCompressorController.onSettingsChanged(changedKeys);
     }
     
+    if (this.stereoPanningController) {
+      this.stereoPanningController.onSettingsChanged(changedKeys);
+    }
     
-    if (this.pipController) {
-      this.pipController.onSettingsChanged(changedKeys);
+    if (this.pipButtonController) {
+      this.pipButtonController.onSettingsChanged(changedKeys);
+    }
+    
+    if (this.smallPlayerButtonController) {
+      this.smallPlayerButtonController.onSettingsChanged(changedKeys);
+    }
+    
+    if (this.floatingPlayerController) {
+      this.floatingPlayerController.onSettingsChanged(changedKeys);
     }
   }
 
   startMainLoop() {
-    // 매우 간단한 메인 루프 - 오직 오디오 컨텍스트 건강성만 체크
     this.mainLoopInterval = this.eventManager.addInterval(() => {
       if (window.location.pathname.includes('/watch')) {
         this.runPeriodicChecks();
       }
-    }, 30000); // 30초마다
+    }, 30000);
     
   }
 
   runPeriodicChecks() {
-    // 오직 오디오 컨텍스트 건강성만 체크
-    if (this.audioEnhancer && this.settingsManager.isAudioEnabled()) {
-      this.checkAudioContextHealth();
+    if (this.audioCompressorController && this.settingsManager.getSetting('enableCompressor')) {
+      this.checkAudioContextHealth(this.audioCompressorController);
+    }
+    if (this.stereoPanningController && this.settingsManager.getSetting('enableStereoPan')) {
+      this.checkAudioContextHealth(this.stereoPanningController);
     }
   }
 
-  checkAudioContextHealth() {
+  checkAudioContextHealth(controller) {
     try {
-      if (!this.audioEnhancer.audioContext || this.audioEnhancer.audioContext.state === 'closed') {
-        if (this.settingsManager.isAudioEnabled()) {
-          this.audioEnhancer.init();
+      if (!controller.audioContext || controller.audioContext.state === 'closed') {
+        if (controller.isEnabled()) {
+          controller.init();
         }
       }
     } catch (error) {
     }
   }
 
-  // 정리
   cleanup() {
     
-    // 메인 루프 정리
     if (this.mainLoopInterval) {
       this.eventManager.removeInterval(this.mainLoopInterval);
     }
     
-    // 각 모듈 정리
-    if (this.audioEnhancer) {
-      this.audioEnhancer.cleanup();
+    if (this.audioCompressorController) {
+      this.audioCompressorController.cleanup();
     }
     
-    
-    if (this.pipController) {
-      this.pipController.cleanup();
+    if (this.stereoPanningController) {
+      this.stereoPanningController.cleanup();
     }
     
-    // 이벤트 매니저 정리
+    if (this.pipButtonController) {
+      this.pipButtonController.cleanup();
+    }
+    
+    if (this.smallPlayerButtonController) {
+      this.smallPlayerButtonController.cleanup();
+    }
+    
+    if (this.floatingPlayerController) {
+      this.floatingPlayerController.cleanup();
+    }
+    
     if (this.eventManager) {
       this.eventManager.cleanup();
     }
     
-    // DOM 캐시 정리
     if (this.domCache) {
       this.domCache.clear();
     }
@@ -177,7 +208,6 @@ class YouTubePlayerEnhancer {
   }
 }
 
-// 페이지 로드 시 초기화
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     window.youTubeEnhancer = new YouTubePlayerEnhancer();
@@ -186,7 +216,6 @@ if (document.readyState === 'loading') {
   window.youTubeEnhancer = new YouTubePlayerEnhancer();
 }
 
-// 페이지 언로드 시 정리
 window.addEventListener('beforeunload', () => {
   if (window.youTubeEnhancer) {
     window.youTubeEnhancer.cleanup();

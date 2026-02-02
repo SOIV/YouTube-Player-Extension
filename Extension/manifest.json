@@ -16,14 +16,17 @@
     "*://*.googlevideo.com/*"
   ],
   
-  "content_scripts": [
+"content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
       "js": [
         "scripts/core/base.js",
         "scripts/core/settings.js",
-        "scripts/features/audio.js",
-        "scripts/features/pip.js",
+        "scripts/features/audio-control/audio-compressor.js",
+        "scripts/features/audio-control/stereo-panning.js",
+        "scripts/features/player-control/pip-button.js",
+        "scripts/features/player-control/mini-player-button.js",
+        "scripts/features/player-control/floating-player.js",
         "content.js"
       ],
       "css": ["styles.css"],
