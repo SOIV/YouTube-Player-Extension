@@ -21,6 +21,7 @@ class AudioCompressorController {
     this.documentClickHandler = null;
     
     this.retryCount = 0;
+    this.debugLogPrefix = '[AudioCompressor]';
   }
 
   isEnabled() {
@@ -239,6 +240,11 @@ class AudioCompressorController {
       if (this.isEnabled()) {
         const volumeMultiplier = this.settings.getSetting('volumeBoost', 100) / 100;
         this.gainNode.gain.setValueAtTime(volumeMultiplier, currentTime);
+        console.log(`${this.debugLogPrefix} volumeBoost applied`, {
+          percent: this.settings.getSetting('volumeBoost', 100),
+          gain: volumeMultiplier,
+          time: currentTime
+        });
       } else {
         this.gainNode.gain.setValueAtTime(1.0, currentTime);
       }
@@ -246,6 +252,10 @@ class AudioCompressorController {
       if (this.isEnabled() && this.compressorNode) {
         const ratio = this.settings.getSetting('compressorRatio', 12);
         this.compressorNode.ratio.setValueAtTime(ratio, currentTime);
+        console.log(`${this.debugLogPrefix} ratio applied`, {
+          ratio,
+          time: currentTime
+        });
       }
       
     } catch (error) {
@@ -253,6 +263,21 @@ class AudioCompressorController {
   }
 
   async onSettingsChanged(changedSettings) {
+    const enableChanged = changedSettings.includes('enableCompressor');
+    if (enableChanged) {
+      if (this.isEnabled()) {
+        if (!this.audioContext || this.audioContext.state === 'closed') {
+          await this.init();
+        } else {
+          await this.setupAudioNodes();
+          await this.connectToVideo();
+          this.setupVideoPlayListener();
+        }
+      } else {
+        return;
+      }
+    }
+
     const audioSettings = ['volumeBoost', 'compressorRatio'];
     const hasAudioChanges = changedSettings.some(key => audioSettings.includes(key));
     

@@ -73,14 +73,12 @@ class YouTubePlayerEnhancer {
 
   async initFeatureModules() {
     
-    if (this.settingsManager.getSetting('enableCompressor')) {
-      this.audioCompressorController = new window.YouTubeEnhancer.AudioCompressorController(
-        this.settingsManager, 
-        this.domCache, 
-        this.eventManager
-      );
-      await this.audioCompressorController.init();
-    }
+    this.audioCompressorController = new window.YouTubeEnhancer.AudioCompressorController(
+      this.settingsManager,
+      this.domCache,
+      this.eventManager
+    );
+    await this.audioCompressorController.init();
     
     if (this.settingsManager.getSetting('enableStereoPan')) {
       this.stereoPanningController = new window.YouTubeEnhancer.StereoPanningController(
