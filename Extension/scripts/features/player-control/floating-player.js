@@ -398,6 +398,10 @@ class FloatingPlayerController {
         display: none !important;
       }
 
+      body.efyt-floating-player #movie_player:not(.ytp-fullscreen) .ytp-overlay-inline-container {
+        display: none !important;
+      }
+
 
       body.efyt-floating-player-vertical #movie_player:not(.ytp-fullscreen),
       body.efyt-floating-player-vertical #movie_player:not(.ytp-fullscreen) video.html5-main-video {
