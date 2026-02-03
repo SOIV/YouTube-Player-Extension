@@ -16,7 +16,7 @@ class SettingsManager {
       
       // 팝업/플로팅 재생기
       popupPlayer: false,
-      miniPlayerSize: '480x270', // 256x144, 320x180, 400x225, 426x240, 480x270, 560x315, 640x360
+      miniPlayerSize: '480x270', // 256x144, 320x180, 400x225, 426x240, 480x270, 560x315, 640x360, 720x405, 960x540
       miniPlayerPosition: 'bottom-right',
       
       // Picture-in-Picture 설정

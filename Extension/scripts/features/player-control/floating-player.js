@@ -76,7 +76,9 @@ class FloatingPlayerController {
       '426x240',
       '480x270',
       '560x315',
-      '640x360'
+      '640x360',
+      '720x405',
+      '960x540'
     ];
     const positionClasses = [
       'top-left',
@@ -199,15 +201,19 @@ class FloatingPlayerController {
     }
 
     const aspectRatio = video.videoWidth / video.videoHeight;
+    if (!Number.isFinite(aspectRatio) || aspectRatio <= 0) {
+      return;
+    }
+
     const isVertical = aspectRatio < 1;
 
     if (isVertical) {
       document.body.classList.add('efyt-floating-player-vertical');
-      document.documentElement.style.setProperty('--efyt-floating-player-aspect-ratio', aspectRatio);
     } else {
       document.body.classList.remove('efyt-floating-player-vertical');
-      document.documentElement.style.setProperty('--efyt-floating-player-aspect-ratio', 16/9);
     }
+
+    document.documentElement.style.setProperty('--efyt-floating-player-aspect-ratio', aspectRatio);
   }
 
   updateFloatingPlayerProgress() {
@@ -240,7 +246,9 @@ class FloatingPlayerController {
       '426x240': ['426', '240'],
       '480x270': ['480', '270'],
       '560x315': ['560', '315'],
-      '640x360': ['640', '360']
+      '640x360': ['640', '360'],
+      '720x405': ['720', '405'],
+      '960x540': ['960', '540']
     };
     const sizes = sizeMap[currentSize] || sizeMap['480x270'];
     const aspectRatio = 16/9;
@@ -390,6 +398,7 @@ class FloatingPlayerController {
         display: none !important;
       }
 
+
       body.efyt-floating-player-vertical #movie_player:not(.ytp-fullscreen),
       body.efyt-floating-player-vertical #movie_player:not(.ytp-fullscreen) video.html5-main-video {
         height: auto !important;
@@ -436,6 +445,18 @@ class FloatingPlayerController {
       body.efyt-floating-player-vertical.efyt-floating-player-640x360 #movie_player:not(.ytp-fullscreen),
       body.efyt-floating-player-vertical.efyt-floating-player-640x360 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
         height: 640px !important;
+        width: auto !important;
+      }
+
+      body.efyt-floating-player-vertical.efyt-floating-player-720x405 #movie_player:not(.ytp-fullscreen),
+      body.efyt-floating-player-vertical.efyt-floating-player-720x405 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: 720px !important;
+        width: auto !important;
+      }
+
+      body.efyt-floating-player-vertical.efyt-floating-player-960x540 #movie_player:not(.ytp-fullscreen),
+      body.efyt-floating-player-vertical.efyt-floating-player-960x540 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: 960px !important;
         width: auto !important;
       }
 
@@ -501,7 +522,7 @@ class FloatingPlayerController {
     positionClasses.forEach(pos => {
       document.body.classList.remove(`efyt-floating-player-${pos}`);
     });
-    const sizeClasses = ['256x144', '320x180', '400x225', '426x240', '480x270', '560x315', '640x360'];
+    const sizeClasses = ['256x144', '320x180', '400x225', '426x240', '480x270', '560x315', '640x360', '720x405', '960x540'];
     sizeClasses.forEach(size => {
       document.body.classList.remove(`efyt-floating-player-${size}`);
     });
