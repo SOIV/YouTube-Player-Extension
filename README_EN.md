@@ -29,7 +29,7 @@ A browser extension that enhances various features of the YouTube player.
 
 ### 🏪 Chrome Web Store (Recommended)
 
-You can install it directly from the Chrome Web Store.
+You can install it directly from the Chrome Web Store.<br>
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://chromewebstore.google.com/detail/ndbapfoppojondcmkgdmgmkcanogjfof?utm_source=item-share-cb)
 
 ### 📦 Download from Releases
