@@ -259,6 +259,8 @@ class FloatingPlayerController {
         --efyt-floating-player-height: ${sizes[1] || '180'}px;
         --efyt-floating-player-width: ${sizes[0] || '320'}px;
         --efyt-floating-player-center-left: calc(100vw / 2 - ${(sizes[0] || 320)/2}px);
+        --efyt-floating-player-ui-scale: 0.85;
+        --efyt-floating-player-time-scale: 1;
       }
 
       body.efyt-floating-player .ytp-contextmenu {
@@ -370,6 +372,18 @@ class FloatingPlayerController {
 
       body.efyt-floating-player #movie_player:not(.ytp-fullscreen) .ytp-chrome-bottom {
         width: calc(100% - 24px) !important;
+      }
+
+      body.efyt-floating-player #movie_player:not(.ytp-fullscreen) .ytp-left-controls,
+      body.efyt-floating-player #movie_player:not(.ytp-fullscreen) .ytp-right-controls,
+      body.efyt-floating-player #movie_player:not(.ytp-fullscreen) .ytp-chrome-top .ytp-button,
+      body.efyt-floating-player #movie_player:not(.ytp-fullscreen) .ytp-chrome-top .ytp-title,
+      body.efyt-floating-player #movie_player:not(.ytp-fullscreen) .ytp-chrome-top .ytp-title-channel {
+        zoom: var(--efyt-floating-player-ui-scale);
+      }
+
+      body.efyt-floating-player #movie_player:not(.ytp-fullscreen) .ytp-time-display {
+        zoom: var(--efyt-floating-player-time-scale);
       }
 
       body.efyt-floating-player #movie_player:not(.ytp-fullscreen) {
