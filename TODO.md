@@ -13,10 +13,6 @@
 - [ ] 돌아온 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
     - 비디오 코덱 선택하는 기능은 추가되지 않습니다.
 - [ ] 연속 재생 버튼(Loop button)
-- [ ] 버튼 최적화
-    - 버튼을 추가 할 때 처음 창을 띄우게 되면 플레이어에서의 메뉴를 한번 표시해야 되는 문제를 해결해보기
-    - 각 버튼 svg 코드를 추가
-    - PIP 버튼의 위치 정렬 (v1.0.8에서 수정 완료)
 - [ ] Chrome Web Store 설치 방식 지원(Support for Chrome Web Store installation methods)
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
 
