@@ -95,8 +95,8 @@
   "youtubeTrademark": "YouTube는 Google LLC의 상표입니다",
   "disclaimer": "이 확장 프로그램은 YouTube와 공식적인 관련이 없습니다",
 
-  "version": "버전 1.0.8-beta_260203",
-  "footerText": "YouTube™ Player Extension v1.0.8-beta_260203",
+  "version": "Version 1.0.8",
+  "footerText": "YouTube™ Player Extension v1.0.8",
 
   "customThemePlaceholder": "/* 커스텀 CSS 코드를 입력하세요 */\n.ytp-chrome-bottom { \n  background: rgba(0,0,0,0.8) !important; \n}",
   "customScriptsPlaceholder": "// 커스텀 JavaScript 코드를 입력하세요"
