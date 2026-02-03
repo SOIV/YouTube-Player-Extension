@@ -1,17 +1,9 @@
 ## Update & Fix completed
-### v1.0.9 update
-
+### v1.0.x update
 
 ## To be updated
-### v1.0.9 update
 > **v2 지원 이전 마지막 업데이트 / Last update before v2 support**
 > **마지막 업데이트가 아닐 수도 있습니다 / This may not be the last update**
-- [x] 플로팅 플레이어(Floating Player)의 추가 미지원 기능 업데이트
-    - 자동 영상 비율 인식 추가 / 16:9, 21:9, 4:3 등 자동으로 영상 사이즈에 맞게 표시 될 수 있도록
-    - 화면 크기 추가 / 모니터 QHD, 4K 사용자를 위한 업데이트(thx for friend / 사용자 피드백 요청)
-    - 동영상 워터마크가 숨겨지지 않았던 부분을 수정 / 유튜브 플레이어 UI의 크기를 조정
-- [ ] Chrome Web Store 설치 방식 지원(Support for Chrome Web Store installation methods)
-    - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
 
 ### v1.0.x Idea / updated List
 - [ ] 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
@@ -83,3 +75,11 @@
     - 위 문제에서 표시되는 문제에 대해서는 어느 정도 해결이 되었으나 다른 버그가 발생하여 해당 버그와 함께 해결을 시도 중
 - [x] 오디오 컴프레서가 정상적으로 작동하지 않는 문제를 해결
     - 왜인지는 모르겠으나 컴프 작동에 반영이 안되는 것 같음
+
+### v1.0.9 update
+- [x] 플로팅 플레이어(Floating Player)의 추가 미지원 기능 업데이트
+    - 자동 영상 비율 인식 추가 / 16:9, 21:9, 4:3 등 자동으로 영상 사이즈에 맞게 표시 될 수 있도록
+    - 화면 크기 추가 / 모니터 QHD, 4K 사용자를 위한 업데이트(thx for friend / 사용자 피드백 요청)
+    - 동영상 워터마크가 숨겨지지 않았던 부분을 수정 / 유튜브 플레이어 UI의 크기를 조정
+- [x] Chrome Web Store 설치 방식 지원(Support for Chrome Web Store installation methods)
+    - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
