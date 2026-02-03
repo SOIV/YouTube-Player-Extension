@@ -4,6 +4,7 @@
 [![최신 릴리즈](https://img.shields.io/github/v/release/SOIV/YouTube-Player-Extension)](https://github.com/SOIV/YouTube-Player-Extension/releases)
 [![총 다운로드](https://img.shields.io/github/downloads/SOIV/YouTube-Player-Extension/total)](https://github.com/SOIV/YouTube-Player-Extension/releases)
 [![최신 버전 다운로드](https://img.shields.io/github/downloads/SOIV/YouTube-Player-Extension/latest/total)](https://github.com/SOIV/YouTube-Player-Extension/releases)
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://chromewebstore.google.com/detail/ndbapfoppojondcmkgdmgmkcanogjfof?utm_source=item-share-cb)
 
 유튜브 플레이어의 다양한 기능을 향상시키는 브라우저 확장 프로그램입니다.
 
