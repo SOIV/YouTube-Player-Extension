@@ -10,13 +10,13 @@
     - 자동 영상 비율 인식 추가 / 16:9, 21:9, 4:3 등 자동으로 영상 사이즈에 맞게 표시 될 수 있도록
     - 화면 크기 추가 / 모니터 QHD, 4K 사용자를 위한 업데이트(thx for friend / 사용자 피드백 요청)
     - 동영상 워터마크가 숨겨지지 않았던 부분을 수정 / 유튜브 플레이어 UI의 크기를 조정
-- [ ] 돌아온 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
-    - 비디오 코덱 선택하는 기능은 추가되지 않습니다.
-- [ ] 연속 재생 버튼(Loop button)
 - [ ] Chrome Web Store 설치 방식 지원(Support for Chrome Web Store installation methods)
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
 
 ### v1.0.x Idea / updated List
+- [ ] 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
+    - 비디오 코덱 선택하는 기능은 추가되지 않습니다.
+- [ ] 연속 재생 버튼(Loop button)
 - [ ] 볼륨 퍼센트 표시 설정
     - 확정 추가 예정이 아님
     - 볼륨 조절시 퍼센트가 표시가 되지 않았던 것을 보여줄 수 있도록
