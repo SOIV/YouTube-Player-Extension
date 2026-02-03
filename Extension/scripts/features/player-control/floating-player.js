@@ -5,6 +5,13 @@ class FloatingPlayerController {
     this.settings = settingsManager;
     this.domCache = domCache;
     this.eventManager = eventManager;
+    this.boundProgressHandler = this.updateFloatingPlayerProgress.bind(this);
+    this.currentPlayerContainer = null;
+    this.lastSize = null;
+    this.lastPosition = null;
+    this.originalPlayerParent = null;
+    this.originalPlayerNextSibling = null;
+    this.isPlayerDetached = false;
   }
 
   isEnabled() {
@@ -39,6 +46,8 @@ class FloatingPlayerController {
     try {
       if (this.settings.getSetting('popupPlayer')) {
         this.setupFloatingPlayerFeatures();
+      } else {
+        this.cleanup();
       }
     } catch (error) {
     }
@@ -52,14 +61,43 @@ class FloatingPlayerController {
     }
 
     this.addFloatingPlayerCSS();
+    this.updateFloatingPlayerClasses();
 
     setTimeout(() => {
       this.setupFloatingPlayerObserver();
-      document.body.classList.add(
-        `efyt-floating-player-${this.settings.getSetting('miniPlayerSize')}`,
-        `efyt-floating-player-${this.settings.getSetting('miniPlayerPosition')}`
-      );
     }, 1000);
+  }
+
+  updateFloatingPlayerClasses() {
+    const sizeClasses = [
+      '256x144',
+      '320x180',
+      '400x225',
+      '426x240',
+      '480x270',
+      '560x315',
+      '640x360'
+    ];
+    const positionClasses = [
+      'top-left',
+      'top-center',
+      'top-right',
+      'bottom-left',
+      'bottom-center',
+      'bottom-right'
+    ];
+
+    sizeClasses.forEach(size => {
+      document.body.classList.remove(`efyt-floating-player-${size}`);
+    });
+    positionClasses.forEach(pos => {
+      document.body.classList.remove(`efyt-floating-player-${pos}`);
+    });
+
+    document.body.classList.add(
+      `efyt-floating-player-${this.settings.getSetting('miniPlayerSize')}`,
+      `efyt-floating-player-${this.settings.getSetting('miniPlayerPosition')}`
+    );
   }
 
   setupFloatingPlayerObserver() {
@@ -69,6 +107,14 @@ class FloatingPlayerController {
 
     const playerContainer = document.querySelector('#player-container');
     if (!playerContainer) return;
+
+    if (this.currentPlayerContainer && this.currentPlayerContainer !== playerContainer) {
+      if (this.currentPlayerContainer.efytObserver) {
+        this.currentPlayerContainer.efytObserver.disconnect();
+        delete this.currentPlayerContainer.efytObserver;
+      }
+    }
+    this.currentPlayerContainer = playerContainer;
 
     if (playerContainer.efytObserver) return;
 
@@ -92,9 +138,11 @@ class FloatingPlayerController {
 
         if (scrollY > playerHeight - 100 && isWatchOrLive && !player.classList.contains('ended-mode')) {
           if (video) {
-            video.addEventListener('timeupdate', this.updateFloatingPlayerProgress.bind(this));
+            video.removeEventListener('timeupdate', this.boundProgressHandler);
+            video.addEventListener('timeupdate', this.boundProgressHandler);
             this.updateFloatingPlayerProgress();
           }
+          this.detachMoviePlayer();
           document.body.classList.add('efyt-floating-player');
 
           this.updateVideoAspectRatio();
@@ -103,8 +151,9 @@ class FloatingPlayerController {
         }
       } else if (entry.intersectionRatio !== 0) {
         if (video) {
-          video.removeEventListener('timeupdate', this.updateFloatingPlayerProgress.bind(this));
+          video.removeEventListener('timeupdate', this.boundProgressHandler);
         }
+        this.reattachMoviePlayer();
         document.body.classList.remove('efyt-floating-player');
         document.body.classList.remove('efyt-floating-player-vertical');
         window.dispatchEvent(new Event('resize'));
@@ -173,7 +222,13 @@ class FloatingPlayerController {
   }
 
   addFloatingPlayerCSS() {
-    if (document.getElementById('efyt-floating-player-styles')) return;
+    const currentSize = this.settings.getSetting('miniPlayerSize');
+    const currentPosition = this.settings.getSetting('miniPlayerPosition');
+    const existingStyle = document.getElementById('efyt-floating-player-styles');
+    if (existingStyle && this.lastSize === currentSize && this.lastPosition === currentPosition) return;
+    if (existingStyle) {
+      existingStyle.remove();
+    }
 
     const style = document.createElement('style');
     style.id = 'efyt-floating-player-styles';
@@ -187,7 +242,7 @@ class FloatingPlayerController {
       '560x315': ['560', '315'],
       '640x360': ['640', '360']
     };
-    const sizes = sizeMap[this.settings.getSetting('miniPlayerSize')] || sizeMap['480x270'];
+    const sizes = sizeMap[currentSize] || sizeMap['480x270'];
     const aspectRatio = 16/9;
     
     style.textContent = `
@@ -257,10 +312,10 @@ class FloatingPlayerController {
         display: block;
       }
 
-      body.efyt-floating-player ytd-player #movie_player:not(.ytp-fullscreen) {
+      body.efyt-floating-player #movie_player:not(.ytp-fullscreen) {
         background: #000 !important;
         position: fixed !important;
-        z-index: 2198 !important;
+        z-index: 2147483640 !important;
       }
 
       body.efyt-floating-player.efyt-floating-player-top-left #movie_player:not(.ytp-fullscreen),
@@ -390,6 +445,8 @@ class FloatingPlayerController {
     `;
 
     document.head.appendChild(style);
+    this.lastSize = currentSize;
+    this.lastPosition = currentPosition;
 
     this.addFloatingPlayerElements();
   }
@@ -432,11 +489,11 @@ class FloatingPlayerController {
       style.remove();
     }
 
-    const playerContainer = document.querySelector('#player-container');
-    if (playerContainer && playerContainer.efytObserver) {
-      playerContainer.efytObserver.disconnect();
-      delete playerContainer.efytObserver;
+    if (this.currentPlayerContainer && this.currentPlayerContainer.efytObserver) {
+      this.currentPlayerContainer.efytObserver.disconnect();
+      delete this.currentPlayerContainer.efytObserver;
     }
+    this.currentPlayerContainer = null;
 
     document.body.classList.remove('efyt-floating-player');
     document.body.classList.remove('efyt-floating-player-vertical');
@@ -444,6 +501,65 @@ class FloatingPlayerController {
     positionClasses.forEach(pos => {
       document.body.classList.remove(`efyt-floating-player-${pos}`);
     });
+    const sizeClasses = ['256x144', '320x180', '400x225', '426x240', '480x270', '560x315', '640x360'];
+    sizeClasses.forEach(size => {
+      document.body.classList.remove(`efyt-floating-player-${size}`);
+    });
+
+    const video = this.domCache.get('video');
+    if (video) {
+      video.removeEventListener('timeupdate', this.boundProgressHandler);
+    }
+
+    this.reattachMoviePlayer();
+
+    const progressBar = document.querySelector('#efyt-progress');
+    if (progressBar) {
+      progressBar.remove();
+    }
+  }
+
+  detachMoviePlayer() {
+    const moviePlayer = document.querySelector('#movie_player');
+    if (!moviePlayer) return;
+    if (this.isPlayerDetached && moviePlayer.parentElement === document.body) return;
+
+    this.originalPlayerParent = moviePlayer.parentElement;
+    this.originalPlayerNextSibling = moviePlayer.nextSibling;
+
+    if (this.originalPlayerParent) {
+      document.body.appendChild(moviePlayer);
+      this.isPlayerDetached = true;
+    }
+  }
+
+  reattachMoviePlayer() {
+    if (!this.isPlayerDetached) return;
+
+    const moviePlayer = document.querySelector('#movie_player');
+    if (!moviePlayer) {
+      this.isPlayerDetached = false;
+      this.originalPlayerParent = null;
+      this.originalPlayerNextSibling = null;
+      return;
+    }
+
+    let parent = this.originalPlayerParent;
+    if (!parent || !document.contains(parent)) {
+      parent = document.querySelector('ytd-player') || document.querySelector('#player-container');
+    }
+
+    if (parent) {
+      if (this.originalPlayerNextSibling && parent.contains(this.originalPlayerNextSibling)) {
+        parent.insertBefore(moviePlayer, this.originalPlayerNextSibling);
+      } else {
+        parent.appendChild(moviePlayer);
+      }
+    }
+
+    this.isPlayerDetached = false;
+    this.originalPlayerParent = null;
+    this.originalPlayerNextSibling = null;
   }
 }
 

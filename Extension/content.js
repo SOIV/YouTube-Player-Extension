@@ -108,15 +108,13 @@ class YouTubePlayerEnhancer {
       );
       this.smallPlayerButtonController.init();
     }
-    
-    if (this.settingsManager.getSetting('popupPlayer')) {
-      this.floatingPlayerController = new window.YouTubeEnhancer.FloatingPlayerController(
-        this.settingsManager, 
-        this.domCache, 
-        this.eventManager
-      );
-      this.floatingPlayerController.init();
-    }
+
+    this.floatingPlayerController = new window.YouTubeEnhancer.FloatingPlayerController(
+      this.settingsManager,
+      this.domCache,
+      this.eventManager
+    );
+    this.floatingPlayerController.init();
     
   }
 

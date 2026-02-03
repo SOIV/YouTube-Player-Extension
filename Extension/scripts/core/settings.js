@@ -14,10 +14,10 @@ class SettingsManager {
       stereoPan: 0, // -100 (왼쪽) ~ 100 (오른쪽)
       
       
-// 팝업/플로팅 재생기
-      popupPlayer: true,
+      // 팝업/플로팅 재생기
+      popupPlayer: false,
       miniPlayerSize: '480x270', // 256x144, 320x180, 400x225, 426x240, 480x270, 560x315, 640x360
-      miniPlayerPosition: 'top-right',
+      miniPlayerPosition: 'bottom-right',
       
       // Picture-in-Picture 설정
       enablePIP: true,
