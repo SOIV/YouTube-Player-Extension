@@ -6,9 +6,10 @@
 ### v1.0.9 update
 > **v2 지원 이전 마지막 업데이트 / Last update before v2 support**
 > **마지막 업데이트가 아닐 수도 있습니다 / This may not be the last update**
-- [ ] 플로팅 플레이어(Floating Player)의 추가 미지원 기능 업데이트
+- [x] 플로팅 플레이어(Floating Player)의 추가 미지원 기능 업데이트
     - 자동 영상 비율 인식 추가 / 16:9, 21:9, 4:3 등 자동으로 영상 사이즈에 맞게 표시 될 수 있도록
     - 화면 크기 추가 / 모니터 QHD, 4K 사용자를 위한 업데이트(thx for friend / 사용자 피드백 요청)
+    - 동영상 워터마크가 숨겨지지 않았던 부분을 수정 / 유튜브 플레이어 UI의 크기를 조정
 - [ ] 돌아온 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
     - 비디오 코덱 선택하는 기능은 추가되지 않습니다.
 - [ ] 연속 재생 버튼(Loop button)
