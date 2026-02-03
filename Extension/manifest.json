@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "YouTube™ Player Extension",
-  "version": "1.0.8.2",
+  "version": "1.0.8",
   "description": "유튜브에서 다양한 기능을 제공하는 확장 프로그램",
   
   "permissions": [
