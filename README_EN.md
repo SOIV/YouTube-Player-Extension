@@ -9,7 +9,7 @@ A browser extension that enhances various features of the YouTube player.
 
 ## Key Features
 
-### 🎵 Audio Enhancement
+### 🎵 Audio Features
 - **Volume Boost (Audio Compressor)**: Play at volumes higher than default (50% ~ 200%)
 - **Stereo Panning**: Adjust left-right audio balance (-100% ~ +100%)
 
@@ -27,9 +27,10 @@ A browser extension that enhances various features of the YouTube player.
 
 > ※ This extension does not support automatic updates.
 
-### 🏪 Chrome Web Store (Coming Soon)
+### 🏪 Chrome Web Store
 
-> 📅 **Chrome Web Store Upload Planned**: We're preparing to register on the Chrome Web Store for easier installation and updates. It will be supported and registered in V1.0.9.
+You can install it directly from the Chrome Web Store.
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://chromewebstore.google.com/detail/ndbapfoppojondcmkgdmgmkcanogjfof?utm_source=item-share-cb)
 
 ### 📦 Download from Releases (Recommended)
 

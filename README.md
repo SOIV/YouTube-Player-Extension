@@ -9,7 +9,7 @@
 
 ## 주요 기능
 
-### 🎵 오디오 향상
+### 🎵 오디오 기능
 - **볼륨 부스트 (오디오 컴프레서)**: 기본 볼륨보다 더 크게 재생 (50% ~ 200%)
 - **스테레오 패닝**: 좌우 음향 밸런스 조정 (-100% ~ +100%)
 
@@ -27,11 +27,9 @@
 
 > ※ 해당 확장 프로그램은 자동 업데이트를 지원하지 않습니다.
 
-### 🏪 Chrome 웹 스토어 (예정)
+### 🏪 Chrome 웹 스토어
 
-> 📅 **Chrome 웹 스토어 업로드 예정**: 더 편리한 설치와 업데이트를 위해 Chrome 웹 스토어 등록을 준비 중입니다. V1.0.9에서 지원 및 등록될 예정입니다.
-
-Bata 버전 상태이지만 편하게 설치를 하고 싶으시면 아레 배너를 통하여 크롬 웹 스토어에서 설치가 가능합니다.<br>
+Chrome Web Store에서 바로 설치할 수 있습니다.<br>
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://chromewebstore.google.com/detail/ndbapfoppojondcmkgdmgmkcanogjfof?utm_source=item-share-cb)
 
 ### 📦 릴리즈에서 다운로드 (권장)
