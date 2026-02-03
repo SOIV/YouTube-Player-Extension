@@ -27,12 +27,12 @@ A browser extension that enhances various features of the YouTube player.
 
 > ※ This extension does not support automatic updates.
 
-### 🏪 Chrome Web Store
+### 🏪 Chrome Web Store (Recommended)
 
 You can install it directly from the Chrome Web Store.
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://chromewebstore.google.com/detail/ndbapfoppojondcmkgdmgmkcanogjfof?utm_source=item-share-cb)
 
-### 📦 Download from Releases (Recommended)
+### 📦 Download from Releases
 
 1. Download the latest version from [Releases page](https://github.com/SOIV/YouTube-Player-Extension/releases)
 2. Extract the downloaded ZIP file to your desired folder

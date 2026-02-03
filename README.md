@@ -27,12 +27,12 @@
 
 > ※ 해당 확장 프로그램은 자동 업데이트를 지원하지 않습니다.
 
-### 🏪 Chrome 웹 스토어
+### 🏪 Chrome 웹 스토어 (권장)
 
 Chrome Web Store에서 바로 설치할 수 있습니다.<br>
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://chromewebstore.google.com/detail/ndbapfoppojondcmkgdmgmkcanogjfof?utm_source=item-share-cb)
 
-### 📦 릴리즈에서 다운로드 (권장)
+### 📦 릴리즈에서 다운로드
 
 1. [Releases 페이지](https://github.com/SOIV/YouTube-Player-Extension/releases)에서 최신 버전 다운로드
 2. 다운로드한 ZIP 파일을 원하는 폴더에 압축 해제
