@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "default_locale": "ko",
+  "version": "2.0.0",
+  "description": "__MSG_appDescription__",
+  
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "contextMenus"
+  ],
+  
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.googlevideo.com/*"
+  ],
+  
+"content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": [
+        "scripts/core/base.js",
+        "scripts/core/settings.js",
+        "scripts/features/audio-control/audio-compressor.js",
+        "scripts/features/audio-control/stereo-panning.js",
+        "scripts/features/player-control/pip-button.js",
+        "scripts/features/player-control/mini-player-button.js",
+        "scripts/features/player-control/floating-player.js",
+        "content.js"
+      ],
+      "css": ["styles.css"],
+      "run_at": "document_start"
+    }
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "YouTube Player Extension"
+  },
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["about.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+  
+}

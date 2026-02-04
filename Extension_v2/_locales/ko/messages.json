@@ -1,0 +1,269 @@
+{
+  "appName": {
+    "message": "YouTube™ Player Extension"
+  },
+  "appDescription": {
+    "message": "고급 플레이어 기능 및 버그 수정"
+  },
+  "playerSettings": {
+    "message": "📺 플레이어 설정"
+  },
+  "audioControl": {
+    "message": "🎵 오디오 제어"
+  },
+  "audioCompressor": {
+    "message": "오디오 컴프레서"
+  },
+  "audioCompressorName": {
+    "message": "오디오 컴프레서"
+  },
+  "audioCompressorDesc": {
+    "message": "볼륨 증폭 및 다이나믹 레인지 압축 (50% ~ 200%)"
+  },
+  "stereoPanning": {
+    "message": "스테레오 패닝 (L/R)"
+  },
+  "stereoPanningName": {
+    "message": "스테레오 패닝"
+  },
+  "stereoPanningDesc": {
+    "message": "좌우 음향 균형 조정"
+  },
+  "pipMiniPlayer": {
+    "message": "📱 플레이어 제어 & 기능"
+  },
+  "pipMode": {
+    "message": "PIP(Picture-in-Picture) 모드"
+  },
+  "pipModeName": {
+    "message": "PIP(Picture-in-Picture)"
+  },
+  "pipModeDesc": {
+    "message": "비디오를 작은 창으로 띄워서 시청 (PIP 버튼 추가)"
+  },
+  "smallPlayerButton": {
+    "message": "소형 플레이어 버튼"
+  },
+  "smallPlayerButtonDesc": {
+    "message": "YouTube 우클릭 메뉴의 소형 플레이어 기능을 버튼으로 추가"
+  },
+  "floatingPlayer": {
+    "message": "플로팅 플레이어"
+  },
+  "floatingPlayerLabel": {
+    "message": "플로팅 플레이어"
+  },
+  "floatingPlayerName": {
+    "message": "플로팅 플레이어"
+  },
+  "floatingPlayerDesc": {
+    "message": "스크롤 시 작은 플레이어로 계속 시청"
+  },
+  "floatingPlayerDescription": {
+    "message": "스크롤 시 작은 플레이어로 계속 시청"
+  },
+  "floatingPlayerSize": {
+    "message": "플로팅 플레이어 크기"
+  },
+  "floatingPlayerSizeLabel": {
+    "message": "플로팅 플레이어 크기"
+  },
+  "floatingPlayerSizeName": {
+    "message": "플로팅 플레이어 크기"
+  },
+  "floatingPlayerSizeDesc": {
+    "message": "플로팅 플레이어의 크기를 선택"
+  },
+  "floatingPlayerSizeDescription": {
+    "message": "플로팅 플레이어의 크기를 선택"
+  },
+  "floatingPlayerPosition": {
+    "message": "플로팅 플레이어 위치"
+  },
+  "floatingPlayerPositionLabel": {
+    "message": "플로팅 플레이어 위치"
+  },
+  "floatingPlayerPositionName": {
+    "message": "플로팅 플레이어 위치"
+  },
+  "floatingPlayerPositionDesc": {
+    "message": "플로팅 플레이어가 나타날 화면 위치"
+  },
+  "floatingPlayerPositionDescription": {
+    "message": "플로팅 플레이어가 나타날 화면 위치"
+  },
+  "topLeft": {
+    "message": "왼쪽 상단"
+  },
+  "topRight": {
+    "message": "오른쪽 상단"
+  },
+  "bottomLeft": {
+    "message": "왼쪽 하단"
+  },
+  "bottomRight": {
+    "message": "오른쪽 하단"
+  },
+  "bugFixes": {
+    "message": "🔧 버그 수정"
+  },
+  "noBugFixes": {
+    "message": "현재 추가된 버그 수정 기능이 없습니다."
+  },
+  "youtubeWorking": {
+    "message": "YouTube에서 대부분의 기능들이 정상 작동하고 있습니다."
+  },
+  "advancedSettings": {
+    "message": "🛠️ 고급 설정"
+  },
+  "customTheme": {
+    "message": "커스텀 테마 (CSS)"
+  },
+  "customScripts": {
+    "message": "커스텀 스크립트 (JavaScript)"
+  },
+  "exportSettings": {
+    "message": "설정 내보내기"
+  },
+  "importSettings": {
+    "message": "설정 가져오기"
+  },
+  "resetSettings": {
+    "message": "초기화"
+  },
+  "settingSaveFailed": {
+    "message": "설정 저장에 실패했습니다."
+  },
+  "settingsExported": {
+    "message": "설정이 내보내졌습니다."
+  },
+  "settingsExportFailed": {
+    "message": "설정 내보내기에 실패했습니다."
+  },
+  "settingsImported": {
+    "message": "설정이 가져와졌습니다."
+  },
+  "settingsImportFailed": {
+    "message": "설정 가져오기에 실패했습니다."
+  },
+  "settingsResetFailed": {
+    "message": "설정 초기화에 실패했습니다."
+  },
+  "settingsLoadFailed": {
+    "message": "설정을 불러오는데 실패했습니다."
+  },
+  "about": {
+    "message": "About / 정보"
+  },
+  "backButton": {
+    "message": "뒤로"
+  },
+  "aboutInfo": {
+    "message": "YouTube™ Player Extension 정보"
+  },
+  "appDescriptionLong": {
+    "message": "YouTube의 플레이어 기능을 향상시키고\n실용적인 오디오 제어 기능을 제공하는 확장 프로그램"
+  },
+  "appFeatures": {
+    "message": "주요 기능"
+  },
+  "audioCompressorFeature": {
+    "message": "오디오 컴프레서 - 볼륨 증폭 및 다이나믹 레인지 압축 (50% ~ 200%)"
+  },
+  "stereoPanningFeature": {
+    "message": "스테레오 패닝 - 좌우 음향 균형 조정 (L/R)"
+  },
+  "pipFeature": {
+    "message": "PIP(Picture-in-Picture) - 작은 창으로 비디오 시청"
+  },
+  "floatingPlayerFeature": {
+    "message": "플로팅 플레이어 - 스크롤 시 작은 플레이어로 계속 시청"
+  },
+  "codecSelectionFeature": {
+    "message": "비디오 코덱 선택 - H.264, VP9, AV1 중 선택"
+  },
+  "developmentBackground": {
+    "message": "개발 배경"
+  },
+  "developmentText": {
+    "message": "기존의 복잡한 YouTube 확장 프로그램들과 달리, 정말 필요한 기능만 엄선하여 성능과 안정성에 중점을 둔 설계입니다."
+  },
+  "technicalInfo": {
+    "message": "기술 정보"
+  },
+  "manifestV3": {
+    "message": "Manifest V3 - 최신 크롬 확장 프로그램 표준"
+  },
+  "modularDesign": {
+    "message": "모듈화 설계 - 기능별 분리된 JavaScript 모듈"
+  },
+  "webAudioAPI": {
+    "message": "Web Audio API - 고품질 오디오 처리"
+  },
+  "memoryOptimized": {
+    "message": "메모리 최적화 - 사용하지 않는 기능은 로드하지 않음"
+  },
+  "youtubeCompatibility": {
+    "message": "YouTube 호환성 - YouTube 업데이트에 대응하는 안정적인 구조"
+  },
+  "auto": {
+    "message": "자동"
+  },
+  "compatibility": {
+    "message": "호환성"
+  },
+  "efficiency": {
+    "message": "효율성"
+  },
+  "latest": {
+    "message": "최신"
+  },
+  "enabledOn": {
+    "message": "활성화됨"
+  },
+  "disabledOn": {
+    "message": "비활성화됨"
+  },
+  "changed": {
+    "message": "변경됨"
+  },
+  "adjusted": {
+    "message": "조정됨"
+  },
+  "center": {
+    "message": "Center"
+  },
+  "defaultSize": {
+    "message": "기본값"
+  },
+  "autoOption": {
+    "message": "자동"
+  },
+  "extensionYouTubeOnly": {
+    "message": "이 확장 프로그램은 YouTube에서만 작동합니다."
+  },
+  "extensionActivated": {
+    "message": "YouTube에서 확장 프로그램이 활성화되었습니다."
+  },
+  "madeBy": {
+    "message": "Made by SOIV Studio"
+  },
+  "youtubeTrademark": {
+    "message": "YouTube는 Google LLC의 상표입니다"
+  },
+  "disclaimer": {
+    "message": "이 확장 프로그램은 YouTube와 공식적인 관련이 없습니다"
+  },
+  "version": {
+    "message": "Version 1.0.8"
+  },
+  "footerText": {
+    "message": "YouTube™ Player Extension v1.0.8"
+  },
+  "customThemePlaceholder": {
+    "message": "/* 커스텀 CSS 코드를 입력하세요 */\n.ytp-chrome-bottom { \n  background: rgba(0,0,0,0.8) !important; \n}"
+  },
+  "customScriptsPlaceholder": {
+    "message": "// 커스텀 JavaScript 코드를 입력하세요"
+  }
+}

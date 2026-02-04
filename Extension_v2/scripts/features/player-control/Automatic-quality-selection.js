@@ -1,0 +1,1 @@
+// YouTube Player Enhancer - Automatic quality selection Module

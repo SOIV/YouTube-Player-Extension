@@ -1,0 +1,269 @@
+{
+  "appName": {
+    "message": "YouTube™ Player Extension"
+  },
+  "appDescription": {
+    "message": "Advanced player features and bug fixes"
+  },
+  "playerSettings": {
+    "message": "📺 Player Settings"
+  },
+  "audioControl": {
+    "message": "🎵 Audio Control"
+  },
+  "audioCompressor": {
+    "message": "Audio Compressor"
+  },
+  "audioCompressorName": {
+    "message": "Audio Compressor"
+  },
+  "audioCompressorDesc": {
+    "message": "Volume boost and dynamic range compression (50% ~ 200%)"
+  },
+  "stereoPanning": {
+    "message": "Stereo Panning (L/R)"
+  },
+  "stereoPanningName": {
+    "message": "Stereo Panning"
+  },
+  "stereoPanningDesc": {
+    "message": "Adjust left/right audio balance"
+  },
+  "pipMiniPlayer": {
+    "message": "📱 Player control & function"
+  },
+  "pipMode": {
+    "message": "PIP(Picture-in-Picture) Mode"
+  },
+  "pipModeName": {
+    "message": "PIP(Picture-in-Picture)"
+  },
+  "pipModeDesc": {
+    "message": "Watch video in a small floating window (adds PIP button)"
+  },
+  "smallPlayerButton": {
+    "message": "Small Player Button"
+  },
+  "smallPlayerButtonDesc": {
+    "message": "Add a button for YouTube's right-click menu small player feature"
+  },
+  "floatingPlayer": {
+    "message": "Floating Player"
+  },
+  "floatingPlayerLabel": {
+    "message": "Floating Player"
+  },
+  "floatingPlayerName": {
+    "message": "Floating Player"
+  },
+  "floatingPlayerDesc": {
+    "message": "Continue watching with floating player while scrolling"
+  },
+  "floatingPlayerDescription": {
+    "message": "Continue watching with floating player while scrolling"
+  },
+  "floatingPlayerSize": {
+    "message": "Floating Player Size"
+  },
+  "floatingPlayerSizeLabel": {
+    "message": "Floating Player Size"
+  },
+  "floatingPlayerSizeName": {
+    "message": "Floating Player Size"
+  },
+  "floatingPlayerSizeDesc": {
+    "message": "Select the size of floating player"
+  },
+  "floatingPlayerSizeDescription": {
+    "message": "Select the size of floating player"
+  },
+  "floatingPlayerPosition": {
+    "message": "Floating Player Position"
+  },
+  "floatingPlayerPositionLabel": {
+    "message": "Floating Player Position"
+  },
+  "floatingPlayerPositionName": {
+    "message": "Floating Player Position"
+  },
+  "floatingPlayerPositionDesc": {
+    "message": "Screen position where floating player appears"
+  },
+  "floatingPlayerPositionDescription": {
+    "message": "Screen position where floating player appears"
+  },
+  "topLeft": {
+    "message": "Top Left"
+  },
+  "topRight": {
+    "message": "Top Right"
+  },
+  "bottomLeft": {
+    "message": "Bottom Left"
+  },
+  "bottomRight": {
+    "message": "Bottom Right"
+  },
+  "bugFixes": {
+    "message": "🔧 Bug Fixes"
+  },
+  "noBugFixes": {
+    "message": "No bug fix features are currently available."
+  },
+  "youtubeWorking": {
+    "message": "Most features are working properly on YouTube."
+  },
+  "advancedSettings": {
+    "message": "🛠️ Advanced Settings"
+  },
+  "customTheme": {
+    "message": "Custom Theme (CSS)"
+  },
+  "customScripts": {
+    "message": "Custom Scripts (JavaScript)"
+  },
+  "exportSettings": {
+    "message": "Export Settings"
+  },
+  "importSettings": {
+    "message": "Import Settings"
+  },
+  "resetSettings": {
+    "message": "Reset"
+  },
+  "settingSaveFailed": {
+    "message": "Failed to save setting."
+  },
+  "settingsExported": {
+    "message": "Settings exported."
+  },
+  "settingsExportFailed": {
+    "message": "Failed to export settings."
+  },
+  "settingsImported": {
+    "message": "Settings imported."
+  },
+  "settingsImportFailed": {
+    "message": "Failed to import settings."
+  },
+  "settingsResetFailed": {
+    "message": "Failed to reset settings."
+  },
+  "settingsLoadFailed": {
+    "message": "Failed to load settings."
+  },
+  "about": {
+    "message": "About"
+  },
+  "backButton": {
+    "message": "Back"
+  },
+  "aboutInfo": {
+    "message": "YouTube™ Player Extension Info"
+  },
+  "appDescriptionLong": {
+    "message": "An extension that enhances YouTube's player features\nand provides practical audio control functions"
+  },
+  "appFeatures": {
+    "message": "Key Features"
+  },
+  "audioCompressorFeature": {
+    "message": "Audio Compressor - Volume boost and dynamic range compression (50% ~ 200%)"
+  },
+  "stereoPanningFeature": {
+    "message": "Stereo Panning - Adjust left/right audio balance (L/R)"
+  },
+  "pipFeature": {
+    "message": "PIP(Picture-in-Picture) - Watch video in a small floating window"
+  },
+  "floatingPlayerFeature": {
+    "message": "Floating Player - Continue watching with floating player while scrolling"
+  },
+  "codecSelectionFeature": {
+    "message": "Video Codec Selection - Choose from H.264, VP9, AV1"
+  },
+  "developmentBackground": {
+    "message": "Development Background"
+  },
+  "developmentText": {
+    "message": "Unlike complex YouTube extensions, this design focuses on performance and stability by carefully selecting only essential features."
+  },
+  "technicalInfo": {
+    "message": "Technical Information"
+  },
+  "manifestV3": {
+    "message": "Manifest V3 - Latest Chrome extension standard"
+  },
+  "modularDesign": {
+    "message": "Modular Design - JavaScript modules separated by functionality"
+  },
+  "webAudioAPI": {
+    "message": "Web Audio API - High-quality audio processing"
+  },
+  "memoryOptimized": {
+    "message": "Memory Optimized - Unused features are not loaded"
+  },
+  "youtubeCompatibility": {
+    "message": "YouTube Compatibility - Stable structure that responds to YouTube updates"
+  },
+  "auto": {
+    "message": "Auto"
+  },
+  "compatibility": {
+    "message": "Compatibility"
+  },
+  "efficiency": {
+    "message": "Efficiency"
+  },
+  "latest": {
+    "message": "Latest"
+  },
+  "enabledOn": {
+    "message": "enabled"
+  },
+  "disabledOn": {
+    "message": "disabled"
+  },
+  "changed": {
+    "message": "changed"
+  },
+  "adjusted": {
+    "message": "adjusted"
+  },
+  "center": {
+    "message": "Center"
+  },
+  "defaultSize": {
+    "message": "Default"
+  },
+  "autoOption": {
+    "message": "Auto"
+  },
+  "extensionYouTubeOnly": {
+    "message": "This extension only works on YouTube."
+  },
+  "extensionActivated": {
+    "message": "Extension activated on YouTube."
+  },
+  "madeBy": {
+    "message": "Made by SOIV Studio"
+  },
+  "youtubeTrademark": {
+    "message": "YouTube is a trademark of Google LLC"
+  },
+  "disclaimer": {
+    "message": "This extension is not officially affiliated with YouTube"
+  },
+  "version": {
+    "message": "Version 1.0.8"
+  },
+  "footerText": {
+    "message": "YouTube™ Player Extension v1.0.8"
+  },
+  "customThemePlaceholder": {
+    "message": "/* Enter your custom CSS code here */\n.ytp-chrome-bottom { \n  background: rgba(0,0,0,0.8) !important; \n}"
+  },
+  "customScriptsPlaceholder": {
+    "message": "// Enter your custom JavaScript code here"
+  }
+}

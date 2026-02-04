@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube™ Player Extension</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 405px;
+      min-height: 510px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #ff0000, #cc0000);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+      z-index: 10001;
+      overflow: hidden;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .header p {
+      margin: 5px 0 0 0;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #e9ecef;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .option:last-child {
+      border-bottom: none;
+    }
+
+    .option-label {
+      font-size: 13px;
+      color: #495057;
+      flex: 1;
+    }
+
+    .option-description {
+      font-size: 11px;
+      color: #6c757d;
+      margin-top: 2px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle {
+      position: relative;
+      width: 40px;
+      height: 20px;
+      background: #ccc;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle.active {
+      background: #ff0000;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: left 0.3s;
+    }
+
+    .toggle.active::after {
+      left: 22px;
+    }
+
+    .slider {
+      width: 80px;
+      height: 4px;
+      border-radius: 2px;
+      background: #ddd;
+      outline: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .slider:hover {
+      opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ff0000;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ff0000;
+      cursor: pointer;
+      border: none;
+    }
+
+    .slider-value {
+      font-size: 11px;
+      color: #666;
+      min-width: 35px;
+      text-align: center;
+    }
+
+    select {
+      padding: 4px 6px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 12px;
+      background: white;
+      min-width: 80px;
+      transition: opacity 0.2s, background-color 0.2s;
+    }
+
+    select:disabled {
+      opacity: 0.5;
+      background: #f5f5f5;
+      color: #999;
+      cursor: not-allowed;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .multi-select {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .speed-tag {
+      background: #e9ecef;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .speed-tag.active {
+      background: #ff0000;
+      color: white;
+      border-color: #cc0000;
+    }
+
+    .audio-controls {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status {
+      padding: 8px;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .info-message {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px;
+      background: #e7f3ff;
+      border: 1px solid #b8daff;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+
+    .info-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .info-text {
+      font-size: 13px;
+      color: #0c5460;
+      line-height: 1.4;
+    }
+
+    .footer {
+      padding: 10px 20px;
+      background: #e9ecef;
+      border-top: 1px solid #dee2e6;
+      font-size: 11px;
+      color: #6c757d;
+      text-align: center;
+    }
+
+
+
+    .code-editor {
+      width: 100%;
+      min-height: 80px;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 8px;
+      resize: vertical;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    .btn.danger {
+      background: #dc3545;
+    }
+
+    .btn.danger:hover {
+      background: #c82333;
+    }
+
+    /* 토스트 알림 스타일 */
+    .toast-notification {
+      position: fixed;
+      top: 15px; /* 헤더 위쪽 시작점 */
+      left: 50%;
+      transform: translateX(-50%);
+      background: #28a745;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 10000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      width: 320px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      opacity: 0;
+      clip-path: inset(100% 0 0 0); /* 헤더 위 부분 숨김 */
+      margin: 10px 0;
+    }
+
+    .toast-notification.error {
+      background: #dc3545;
+    }
+
+    .toast-notification.show {
+      top: 80px; /* 헤더 높이(65px) + 여백 15px */
+      opacity: 1;
+      clip-path: inset(0% 0 0 0); /* 전체 표시 */
+    }
+
+    .toast-notification.hide {
+      top: 15px;
+      opacity: 0;
+      clip-path: inset(100% 0 0 0); /* 다시 숨김 */
+    }
+
+    .visualizer {
+      width: 100%;
+      height: 40px;
+      background: #000;
+      border-radius: 4px;
+      margin-top: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visualizer canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+
+    /* 접을 수 있는 섹션 스타일 */
+    .section-title.collapsible {
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s;
+      padding: 5px 0;
+      border-radius: 3px;
+    }
+
+    .section-title.collapsible:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .collapse-icon {
+      font-size: 12px;
+      transition: transform 0.3s ease;
+      margin-left: 10px;
+      color: #666;
+      font-weight: bold;
+      display: inline-block;
+      min-width: 12px;
+      text-align: center;
+    }
+
+    .section-title.collapsible.collapsed .collapse-icon {
+      transform: rotate(-90deg);
+    }
+
+    .collapsible-content {
+      max-height: 1000px;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .collapsible-content.collapsed {
+      max-height: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1 data-i18n="appName">🎮 YouTube™ Player Extension</h1>
+    <p data-i18n="appDescription">고급 플레이어 기능 및 버그 수정</p>
+  </div>
+
+  <div class="content">
+    <!-- 오디오 제어 섹션 -->
+    <div class="section">
+      <div class="section-title" data-i18n="audioControl">🎵 오디오 제어</div>
+      
+      <div class="option">
+        <div style="width: 100%;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div>
+              <div class="option-label" data-i18n="audioCompressor">오디오 컴프레서</div>
+              <div class="option-description" data-i18n="audioCompressorDesc">볼륨 증폭 및 다이나믹 레인지 압축 (50% ~ 200%)</div>
+            </div>
+            <div class="toggle" data-setting="enableCompressor"></div>
+          </div>
+          <div id="compressorControls" style="display: none;">
+            <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
+              <span style="font-size: 11px; color: #666; min-width: 30px;">50%</span>
+              <input type="range" class="slider" data-setting="volumeBoost" min="50" max="200" value="100" style="flex: 1;">
+              <span style="font-size: 11px; color: #666; min-width: 40px;">200%</span>
+              <span class="slider-value" id="volumeBoostValue" style="min-width: 50px; text-align: center;">100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="option">
+        <div style="width: 100%;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div>
+              <div class="option-label" data-i18n="stereoPanning">스테레오 패닝 (L/R)</div>
+              <div class="option-description" data-i18n="stereoPanningDesc">좌우 음향 균형 조정</div>
+            </div>
+            <div class="toggle" data-setting="enableStereoPan"></div>
+          </div>
+          <div id="panControls" style="display: none;">
+            <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
+              <span style="font-size: 11px; color: #666; min-width: 15px;">L</span>
+              <input type="range" class="slider" data-setting="stereoPan" min="-100" max="100" value="0" style="flex: 1;">
+              <span style="font-size: 11px; color: #666; min-width: 15px;">R</span>
+              <span class="slider-value" id="stereoPanValue" style="min-width: 50px; text-align: center;">Center</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PIP & 미니플레이어 섹션 -->
+    <div class="section">
+      <div class="section-title" data-i18n="pipMiniPlayer">📱 플레이어 제어 & 기능</div>
+
+      <!-- Picture-in-Picture -->
+      
+      <div class="option">
+        <div>
+          <div class="option-label" data-i18n="pipMode">Picture-in-Picture 모드</div>
+          <div class="option-description" data-i18n="pipModeDesc">비디오를 작은 창으로 띄워서 시청 (PIP 버튼 추가)</div>
+        </div>
+        <div class="toggle" data-setting="enablePIP"></div>
+      </div>
+
+      <div class="option">
+        <div>
+          <div class="option-label" data-i18n="smallPlayerButton">소형 플레이어 버튼</div>
+          <div class="option-description" data-i18n="smallPlayerButtonDesc">YouTube 우클릭 메뉴의 소형 플레이어 기능을 버튼으로 추가</div>
+        </div>
+        <div class="toggle" data-setting="enableSmallPlayerButton"></div>
+      </div>
+
+      <div class="option">
+        <div>
+          <div class="option-label" data-i18n="floatingPlayerLabel">플로팅 플레이어</div>
+          <div class="option-description" data-i18n="floatingPlayerDescription">스크롤 시 작은 플레이어로 계속 시청</div>
+        </div>
+        <div class="toggle" data-setting="popupPlayer"></div>
+      </div>
+
+      <div class="option">
+        <div>
+          <div class="option-label" data-i18n="floatingPlayerSizeLabel">플로팅 플레이어 크기</div>
+          <div class="option-description" data-i18n="floatingPlayerSizeDescription">플로팅 플레이어의 크기를 선택</div>
+        </div>
+        <select data-setting="miniPlayerSize">
+          <option value="256x144">256x144</option>
+          <option value="320x180">320x180</option>
+          <option value="400x225">400x225</option>
+          <option value="426x240">426x240</option>
+          <option value="480x270">480x270 (<span data-i18n="defaultSize">기본값</span>)</option>
+          <option value="560x315">560x315</option>
+          <option value="640x360">640x360</option>
+          <option value="720x405">720x405</option>
+          <option value="960x540">960x540</option>
+        </select>
+      </div>
+
+      <div class="option">
+        <div>
+          <div class="option-label" data-i18n="floatingPlayerPositionLabel">플로팅 플레이어 위치</div>
+          <div class="option-description" data-i18n="floatingPlayerPositionDescription">플로팅 플레이어가 나타날 화면 위치</div>
+        </div>
+        <select data-setting="miniPlayerPosition">
+          <option value="top-left" data-i18n="topLeft">왼쪽 상단</option>
+          <option value="top-right" data-i18n="topRight">오른쪽 상단</option>
+          <option value="bottom-left" data-i18n="bottomLeft">왼쪽 하단</option>
+          <option value="bottom-right" data-i18n="bottomRight">오른쪽 하단</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 버그 수정 섹션 -->
+    <div class="section">
+      <div class="section-title collapsible" id="bugFixesToggle">
+        <span data-i18n="bugFixes">🔧 버그 수정</span> 
+        <span class="collapse-icon">▼</span>
+      </div>
+      <div class="collapsible-content" id="bugFixesContent">
+        <div class="info-message">
+          <div class="info-icon">ℹ️</div>
+          <div class="info-text">
+            <span data-i18n="noBugFixes">현재 추가된 버그 수정 기능이 없습니다.</span><br>
+            <span data-i18n="youtubeWorking">YouTube에서 대부분의 기능들이 정상 작동하고 있습니다.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 고급 설정 섹션 -->
+    <div class="section">
+      <div class="section-title collapsible collapsed" id="advancedToggle">
+        <span data-i18n="advancedSettings">🛠️ 고급 설정</span>
+        <span class="collapse-icon">▼</span>
+      </div>
+      <div class="collapsible-content collapsed" id="advancedContent">
+        
+
+        <div class="input-group">
+          <label for="customTheme" style="font-size: 12px; font-weight: 600;" data-i18n="customTheme">커스텀 테마 (CSS)</label>
+          <textarea 
+            id="customTheme" 
+            class="code-editor" 
+            data-setting="customTheme"
+            data-i18n-placeholder="customThemePlaceholder"
+            placeholder="/* 커스텀 CSS 코드를 입력하세요 */
+.ytp-chrome-bottom { 
+  background: rgba(0,0,0,0.8) !important; 
+}"
+          ></textarea>
+        </div>
+
+        <div class="input-group">
+          <label for="customScripts" style="font-size: 12px; font-weight: 600;" data-i18n="customScripts">커스텀 스크립트 (JavaScript)</label>
+          <textarea 
+            id="customScripts" 
+            class="code-editor" 
+            data-setting="customScripts"
+            data-i18n-placeholder="customScriptsPlaceholder"
+            placeholder="// 커스텀 JavaScript 코드를 입력하세요
+// 사용 가능한 변수: player, settings, audioContext"
+          ></textarea>
+        </div>
+
+        <div class="button-group">
+          <button class="btn" id="exportBtn" data-i18n="exportSettings">설정 내보내기</button>
+          <button class="btn" id="importBtn" data-i18n="importSettings">설정 가져오기</button>
+          <button class="btn danger" id="resetBtn" data-i18n="resetSettings">초기화</button>
+        </div>
+
+        <input type="file" id="importFile" accept=".json" style="display: none;">
+      </div>
+    </div>
+
+
+    <div id="status" class="status" style="display: none;"></div>
+  </div>
+
+  <div class="footer">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span data-i18n="footerText">YouTube™ Player Extension v1.0.9</span>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button id="aboutBtn" style="background: none; border: 1px solid #6c757d; color: #6c757d; padding: 4px 8px; border-radius: 4px; font-size: 10px; cursor: pointer; transition: all 0.2s;">
+          About
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
