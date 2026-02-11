@@ -203,11 +203,11 @@ class FloatingPlayerController {
           this.log('Activating floating player');
           this.activateFloatingPlayer();
         }
-      } else if (entry.intersectionRatio !== 0.5) {
+      } else if (entry.intersectionRatio !== 0) {
         this.log('Deactivating floating player (scrolled back)');
         this.deactivateFloatingPlayer();
       }
-    }, { threshold: [0, 0.2, 0.5] });
+    }, { threshold: [0, 0.2] });
 
     this.intersectionObserver.observe(playerContainer);
     this.log('IntersectionObserver setup complete');
