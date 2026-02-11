@@ -105,6 +105,7 @@ class FloatingPlayerController {
       '560x315',
       '640x360',
       '720x405',
+      '854x480',
       '960x540'
     ];
     const positionClasses = [
@@ -521,6 +522,12 @@ class FloatingPlayerController {
         height: 405px !important;
       }
 
+      body.efyt-floating-player.efyt-floating-player-854x480 #movie_player:not(.ytp-fullscreen),
+      body.efyt-floating-player.efyt-floating-player-854x480 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        width: 854px !important;
+        height: 480px !important;
+      }
+
       body.efyt-floating-player.efyt-floating-player-960x540 #movie_player:not(.ytp-fullscreen),
       body.efyt-floating-player.efyt-floating-player-960x540 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
         width: 960px !important;
@@ -638,6 +645,7 @@ class FloatingPlayerController {
       body.efyt-floating-player.efyt-floating-player-560x315 #movie_player:not(.ytp-fullscreen),
       body.efyt-floating-player.efyt-floating-player-640x360 #movie_player:not(.ytp-fullscreen),
       body.efyt-floating-player.efyt-floating-player-720x405 #movie_player:not(.ytp-fullscreen),
+      body.efyt-floating-player.efyt-floating-player-854x480 #movie_player:not(.ytp-fullscreen),
       body.efyt-floating-player.efyt-floating-player-960x540 #movie_player:not(.ytp-fullscreen) {
         --efyt-floating-player-ui-scale: 1;
         --efyt-floating-player-time-scale: 1;
@@ -741,6 +749,12 @@ class FloatingPlayerController {
         width: auto !important;
       }
 
+      body.efyt-floating-player-vertical.efyt-floating-player-854x480 #movie_player:not(.ytp-fullscreen),
+      body.efyt-floating-player-vertical.efyt-floating-player-854x480 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
+        height: 854px !important;
+        width: auto !important;
+      }
+
       body.efyt-floating-player-vertical.efyt-floating-player-960x540 #movie_player:not(.ytp-fullscreen),
       body.efyt-floating-player-vertical.efyt-floating-player-960x540 #movie_player:not(.ytp-fullscreen) video.html5-main-video {
         height: 960px !important;
@@ -809,7 +823,7 @@ class FloatingPlayerController {
     positionClasses.forEach(pos => {
       document.body.classList.remove(`efyt-floating-player-${pos}`);
     });
-    const sizeClasses = ['256x144', '320x180', '400x225', '426x240', '480x270', '560x315', '640x360', '720x405', '960x540'];
+    const sizeClasses = ['256x144', '320x180', '400x225', '426x240', '480x270', '560x315', '640x360', '720x405', '854x480', '960x540'];
     sizeClasses.forEach(size => {
       document.body.classList.remove(`efyt-floating-player-${size}`);
     });
