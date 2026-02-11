@@ -53,6 +53,13 @@ class FloatingPlayerController {
         if (window.location.pathname.includes('/watch') || window.location.pathname.includes('/live')) {
           this.log('Page navigation detected, applying settings');
           this.applyFloatingPlayerSettings();
+        } else {
+          // watch나 live가 아닌 페이지로 이동 시 플로팅 플레이어 비활성화
+          this.log('Navigated away from watch/live page, deactivating floating player');
+          if (document.body.classList.contains('efyt-floating-player')) {
+            this.deactivateFloatingPlayer();
+            this.cleanupObservers();
+          }
         }
       }, 1000);
     });
@@ -196,11 +203,11 @@ class FloatingPlayerController {
           this.log('Activating floating player');
           this.activateFloatingPlayer();
         }
-      } else if (entry.intersectionRatio !== 0) {
+      } else if (entry.intersectionRatio !== 0.5) {
         this.log('Deactivating floating player (scrolled back)');
         this.deactivateFloatingPlayer();
       }
-    }, { threshold: [0, 0.2] });
+    }, { threshold: [0, 0.2, 0.5] });
 
     this.intersectionObserver.observe(playerContainer);
     this.log('IntersectionObserver setup complete');
