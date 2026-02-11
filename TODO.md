@@ -4,8 +4,7 @@
 ## To be updated
 > **v2 지원 이전 마지막 업데이트 / Last update before v2 support**
 > **마지막 업데이트가 아닐 수도 있습니다 / This may not be the last update**
-- [ ] 플로팅 플레이어가 유튜브 플레이어를 재감지가 정상적으로 되지 않는 문제
-    - 이로인해 새로고침을 하지 않으면 기능이 정상적으로 작동하지 않음
+
 
 ### v1.0.x Idea / updated List
 - [ ] 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
@@ -44,50 +43,3 @@
     - 프로젝트의 계획이 방대해짐에 따라 기존대로 독립 프로젝트로 재 변경 되었습니다.
     - LST 프로젝트 문서는 [LST-docs](https://github.com/SOIV/LST_Extension-Project/tree/main/docs/LST-PJ_V3)에서 계속 확인을 하실 수 있습니다.
     - GitHub Repositories : https://github.com/SOIV/LST_Extension-Project
-
-## Update & Version History
-### v1.0.0 ~ v1.0.7 Update History
-- [x] 변경 및 업데이트 된 소형 플레이어 아이콘(SVG) 수정 (for YouTube default SVG)
-    - Fixed and updated small player icons (SVG) (for YouTube default SVG)
-- [x] /live/* 에서 PIP, 소형 플레이어 버튼, 미니플레이어 가 작동하지 않는 문제를 해결
-    - Fixed an issue where PIP, small player buttons, and miniplayer did not work in /live/*
-
-### v1.0.8 updated
-- [x] 플로팅 플레이어(Floating Player)(구 미니 플레이어(MiniPlayer))의 표시 위치가 변경 되었습니다.
-    - 최상단(15px) -> 헤더 하단으로(60px)
-- [x] 각 버튼 툴팁 및 일부 기능에서 다국어 지원이 안되고 있는 부분을 수정
-    - 소형 플레이어 버튼(Mini Player Button)은 제외되었습니다(툴팁 표시 문제 해결이 안 된 상태이므로 제외됨)
-- [x] 오디오 제어 관련 기능 미작동에 대한 이슈
-    - 컴프, 스테레오 패닝 미작동 버그 해결
-    - 슬라이더(Slider) 이동시에 상단에 알림이 지속적으로 표시 되려고 하는 부분을 수정
-- [x] PIP 버튼의 툴팁을 수정
-    - 기존 2개(PIP 모드 / PIP 모드 종료)로 표시되고 있는 부분을 한가지(PIP 모드)로 변경
-    - 위 2가지 표시 방식에 대한 이슈로 PIP 모드 종료의 툴팁 표시에 정상적이지 않음을 해결
-- [x] 내부 파일 시스템 개선
-    - 일부 기능들끼리 하나의 파일로 통합되어 있는 것들을 분리합니다.
-        - PIP button, Mini Player button, Floating Player
-        - Audio Compressor, Stereo Panning (L/R)
-    - 그 외 일부 시스템 및 기능 개선 작업
-- [x] 충돌 되는 미니 플레이어의 이름을 플로팅 플레이어(Floating Player)으로 변경<br> 
-    > 해당 수정은 변수/함수명, CSS 클래스명, 설정/옵션 키, 텍스트(다국어), 주석 작성 내용을 전부 변경 및 수정을 해야되는 수정안이라 핫픽스(hotfix) 업데이트가 아닌 다음 업데이트(v1.0.8)에서 제공 됩니다.
-    - 기능의 이름을 변경함에 따라 기존 사용하던 이름의 설정값들을 마이그레이션을 할 수 있도록 동시에 작업하여 업데이트가 진행될 예정입니다.<br> 다만 모든 작업을 진행하는데 기간은 약간 오래 걸릴 수도 있으며 현재 작업자가 사용하고 있는 Claude code를 사용하지 못하는 상태이므로 좀 더 시간이 걸릴 수 있음을 알립니다.
-- [x] 플로팅 플레이어(Floating Player)(구 미니 플레이어(MiniPlayer))가(이) 작동이 되지 않는 문제
-    - 문제가 되었던 조건부를 완화하여 정상적으로 작동할 수 있도록 수정되었습니다. 추가로 일부 관련 시스템에서도 개선을 진행하였습니다.
-        - +)추가 업데이트1 : 여전히 사이트 로딩에 관련하여 작동 여부가 달라지는 이슈가 존제합니다, 추후 수정 될 예정입니다.(25. 11. 25. AM 12:00)
-        - +)추가 업데이트2 : v1.0.8 이전 상태로 되돌리고 일부 수정햇던 부분을 복구 후 스레드홀드 조건부인 타임만 수정(25. 11. 25. AM 1:30)
-        - +)추가 업데이트3 : 디버그 작업 필요, 지속적으로 이슈가 유지 될 경우 v1.0.9로 이전하여 핫픽스 업데이트 지원 예정(25. 11. 26. AM 2:53)
-    - 위 문제에서 표시되는 문제에 대해서는 어느 정도 해결이 되었으나 다른 버그가 발생하여 해당 버그와 함께 해결을 시도 중
-- [x] 오디오 컴프레서가 정상적으로 작동하지 않는 문제를 해결
-    - 왜인지는 모르겠으나 컴프 작동에 반영이 안되는 것 같음
-
-### v1.0.9 update
-- [x] 플로팅 플레이어(Floating Player)의 추가 미지원 기능 업데이트
-    - 자동 영상 비율 인식 추가 / 16:9, 21:9, 4:3 등 자동으로 영상 사이즈에 맞게 표시 될 수 있도록
-    - 화면 크기 추가 / 모니터 QHD, 4K 사용자를 위한 업데이트(thx for friend / 사용자 피드백 요청)
-    - 동영상 워터마크가 숨겨지지 않았던 부분을 수정 / 유튜브 플레이어 UI의 크기를 조정
-- [x] Chrome Web Store 설치 방식 지원(Support for Chrome Web Store installation methods)
-    - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
-
-### v1.0.10 update
-- [x] 플로팅 플레이어가 유튜브 플레이어를 재감지가 정상적으로 되지 않는 문제
-    - 이로인해 새로고침을 하지 않으면 기능이 정상적으로 작동하지 않음
