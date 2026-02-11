@@ -4,8 +4,6 @@
 ## To be updated
 > **v2 지원 이전 마지막 업데이트 / Last update before v2 support**
 > **마지막 업데이트가 아닐 수도 있습니다 / This may not be the last update**
-- [ ] 플로팅 플레이어가 유튜브 플레이어를 재감지가 정상적으로 되지 않는 문제
-    - 이로인해 새로고침을 하지 않으면 기능이 정상적으로 작동하지 않음
 
 ### v1.0.x Idea / updated List
 - [ ] 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
@@ -85,3 +83,7 @@
     - 동영상 워터마크가 숨겨지지 않았던 부분을 수정 / 유튜브 플레이어 UI의 크기를 조정
 - [x] Chrome Web Store 설치 방식 지원(Support for Chrome Web Store installation methods)
     - 개인정보처리방침(Privacy Policy) 추가 완료 및 추후 별도 업데이트 예정 [ YT Player Extension / LST 공동 및 그 외 제공되는 서비스 ]
+
+### v1.0.10 update
+- [x] 플로팅 플레이어가 유튜브 플레이어를 재감지가 정상적으로 되지 않는 문제
+    - 이로인해 새로고침을 하지 않으면 기능이 정상적으로 작동하지 않음
