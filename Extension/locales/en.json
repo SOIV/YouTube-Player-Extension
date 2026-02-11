@@ -95,8 +95,8 @@
   "youtubeTrademark": "YouTube is a trademark of Google LLC",
   "disclaimer": "This extension is not officially affiliated with YouTube",
 
-  "version": "Version 1.0.9",
-  "footerText": "YouTube™ Player Extension v1.0.9",
+  "version": "Version 1.0.10",
+  "footerText": "YouTube™ Player Extension v1.0.10",
 
   "customThemePlaceholder": "/* Enter your custom CSS code here */\n.ytp-chrome-bottom { \n  background: rgba(0,0,0,0.8) !important; \n}",
   "customScriptsPlaceholder": "// Enter your custom JavaScript code here"
