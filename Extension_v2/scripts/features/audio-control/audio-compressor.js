@@ -40,7 +40,9 @@ class AudioCompressorController {
       await this.connectToVideo();
       this.setupVideoPlayListener();
     } catch (error) {
-      console.error('Audio Compressor init error:', error);
+      if (this.settings.getSetting('debugMode')) {
+        console.error('Audio Compressor init error:', error);
+      }
     }
   }
 
@@ -240,11 +242,13 @@ class AudioCompressorController {
       if (this.isEnabled()) {
         const volumeMultiplier = this.settings.getSetting('volumeBoost', 100) / 100;
         this.gainNode.gain.setValueAtTime(volumeMultiplier, currentTime);
-        console.log(`${this.debugLogPrefix} volumeBoost applied`, {
-          percent: this.settings.getSetting('volumeBoost', 100),
-          gain: volumeMultiplier,
-          time: currentTime
-        });
+        if (this.settings.getSetting('debugMode')) {
+          console.log(`${this.debugLogPrefix} volumeBoost applied`, {
+            percent: this.settings.getSetting('volumeBoost', 100),
+            gain: volumeMultiplier,
+            time: currentTime
+          });
+        }
       } else {
         this.gainNode.gain.setValueAtTime(1.0, currentTime);
       }
@@ -252,10 +256,12 @@ class AudioCompressorController {
       if (this.isEnabled() && this.compressorNode) {
         const ratio = this.settings.getSetting('compressorRatio', 12);
         this.compressorNode.ratio.setValueAtTime(ratio, currentTime);
-        console.log(`${this.debugLogPrefix} ratio applied`, {
-          ratio,
-          time: currentTime
-        });
+        if (this.settings.getSetting('debugMode')) {
+          console.log(`${this.debugLogPrefix} ratio applied`, {
+            ratio,
+            time: currentTime
+          });
+        }
       }
       
     } catch (error) {

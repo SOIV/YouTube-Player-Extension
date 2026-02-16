@@ -23,13 +23,21 @@ class FloatingPlayerController {
       isPIP: false
     };
     
-    // 디버깅 플래그
-    this.DEBUG = true;
+  }
+
+  isDebugEnabled() {
+    return !!this.settings.getSetting('debugMode');
   }
 
   log(...args) {
-    if (this.DEBUG) {
+    if (this.isDebugEnabled()) {
       console.log('[FloatingPlayer]', ...args);
+    }
+  }
+
+  logError(...args) {
+    if (this.isDebugEnabled()) {
+      console.error('[FloatingPlayer]', ...args);
     }
   }
 
@@ -82,7 +90,7 @@ class FloatingPlayerController {
         this.cleanup();
       }
     } catch (error) {
-      console.error('[FloatingPlayer] Error applying settings:', error);
+      this.logError('Error applying settings:', error);
     }
   }
 

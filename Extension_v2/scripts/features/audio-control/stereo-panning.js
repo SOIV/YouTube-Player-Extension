@@ -39,7 +39,9 @@ class StereoPanningController {
       await this.connectToVideo();
       this.setupVideoPlayListener();
     } catch (error) {
-      console.error('Stereo Panning init error:', error);
+      if (this.settings.getSetting('debugMode')) {
+        console.error('Stereo Panning init error:', error);
+      }
     }
   }
 

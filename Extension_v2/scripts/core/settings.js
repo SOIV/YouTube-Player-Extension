@@ -28,6 +28,7 @@ class SettingsManager {
       // 고급 설정
       customScripts: '',
       customTheme: '',
+      debugMode: false,
       
       // UI 상태 (접기/펼치기)
       collapsedSections: {
