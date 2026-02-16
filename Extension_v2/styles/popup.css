@@ -110,22 +110,6 @@ body {
   padding-bottom: 8px;
 }
 
-.section-title.collapsible {
-  cursor: pointer;
-  user-select: none;
-}
-
-.collapse-icon {
-  display: inline-block;
-  font-size: 12px;
-  color: #637487;
-  transition: transform 0.2s ease;
-}
-
-.section-title.collapsible.collapsed .collapse-icon {
-  transform: rotate(-90deg);
-}
-
 .collapsible-content {
   max-height: 1000px;
   overflow: hidden;
@@ -187,11 +171,6 @@ body {
 
 .hidden-file {
   display: none;
-}
-
-.is-disabled-control {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .toggle {
@@ -351,27 +330,6 @@ select:disabled {
 
 .btn.danger {
   background: #d92c3d;
-}
-
-.info-message {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  border: 1px solid #d5e4fa;
-  background: #edf5ff;
-  border-radius: 8px;
-  padding: 12px;
-  margin: 8px 0 10px;
-}
-
-.info-icon {
-  font-size: 16px;
-}
-
-.info-text {
-  font-size: 12px;
-  color: #34556f;
-  line-height: 1.45;
 }
 
 .about-preview {

@@ -73,9 +73,6 @@ class PopupManager {
         enableStereoPan: false,
         stereoPan: 0,
         
-        autoCodec: true,
-        preferredCodec: 'auto',
-        
         // 팝업/미니 재생기
         popupPlayer: false,
         miniPlayerSize: '480x270',
@@ -135,7 +132,6 @@ class PopupManager {
     // 현재 탭 확인
     this.checkYouTubeTab();
   }
-
 
   setupEventListeners() {
     // 토글 스위치 이벤트
@@ -317,18 +313,6 @@ class PopupManager {
       const isActive = miniPlayerToggle.classList.contains('active');
       floatingPlayerSubSettings.classList.toggle('is-hidden', !isActive);
     }
-
-
-    // 자동 코덱 선택 컨트롤 활성화/비활성화
-    const autoCodecToggle = document.querySelector('[data-setting="autoCodec"]');
-    const codecControl = document.querySelector('[data-setting="preferredCodec"]');
-    
-    if (autoCodecToggle && codecControl) {
-      const isActive = autoCodecToggle.classList.contains('active');
-      
-      codecControl.disabled = !isActive;
-      codecControl.classList.toggle('is-disabled-control', !isActive);
-    }
   }
 
   async checkYouTubeTab() {
@@ -477,7 +461,6 @@ class PopupManager {
       // 오디오
       enableCompressor: this.t('audioCompressorName'), // 전 volumeBoost
       enableStereoPan: this.t('stereoPanningName'), // 전 stereoPan
-      
       
       // 팝업/플로팅 재생기
       popupPlayer: this.t('floatingPlayerName'),
