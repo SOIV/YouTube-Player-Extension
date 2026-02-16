@@ -6,10 +6,9 @@
 > **마지막 업데이트가 아닐 수도 있습니다 / This may not be the last update**
 
 
-### v1.0.x Idea / updated List
+### Idea / updated List
 - [ ] 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
     - 비디오 코덱 선택하는 기능은 추가되지 않습니다.
-- [ ] 연속 재생 버튼(Loop button)
 - [ ] 볼륨 퍼센트 표시 설정
     - 확정 추가 예정이 아님
     - 볼륨 조절시 퍼센트가 표시가 되지 않았던 것을 보여줄 수 있도록
@@ -25,8 +24,10 @@
 - [x] Chrome 공식 i18n 마이그레이션
 - [x] 파일 구조 개선 (_locales/)
 - [x] manifest.json 다국어 적용
-- [ ] 디버그 모드 추가
 - [ ] v1.0.10 업데이트 v2에 마이그래이션
+- [ ] 디버그 모드 추가(ON/OFF 토글)
+- [ ] 커스텀 CSS/스크립트 미작동에 대한 부분 수정
+- [ ] 연속 재생 버튼(Loop button)
 
 ## Help me!
 - [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
