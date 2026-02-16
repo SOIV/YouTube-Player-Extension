@@ -1,0 +1,737 @@
+/* YouTube Player Extension - Custom Styles */
+
+/* 디버그 모드 오버레이 */
+.ype-debug-overlay {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  z-index: 9999;
+  max-width: 320px;
+  border: 1px solid #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.ype-debug-overlay h4 {
+  margin: 0 0 8px 0;
+  color: #ff6666;
+  font-size: 13px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+}
+
+.ype-debug-section {
+  margin: 8px 0;
+  padding: 6px 0;
+  border-bottom: 1px solid #222;
+}
+
+.ype-debug-section:last-child {
+  border-bottom: none;
+}
+
+.ype-debug-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 0;
+  padding: 2px 0;
+}
+
+.ype-debug-label {
+  color: #66ccff;
+  font-weight: bold;
+  flex: 1;
+}
+
+.ype-debug-value {
+  color: #ffffff;
+  font-family: monospace;
+  text-align: right;
+  flex: 1;
+}
+
+.ype-debug-audio-info {
+  margin-top: 8px;
+}
+
+.ype-debug-bars {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.ype-debug-bar {
+  width: 20px;
+  height: 40px;
+  background: #333;
+  position: relative;
+  border-radius: 2px;
+}
+
+.ype-debug-bar-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, #ff0000, #ffff00, #00ff00);
+  border-radius: 2px;
+  transition: height 0.1s ease;
+}
+
+/* 오디오 비주얼라이저 */
+.ype-audio-visualizer {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 300px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  border: 1px solid #333;
+  z-index: 9998;
+  padding: 8px;
+}
+
+.ype-audio-visualizer canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+/* 플레이어 향상 스타일 */
+.ype-enhanced-player .ytp-chrome-bottom {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%) !important;
+  backdrop-filter: blur(5px);
+}
+
+.ype-enhanced-player .ytp-progress-bar {
+  height: 4px !important;
+  transition: height 0.2s ease;
+}
+
+.ype-enhanced-player .ytp-progress-bar:hover {
+  height: 8px !important;
+}
+
+.ype-enhanced-player .ytp-scrubber-button {
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 50% !important;
+  background: #ff0000 !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 커스텀 속도 메뉴 */
+.ype-speed-menu {
+  background: rgba(28, 28, 28, 0.95) !important;
+  border-radius: 8px !important;
+  border: 1px solid #404040 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.ype-speed-item {
+  padding: 10px 16px !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  color: #ffffff !important;
+  background: transparent !important;
+  border: none !important;
+  width: 100% !important;
+  text-align: left !important;
+  transition: all 0.2s ease !important;
+}
+
+.ype-speed-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ff0000 !important;
+}
+
+.ype-speed-item.selected {
+  background: rgba(255, 0, 0, 0.2) !important;
+  color: #ff0000 !important;
+  font-weight: bold !important;
+}
+
+.ype-speed-item::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  margin-right: 8px;
+}
+
+.ype-speed-item.selected::before {
+  background: #ff0000;
+}
+
+/* 시어터 모드 향상 */
+.ype-enhanced-theater.theater-mode #page-manager {
+  margin-top: 0 !important;
+}
+
+.ype-enhanced-theater.theater-mode ytd-masthead {
+  position: relative !important;
+  background: rgba(0, 0, 0, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.ype-enhanced-theater.theater-mode #player-container {
+  background: #000 !important;
+}
+
+/* 볼륨 컨트롤 향상 */
+.ype-enhanced-volume .ytp-volume-slider {
+  width: 60px !important;
+  transition: width 0.3s ease !important;
+}
+
+.ype-enhanced-volume .ytp-volume-panel:hover .ytp-volume-slider {
+  width: 100px !important;
+}
+
+.ype-enhanced-volume .ytp-volume-slider-handle {
+  background: #ff0000 !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 품질 표시기 */
+.ype-quality-indicator {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.ype-quality-indicator.hd {
+  color: #ff6600;
+}
+
+.ype-quality-indicator.uhd {
+  color: #ff0000;
+}
+
+/* PIP 프로그레스 바 숨김 (보라색 슬라이더) */
+#efyt-progress,
+efyt-progress-tooltip {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* 네이티브 PIP 버튼 스타일 (하이재킹) */
+.ytp-pip-button {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ytp-pip-button svg {
+  width: 36px;
+  height: 36px;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* 커스텀 PIP 및 소형 플레이어 버튼 스타일 */
+.ytp-efyt-pip-button,
+.ytp-efyt-small-player-button {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ytp-efyt-pip-button svg,
+.ytp-efyt-small-player-button svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.ytp-efyt-pip-button.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 오디오 향상 표시기 */
+.ype-audio-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  z-index: 100;
+  pointer-events: none;
+  display: flex;
+  gap: 6px;
+}
+
+.ype-audio-indicator .indicator-item {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.ype-audio-indicator .indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff00;
+}
+
+.ype-audio-indicator .indicator-dot.inactive {
+  background: #666;
+}
+
+/* 커스텀 테마 지원 */
+.ype-custom-theme {
+  /* 사용자 정의 CSS가 여기에 동적으로 추가됩니다 */
+}
+
+/* 로딩 상태 */
+.ype-loading {
+  position: relative;
+}
+
+.ype-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #666;
+  border-top: 2px solid #ff0000;
+  border-radius: 50%;
+  animation: ype-spin 1s linear infinite;
+}
+
+@keyframes ype-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 성능 모드 */
+.ype-performance-mode .ytp-gradient-bottom,
+.ype-performance-mode .ytp-gradient-top,
+.ype-performance-mode .ytp-videowall-still {
+  display: none !important;
+}
+
+.ype-performance-mode * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* 접근성 향상 */
+.ype-high-contrast {
+  filter: contrast(1.3) brightness(1.1) !important;
+}
+
+.ype-focus-visible :focus-visible {
+  outline: 3px solid #ff0000 !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+}
+
+/* 풀스크린 향상 */
+.ype-enhanced-fullscreen .ytp-fullscreen .ytp-chrome-bottom {
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%) !important;
+}
+
+.ype-enhanced-fullscreen .ytp-fullscreen .ytp-chrome-top {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%) !important;
+}
+
+/* 미니플레이어 향상 */
+.ype-enhanced-miniplayer .ytp-miniplayer {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid #333 !important;
+  overflow: hidden !important;
+}
+
+.ype-enhanced-miniplayer .ytp-miniplayer-ui {
+  background: rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .ype-debug-overlay {
+    max-width: 280px;
+    font-size: 10px;
+    padding: 10px;
+  }
+  
+  .ype-audio-visualizer {
+    width: 200px;
+    height: 40px;
+    bottom: 10px;
+    left: 10px;
+  }
+  
+  .ype-speed-menu {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .ype-quality-indicator,
+  .ype-audio-indicator {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ype-debug-overlay {
+    top: 5px;
+    right: 5px;
+    max-width: 250px;
+    font-size: 9px;
+  }
+  
+  .ype-audio-visualizer {
+    width: 150px;
+    height: 30px;
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .ype-debug-overlay {
+    background: rgba(20, 20, 20, 0.95);
+    border-color: #444;
+  }
+  
+  .ype-speed-menu {
+    background: rgba(20, 20, 20, 0.95) !important;
+    border-color: #444 !important;
+  }
+}
+
+/* 애니메이션 비활성화 옵션 */
+.ype-reduce-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* 스크린 리더 전용 텍스트 */
+.ype-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 에러 상태 표시 */
+.ype-error-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(220, 53, 69, 0.9);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 10000;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.ype-error-overlay h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.ype-error-overlay p {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+}
+
+.ype-error-overlay button {
+  background: white;
+  color: #dc3545;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 성공 알림 */
+.ype-success-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(40, 167, 69, 0.9);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 6px;
+  z-index: 9999;
+  animation: ype-slide-in 0.3s ease-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes ype-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 키보드 네비게이션 향상 */
+.ype-keyboard-nav .ytp-settings-button:focus,
+.ype-keyboard-nav .ytp-fullscreen-button:focus,
+.ype-keyboard-nav .ytp-play-button:focus {
+  outline: 2px solid #ff0000 !important;
+  outline-offset: 2px !important;
+}
+
+/* 사용자 정의 스크롤바 (웹킷 브라우저) */
+.ype-custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ype-custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.ype-custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 0, 0, 0.6);
+  border-radius: 4px;
+}
+
+.ype-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 0, 0, 0.8);
+}
+
+/* 고급 오디오 컨트롤 오버레이 */
+.ype-audio-controls-overlay {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  z-index: 1000;
+  min-width: 200px;
+  backdrop-filter: blur(10px);
+  border: 1px solid #333;
+}
+
+.ype-audio-controls-overlay h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #ff6666;
+}
+
+.ype-audio-control-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.ype-audio-control-slider {
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+  background: #333;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.ype-audio-control-slider:hover {
+  opacity: 1;
+}
+
+.ype-audio-control-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff0000;
+  cursor: pointer;
+}
+
+.ype-audio-control-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff0000;
+  cursor: pointer;
+  border: none;
+}
+
+/* 프리셋 버튼들 */
+.ype-preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.ype-preset-button {
+  background: #333;
+  color: white;
+  border: 1px solid #555;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ype-preset-button:hover {
+  background: #ff0000;
+  border-color: #ff0000;
+}
+
+.ype-preset-button.active {
+  background: #ff0000;
+  border-color: #cc0000;
+}
+
+/* 컨텍스트 메뉴 스타일링 */
+.ype-context-menu {
+  position: fixed;
+  background: rgba(40, 40, 40, 0.95);
+  border: 1px solid #666;
+  border-radius: 6px;
+  padding: 4px 0;
+  z-index: 10001;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  min-width: 150px;
+}
+
+.ype-context-menu-item {
+  padding: 8px 16px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ype-context-menu-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ype-context-menu-separator {
+  height: 1px;
+  background: #666;
+  margin: 4px 0;
+}
+
+/* 툴팁 스타일 */
+.ype-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 10000;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ype-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* 설정 패널 오버레이 */
+.ype-settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ype-settings-panel {
+  background: #fff;
+  border-radius: 8px;
+  max-width: 500px;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* 다국어 지원을 위한 폰트 설정 */
+.ype-multilingual {
+  font-family: 'Segoe UI', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+}
+
+/* RTL 언어 지원 */
+.ype-rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.ype-rtl .ype-debug-overlay {
+  left: 10px;
+  right: auto;
+}
+
+.ype-rtl .ype-audio-visualizer {
+  right: 20px;
+  left: auto;
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube™ Player Extension</title>
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+  <div class="header">
+    <h1 data-i18n="appName">YouTube™ Player Extension</h1>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <ul class="tab-list" role="tablist" aria-label="Settings Categories">
+        <li><button class="tab-button" type="button" role="tab" data-tab="audio" aria-selected="false" data-i18n="audioControl">오디오 제어</button></li>
+        <li><button class="tab-button" type="button" role="tab" data-tab="player" aria-selected="false" data-i18n="pipMiniPlayer">플레이어 제어</button></li>
+        <li><button class="tab-button" type="button" role="tab" data-tab="advanced" aria-selected="false" data-i18n="advancedSettings">고급 설정</button></li>
+        <li><button class="tab-button" type="button" role="tab" data-tab="about" aria-selected="false" data-i18n="about">About / 정보</button></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <section class="tab-panel" data-tab-panel="audio" role="tabpanel">
+        <div class="section">
+          <div class="section-title" data-i18n="audioControl">오디오 제어</div>
+
+          <div class="option">
+            <div class="option-stack">
+              <div class="option-header">
+                <div>
+                  <div class="option-label" data-i18n="audioCompressor">오디오 컴프레서</div>
+                  <div class="option-description" data-i18n="audioCompressorDesc">볼륨 증폭 및 다이나믹 레인지 압축 (50% ~ 200%)</div>
+                </div>
+                <div class="toggle" data-setting="enableCompressor"></div>
+              </div>
+              <div id="compressorControls" class="control-group is-hidden">
+                <div class="slider-row">
+                  <span>50%</span>
+                  <input type="range" class="slider" data-setting="volumeBoost" min="50" max="200" value="100">
+                  <span>200%</span>
+                  <span class="slider-value" id="volumeBoostValue">100%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="option">
+            <div class="option-stack">
+              <div class="option-header">
+                <div>
+                  <div class="option-label" data-i18n="stereoPanning">스테레오 패닝 (L/R)</div>
+                  <div class="option-description" data-i18n="stereoPanningDesc">좌우 음향 균형 조정</div>
+                </div>
+                <div class="toggle" data-setting="enableStereoPan"></div>
+              </div>
+              <div id="panControls" class="control-group is-hidden">
+                <div class="slider-row">
+                  <span>L</span>
+                  <input type="range" class="slider" data-setting="stereoPan" min="-100" max="100" value="0">
+                  <span>R</span>
+                  <span class="slider-value" id="stereoPanValue">Center</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="player" role="tabpanel">
+        <div class="section">
+          <div class="section-title" data-i18n="pipMiniPlayer">플레이어 제어 & 기능</div>
+
+          <div class="option">
+            <div>
+              <div class="option-label" data-i18n="pipMode">Picture-in-Picture 모드</div>
+              <div class="option-description" data-i18n="pipModeDesc">비디오를 작은 창으로 띄워서 시청 (PIP 버튼 추가)</div>
+            </div>
+            <div class="toggle" data-setting="enablePIP"></div>
+          </div>
+
+          <div class="option">
+            <div>
+              <div class="option-label" data-i18n="smallPlayerButton">소형 플레이어 버튼</div>
+              <div class="option-description" data-i18n="smallPlayerButtonDesc">YouTube 우클릭 메뉴의 소형 플레이어 기능을 버튼으로 추가</div>
+            </div>
+            <div class="toggle" data-setting="enableSmallPlayerButton"></div>
+          </div>
+
+          <div class="option">
+            <div>
+              <div class="option-label" data-i18n="floatingPlayerLabel">플로팅 플레이어</div>
+              <div class="option-description" data-i18n="floatingPlayerDescription">스크롤 시 작은 플레이어로 계속 시청</div>
+            </div>
+            <div class="toggle" data-setting="popupPlayer"></div>
+          </div>
+
+          <div id="floatingPlayerSubSettings" class="sub-settings">
+            <div class="option">
+              <div>
+                <div class="option-label" data-i18n="floatingPlayerSizeLabel">플로팅 플레이어 크기</div>
+                <div class="option-description" data-i18n="floatingPlayerSizeDescription">플로팅 플레이어의 크기를 선택</div>
+              </div>
+              <select data-setting="miniPlayerSize">
+                <option value="256x144">256x144</option>
+                <option value="320x180">320x180</option>
+                <option value="400x225">400x225</option>
+                <option value="426x240">426x240</option>
+                <option value="480x270">480x270 (Default)</option>
+                <option value="560x315">560x315</option>
+                <option value="640x360">640x360</option>
+                <option value="720x405">720x405</option>
+                <option value="854x480">854x480</option>
+                <option value="960x540">960x540</option>
+              </select>
+            </div>
+
+            <div class="option">
+              <div>
+                <div class="option-label" data-i18n="floatingPlayerPositionLabel">플로팅 플레이어 위치</div>
+                <div class="option-description" data-i18n="floatingPlayerPositionDescription">플로팅 플레이어가 나타날 화면 위치</div>
+              </div>
+              <select data-setting="miniPlayerPosition">
+                <option value="top-left" data-i18n="topLeft">왼쪽 상단</option>
+                <option value="top-right" data-i18n="topRight">오른쪽 상단</option>
+                <option value="bottom-left" data-i18n="bottomLeft">왼쪽 하단</option>
+                <option value="bottom-right" data-i18n="bottomRight">오른쪽 하단</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="tab-panel" data-tab-panel="advanced" role="tabpanel">
+        <div class="section">
+          <div class="section-title">
+            <span data-i18n="customSettings">커스텀 설정</span>
+          </div>
+
+          <div class="advanced-box">
+            <div class="input-group">
+              <label for="customTheme" data-i18n="customTheme">커스텀 테마 (CSS)</label>
+              <textarea
+                id="customTheme"
+                class="code-editor"
+                data-setting="customTheme"
+                data-i18n-placeholder="customThemePlaceholder"
+                placeholder="/* 커스텀 CSS 코드를 입력하세요 */"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="advanced-box">
+            <div class="input-group">
+              <label for="customScripts" data-i18n="customScripts">커스텀 스크립트 (JavaScript)</label>
+              <textarea
+                id="customScripts"
+                class="code-editor"
+                data-setting="customScripts"
+                data-i18n-placeholder="customScriptsPlaceholder"
+                placeholder="// 커스텀 JavaScript 코드를 입력하세요"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title" id="advancedTitle">
+            <span data-i18n="advancedSettings">고급 설정</span>
+          </div>
+          <div class="collapsible-content" id="advancedContent">
+            <div class="option option-spaced">
+              <div>
+                <div class="option-label" data-i18n="debugMode">디버그 모드</div>
+                <div class="option-description" data-i18n="debugModeDesc">디버깅 로그 표시 활성화</div>
+              </div>
+              <div class="toggle" data-setting="debugMode"></div>
+            </div>
+
+            <div class="settings-actions">
+              <div class="button-group">
+                <button class="btn" id="exportBtn" data-i18n="exportSettings">설정 내보내기</button>
+                <button class="btn" id="importBtn" data-i18n="importSettings">설정 가져오기</button>
+                <button class="btn danger" id="resetBtn" data-i18n="resetSettings">초기화</button>
+              </div>
+            </div>
+            <input type="file" id="importFile" class="hidden-file" accept=".json">
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="about" role="tabpanel">
+        <div class="about-preview">
+          <p data-i18n="appDescriptionLong">YouTube의 플레이어 기능을 향상시키고 실용적인 오디오 제어 기능을 제공하는 확장 프로그램</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-card">
+            <h3 data-i18n="appFeatures">주요 기능</h3>
+            <ul>
+              <li data-i18n="audioCompressorFeature">오디오 컴프레서 - 볼륨 증폭 및 다이나믹 레인지 압축</li>
+              <li data-i18n="stereoPanningFeature">스테레오 패닝 - 좌우 음향 균형 조정</li>
+              <li data-i18n="pipFeature">PIP - 작은 창으로 비디오 시청</li>
+              <li data-i18n="smallPlayerButtonFeature">소형 플레이어 버튼 - YouTube 소형 플레이어를 버튼으로 빠르게 실행</li>
+              <li data-i18n="floatingPlayerFeature">플로팅 플레이어 - 스크롤 시 작은 플레이어 유지</li>
+              <li data-i18n="debugModeFeature">디버그 모드 - 문제 분석용 로그 출력 제어</li>
+              <li data-i18n="customSettingsFeature">커스텀 설정 - 사용자 CSS/JavaScript 적용</li>
+            </ul>
+          </div>
+          <div class="about-card">
+            <h3 data-i18n="technicalInfo">기술 정보</h3>
+            <ul>
+              <li data-i18n="manifestV3">Manifest V3 - 최신 크롬 확장 프로그램 표준</li>
+              <li data-i18n="modularDesign">모듈화 설계 - 기능별 분리된 JavaScript 모듈</li>
+              <li data-i18n="webAudioAPI">Web Audio API - 고품질 오디오 처리</li>
+              <li data-i18n="youtubeCompatibility">YouTube 호환성 - 업데이트 대응 구조</li>
+            </ul>
+          </div>
+          <div class="about-card">
+            <h3 data-i18n="developmentBackground">개발 배경</h3>
+            <p data-i18n="developmentText">기존의 복잡한 YouTube 확장 프로그램들과 달리 필요한 기능만 선별했습니다.</p>
+          </div>
+          <div class="about-card">
+            <p data-i18n="madeBy">Made by SOIV Studio</p>
+            <p data-i18n="youtubeTrademark">YouTube는 Google LLC의 상표입니다</p>
+            <p data-i18n="disclaimer">이 확장 프로그램은 YouTube와 공식적인 관련이 없습니다</p>
+          </div>
+          <div class="about-card">
+            <h3 data-i18n="relatedLinks">관련 링크</h3>
+            <p>
+              <a href="https://github.com/SOIV/YouTube-Player-Extension" target="_blank" class="github-link" aria-label="GitHub">
+                <svg class="github-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div id="status" class="status"></div>
+    </main>
+  </div>
+
+  <div class="footer">
+    <span data-i18n="footerText">YouTube™ Player Extension v1.0.12</span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
