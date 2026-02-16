@@ -2,6 +2,9 @@
   "appName": {
     "message": "YouTube™ Player Extension"
   },
+  "appDescriptionmf": {
+    "message": "Extensions that provide various features on YouTube"
+  },
   "appDescription": {
     "message": "Advanced player features and bug fixes"
   },
