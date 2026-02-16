@@ -5,6 +5,51 @@ class SmallPlayerButtonController {
     this.settings = settingsManager;
     this.domCache = domCache;
     this.eventManager = eventManager;
+
+    this.currentLang = this.detectYouTubeLanguage();
+    this.translations = this.getTranslations();
+  }
+
+  detectYouTubeLanguage() {
+    const htmlLang = document.documentElement.lang;
+    if (htmlLang) {
+      return htmlLang.split('-')[0];
+    }
+
+    if (window.yt && window.yt.config_ && window.yt.config_.HL) {
+      return window.yt.config_.HL.split('-')[0];
+    }
+
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === 'PREF') {
+        const match = value.match(/hl=([^&]+)/);
+        if (match) {
+          return match[1].split('-')[0];
+        }
+      }
+    }
+
+    const browserLang = navigator.language || navigator.userLanguage;
+    return browserLang.split('-')[0];
+  }
+
+  getTranslations() {
+    return {
+      ko: { smallPlayer: '소형 플레이어' },
+      en: { smallPlayer: 'Miniplayer' },
+      ja: { smallPlayer: 'ミニプレーヤー' },
+      zh: { smallPlayer: '迷你播放器' }
+    };
+  }
+
+  t(key) {
+    const lang = this.currentLang;
+    if (this.translations[lang] && this.translations[lang][key]) {
+      return this.translations[lang][key];
+    }
+    return this.translations.en[key] || this.translations.ko[key] || key;
   }
 
   isEnabled() {
@@ -54,15 +99,13 @@ class SmallPlayerButtonController {
       const existingButton = document.querySelector('.ytp-efyt-small-player-button');
       if (existingButton) existingButton.remove();
 
-      const smallPlayerText = chrome.i18n.getMessage('smallPlayerButton');
-
       const smallPlayerButton = document.createElement('button');
       smallPlayerButton.className = 'ytp-efyt-small-player-button ytp-button';
       smallPlayerButton.title = '';
       smallPlayerButton.setAttribute('data-priority', '11');
-      smallPlayerButton.setAttribute('data-title-no-tooltip', smallPlayerText);
-      smallPlayerButton.setAttribute('aria-label', smallPlayerText);
-      smallPlayerButton.setAttribute('data-tooltip-title', smallPlayerText);
+      smallPlayerButton.setAttribute('data-title-no-tooltip', this.t('smallPlayer'));
+      smallPlayerButton.setAttribute('aria-label', this.t('smallPlayer'));
+      smallPlayerButton.setAttribute('data-tooltip-title', this.t('smallPlayer'));
       smallPlayerButton.setAttribute('data-tooltip-target-id', 'ytp-small-player-button');
 
       const clonedSvg = this.getSmallPlayerSvgFromMenu();

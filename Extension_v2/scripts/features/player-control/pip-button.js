@@ -5,6 +5,69 @@ class PIPButtonController {
     this.settings = settingsManager;
     this.domCache = domCache;
     this.eventManager = eventManager;
+
+    // 언어 감지 및 다국어 텍스트 초기화
+    this.currentLang = this.detectYouTubeLanguage();
+    this.translations = this.getTranslations();
+  }
+
+  // 유튜브 언어 감지
+  detectYouTubeLanguage() {
+    // 방법 1: HTML lang 속성
+    const htmlLang = document.documentElement.lang;
+    if (htmlLang) {
+      return htmlLang.split('-')[0]; // 'ko-KR' -> 'ko'
+    }
+
+    // 방법 2: YouTube 내부 설정
+    if (window.yt && window.yt.config_ && window.yt.config_.HL) {
+      return window.yt.config_.HL.split('-')[0];
+    }
+
+    // 방법 3: 쿠키에서 읽기
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === 'PREF') {
+        const match = value.match(/hl=([^&]+)/);
+        if (match) {
+          return match[1].split('-')[0];
+        }
+      }
+    }
+
+    // 방법 4: 브라우저 언어
+    const browserLang = navigator.language || navigator.userLanguage;
+    return browserLang.split('-')[0];
+  }
+
+  // 다국어 텍스트 정의
+  getTranslations() {
+    return {
+      ko: {
+        pipMode: 'PIP 모드'
+      },
+      en: {
+        pipMode: 'Picture in Picture'
+      },
+      ja: {
+        pipMode: 'ピクチャー イン ピクチャー'
+      },
+      zh: {
+        pipMode: '画中画模式'
+      }
+    };
+  }
+
+  // 번역 텍스트 가져오기
+  t(key) {
+    const lang = this.currentLang;
+    // 현재 언어에 해당하는 텍스트가 있으면 사용, 없으면 영어 사용
+    if (this.translations[lang] && this.translations[lang][key]) {
+      return this.translations[lang][key];
+    }
+    // 영어도 없으면 한국어 사용 (기본값)
+    return this.translations.en[key] || this.translations.ko[key] || key;
   }
 
   // PIP 기능이 필요한지 확인
@@ -55,7 +118,6 @@ class PIPButtonController {
     try {
       // YouTube 기본 PIP 버튼 찾기 및 하이재킹
       const nativePIPButton = document.querySelector('.ytp-pip-button');
-      const pipText = chrome.i18n.getMessage('pipMode');
 
       if (nativePIPButton) {
         // 기본 PIP 버튼을 보이게 만들기
@@ -64,9 +126,9 @@ class PIPButtonController {
         nativePIPButton.style.opacity = '1';
 
         // 툴팁 텍스트를 다국어로 설정
-        nativePIPButton.setAttribute('data-title-no-tooltip', pipText);
-        nativePIPButton.setAttribute('aria-label', pipText);
-        nativePIPButton.setAttribute('data-tooltip-title', pipText);
+        nativePIPButton.setAttribute('data-title-no-tooltip', this.t('pipMode'));
+        nativePIPButton.setAttribute('aria-label', this.t('pipMode'));
+        nativePIPButton.setAttribute('data-tooltip-title', this.t('pipMode'));
 
         // 버튼을 올바른 컨테이너로 이동
         const controlsRightContainer = document.querySelector('.ytp-right-controls-right');
@@ -134,9 +196,9 @@ class PIPButtonController {
       pipButton.className = 'ytp-efyt-pip-button ytp-button';
       pipButton.title = '';
       pipButton.setAttribute('data-priority', '11');
-      pipButton.setAttribute('data-title-no-tooltip', pipText);
-      pipButton.setAttribute('aria-label', pipText);
-      pipButton.setAttribute('data-tooltip-title', pipText);
+      pipButton.setAttribute('data-title-no-tooltip', this.t('pipMode'));
+      pipButton.setAttribute('aria-label', this.t('pipMode'));
+      pipButton.setAttribute('data-tooltip-title', this.t('pipMode'));
       pipButton.setAttribute('data-tooltip-target-id', 'ytp-pip-button');
 
       pipButton.innerHTML = `
@@ -194,18 +256,16 @@ class PIPButtonController {
     const pipButton = document.querySelector('.ytp-efyt-pip-button');
     if (!pipButton) return;
 
-    const pipText = chrome.i18n.getMessage('pipMode');
-
     if (document.pictureInPictureElement) {
       pipButton.classList.add('active');
       pipButton.style.backgroundColor = 'rgba(255,255,255,0.2)';
-      pipButton.setAttribute('data-title-no-tooltip', pipText);
-      pipButton.setAttribute('data-tooltip-title', pipText);
+      pipButton.setAttribute('data-title-no-tooltip', this.t('pipMode'));
+      pipButton.setAttribute('data-tooltip-title', this.t('pipMode'));
     } else {
       pipButton.classList.remove('active');
       pipButton.style.backgroundColor = '';
-      pipButton.setAttribute('data-title-no-tooltip', pipText);
-      pipButton.setAttribute('data-tooltip-title', pipText);
+      pipButton.setAttribute('data-title-no-tooltip', this.t('pipMode'));
+      pipButton.setAttribute('data-tooltip-title', this.t('pipMode'));
     }
   }
 

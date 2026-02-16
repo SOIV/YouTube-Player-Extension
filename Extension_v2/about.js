@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  localizeHtml();
+document.addEventListener('DOMContentLoaded', () => {
+  updateTexts();
   
   // 뒤로 버튼 이벤트
   document.getElementById('backBtn').addEventListener('click', () => {
@@ -17,22 +17,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 
-function localizeHtml() {
+function updateTexts() {
+  const t = (key) => chrome.i18n.getMessage(key) || key;
+
   // data-i18n 속성을 가진 모든 요소 업데이트
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
-    const message = chrome.i18n.getMessage(key);
+    const translation = t(key);
     
-    if (!message) return;
-
     // 특별한 처리가 필요한 요소들
     if (key === 'backButton') {
-      element.textContent = `← ${message}`;
+      element.textContent = `← ${translation}`;
     } else if (key === 'appDescriptionLong') {
       // 줄바꿈을 <br>로 변환
-      element.innerHTML = message.replace(/\n/g, '<br>');
+      element.innerHTML = translation.replace(/\n/g, '<br>');
     } else {
-      element.textContent = message;
+      element.textContent = translation;
     }
   });
 }

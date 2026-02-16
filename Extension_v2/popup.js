@@ -12,31 +12,36 @@ class PopupManager {
 
   async init() {
     await this.loadSettings();
-    this.localizeHtml();
     this.setupUI();
     this.setupEventListeners();
     this.updateSliderDisplays();
+    this.updateTexts();
   }
 
-  // HTML 내의 data-i18n 속성을 찾아 번역 적용
-  localizeHtml() {
-    // 텍스트 콘텐츠 번역
+  t(key) {
+    return chrome.i18n.getMessage(key) || key;
+  }
+
+  updateTexts() {
+    // data-i18n 속성을 가진 모든 요소 업데이트
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
-      const message = chrome.i18n.getMessage(key);
-      if (message) {
-        element.textContent = message;
-      }
+      const translation = this.t(key);
+      
+      element.textContent = translation;
     });
 
-    // placeholder 번역
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-      const key = element.getAttribute('data-i18n-placeholder');
-      const message = chrome.i18n.getMessage(key);
-      if (message) {
-        element.placeholder = message;
-      }
-    });
+    // 슬라이더 값 표시 업데이트
+    this.updateSliderValues();
+    
+    // placeholder 텍스트 업데이트
+    this.updatePlaceholders();
+    
+    // select 옵션 텍스트 업데이트
+    this.updateSelectOptions();
+    
+    // 설정 표시 이름들을 새로 고침하기 위해 getSettingDisplayName 캐시 무효화
+    // (실제로는 함수가 매번 새로 계산하므로 별도 작업 불필요)
   }
 
   updateSliderValues() {
@@ -46,7 +51,7 @@ class PopupManager {
     if (panSlider && panDisplay) {
       const value = parseInt(panSlider.value);
       if (value === 0) {
-        panDisplay.textContent = chrome.i18n.getMessage('center');
+        panDisplay.textContent = this.t('center');
       } else if (value < 0) {
         panDisplay.textContent = `L${Math.abs(value)}`;
       } else {
@@ -58,6 +63,8 @@ class PopupManager {
   async loadSettings() {
     try {
       const result = await chrome.storage.sync.get({
+        // 버그 수정 관련 (모두 제거됨)
+        
         // 오디오 설정
         volumeBoost: 100,
         enableCompressor: false,
@@ -92,7 +99,7 @@ class PopupManager {
       
       this.settings = result;
     } catch (error) {
-      this.showStatus(chrome.i18n.getMessage('settingsLoadFailed'), 'error');
+      this.showStatus(this.t('settingsLoadFailed'), 'error');
     }
   }
 
@@ -249,7 +256,7 @@ class PopupManager {
       } else if (value > 10) {
         panDisplay.textContent = `R${value}%`;
       } else {
-        panDisplay.textContent = 'Center';
+        panDisplay.textContent = this.t('center');
       }
     }
 
@@ -257,6 +264,31 @@ class PopupManager {
     this.updateControlVisibility();
   }
   
+  updatePlaceholders() {
+    // data-i18n-placeholder 속성을 가진 모든 요소 업데이트
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+      const key = element.getAttribute('data-i18n-placeholder');
+      const translation = this.t(key);
+      element.placeholder = translation;
+    });
+  }
+  
+  updateSelectOptions() {
+    // data-i18n 속성을 가진 option 요소들 업데이트
+    document.querySelectorAll('option[data-i18n]').forEach(option => {
+      const key = option.getAttribute('data-i18n');
+      const translation = this.t(key);
+      option.textContent = translation;
+    });
+    
+    // span[data-i18n] 요소들도 업데이트 (기본값 표시용)
+    document.querySelectorAll('span[data-i18n]').forEach(span => {
+      const key = span.getAttribute('data-i18n');
+      const translation = this.t(key);
+      span.textContent = translation;
+    });
+  }
+
   updateControlVisibility() {
     // 오디오 컴프레서 컨트롤 표시/숨김
     const compressorToggle = document.querySelector('[data-setting="enableCompressor"]');
@@ -312,9 +344,9 @@ class PopupManager {
     try {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       if (!tab.url.includes('youtube.com')) {
-        this.showStatus(chrome.i18n.getMessage('extensionYouTubeOnly'), 'error');
+        this.showStatus(this.t('extensionYouTubeOnly'), 'error');
       } else {
-        this.showStatus(chrome.i18n.getMessage('extensionActivated'), 'success');
+        this.showStatus(this.t('extensionActivated'), 'success');
       }
     } catch (error) {
     }
@@ -343,7 +375,7 @@ class PopupManager {
     
     // 소형 플레이어 버튼은 기본 메시지 사용 (다국어 지원)
     
-    this.showStatus(`${this.getSettingDisplayName(setting)} ${newValue ? chrome.i18n.getMessage('enabledOn') : chrome.i18n.getMessage('disabledOn')}`, 'success');
+    this.showStatus(`${this.getSettingDisplayName(setting)} ${newValue ? this.t('enabledOn') : this.t('disabledOn')}`, 'success');
   }
 
   async handleSelectChange(select) {
@@ -360,7 +392,7 @@ class PopupManager {
     // 코덱 설정은 사용자 친화적 이름으로 표시
     let displayValue = newValue;
 
-    this.showStatus(`${this.getSettingDisplayName(setting)} ${chrome.i18n.getMessage('changed')}: ${displayValue}`, 'success');
+    this.showStatus(`${this.getSettingDisplayName(setting)} ${this.t('changed')}: ${displayValue}`, 'success');
   }
 
   // 슬라이더 최종 값 저장 및 알림 (디바운싱 적용)
@@ -385,7 +417,7 @@ class PopupManager {
       // 오디오 설정은 적용 피드백 (디바운싱 적용)
       if (['volumeBoost', 'stereoPan', 'compressorRatio'].includes(setting)) {
         this.showStatusDebounced(
-          `${this.getSettingDisplayName(setting)} ${chrome.i18n.getMessage('adjusted')}`,
+          `${this.getSettingDisplayName(setting)} ${this.t('adjusted')}`,
           'success'
         );
       }
@@ -432,26 +464,31 @@ class PopupManager {
         });
       }
     } catch (error) {
-      this.showStatus(chrome.i18n.getMessage('settingSaveFailed'), 'error');
+      this.showStatus(this.t('settingSaveFailed'), 'error');
     }
   }
 
   getSettingDisplayName(setting) {
     const displayNames = {
+      // 버그 수정 (모두 제거됨)
+      
       // 오디오
-      enableCompressor: chrome.i18n.getMessage('audioCompressorName'),
-      enableStereoPan: chrome.i18n.getMessage('stereoPanningName'),
+      enableCompressor: this.t('audioCompressorName'), // 전 volumeBoost
+      enableStereoPan: this.t('stereoPanningName'), // 전 stereoPan
+      
       
       // 팝업/플로팅 재생기
-      popupPlayer: chrome.i18n.getMessage('floatingPlayerName'),
-      miniPlayerSize: chrome.i18n.getMessage('floatingPlayerSizeName'),
-      miniPlayerPosition: chrome.i18n.getMessage('floatingPlayerPositionName'),
-      enablePIP: chrome.i18n.getMessage('pipModeName'),
-      enableSmallPlayerButton: chrome.i18n.getMessage('smallPlayerButton'),
+      popupPlayer: this.t('floatingPlayerName'),
+      miniPlayerSize: this.t('floatingPlayerSizeName'),
+      miniPlayerPosition: this.t('floatingPlayerPositionName'),
+      enablePIP: this.t('pipModeName'),
+      enableSmallPlayerButton: this.t('smallPlayerButton'),
       
       // 슬라이더 설정
-      volumeBoost: chrome.i18n.getMessage('audioCompressorName'),
-      stereoPan: chrome.i18n.getMessage('stereoPanningName'),
+      volumeBoost: this.t('audioCompressorName'),
+      stereoPan: this.t('stereoPanningName'),
+      
+      // 고급 설정 (디버그 모드 제거)
     };
     
     return displayNames[setting] || setting;
@@ -562,9 +599,9 @@ class PopupManager {
       a.click();
       
       URL.revokeObjectURL(url);
-      this.showStatus(chrome.i18n.getMessage('settingsExported'), 'success');
+      this.showStatus(this.t('settingsExported'), 'success');
     } catch (error) {
-      this.showStatus(chrome.i18n.getMessage('settingsExportFailed'), 'error');
+      this.showStatus(this.t('settingsExportFailed'), 'error');
     }
   }
 
@@ -584,9 +621,9 @@ class PopupManager {
       this.settings = settings;
       this.setupUI();
       
-      this.showStatus(chrome.i18n.getMessage('settingsImported'), 'success');
+      this.showStatus(this.t('settingsImported'), 'success');
     } catch (error) {
-      this.showStatus(chrome.i18n.getMessage('settingsImportFailed'), 'error');
+      this.showStatus(this.t('settingsImportFailed'), 'error');
     }
   }
 
@@ -596,7 +633,7 @@ class PopupManager {
         await chrome.storage.sync.clear();
         window.location.reload();
       } catch (error) {
-        this.showStatus(chrome.i18n.getMessage('settingsResetFailed'), 'error');
+        this.showStatus(this.t('settingsResetFailed'), 'error');
       }
     }
   }
