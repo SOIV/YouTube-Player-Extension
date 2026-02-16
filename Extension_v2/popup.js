@@ -300,14 +300,14 @@ class PopupManager {
     const compressorToggle = document.querySelector('[data-setting="enableCompressor"]');
     const compressorControls = document.getElementById('compressorControls');
     if (compressorToggle && compressorControls) {
-      compressorControls.style.display = compressorToggle.classList.contains('active') ? 'block' : 'none';
+      compressorControls.classList.toggle('is-hidden', !compressorToggle.classList.contains('active'));
     }
 
     // 스테레오 패닝 컨트롤 표시/숨김
     const panToggle = document.querySelector('[data-setting="enableStereoPan"]');
     const panControls = document.getElementById('panControls');
     if (panToggle && panControls) {
-      panControls.style.display = panToggle.classList.contains('active') ? 'block' : 'none';
+      panControls.classList.toggle('is-hidden', !panToggle.classList.contains('active'));
     }
 
     const miniPlayerToggle = document.querySelector('[data-setting="popupPlayer"]');
@@ -315,7 +315,7 @@ class PopupManager {
     
     if (miniPlayerToggle && floatingPlayerSubSettings) {
       const isActive = miniPlayerToggle.classList.contains('active');
-      floatingPlayerSubSettings.style.display = isActive ? 'block' : 'none';
+      floatingPlayerSubSettings.classList.toggle('is-hidden', !isActive);
     }
 
 
@@ -326,12 +326,8 @@ class PopupManager {
     if (autoCodecToggle && codecControl) {
       const isActive = autoCodecToggle.classList.contains('active');
       
-      // 비활성화 상태 설정
       codecControl.disabled = !isActive;
-      
-      // 시각적 스타일 적용
-      codecControl.style.opacity = isActive ? '1' : '0.5';
-      codecControl.style.cursor = isActive ? 'pointer' : 'not-allowed';
+      codecControl.classList.toggle('is-disabled-control', !isActive);
     }
   }
 

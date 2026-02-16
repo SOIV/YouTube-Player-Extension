@@ -120,7 +120,6 @@ class PIPButtonController {
       const nativePIPButton = document.querySelector('.ytp-pip-button');
 
       if (nativePIPButton) {
-        // 기본 PIP 버튼을 보이게 만들기
         nativePIPButton.style.display = '';
         nativePIPButton.style.visibility = 'visible';
         nativePIPButton.style.opacity = '1';
@@ -258,12 +257,10 @@ class PIPButtonController {
 
     if (document.pictureInPictureElement) {
       pipButton.classList.add('active');
-      pipButton.style.backgroundColor = 'rgba(255,255,255,0.2)';
       pipButton.setAttribute('data-title-no-tooltip', this.t('pipMode'));
       pipButton.setAttribute('data-tooltip-title', this.t('pipMode'));
     } else {
       pipButton.classList.remove('active');
-      pipButton.style.backgroundColor = '';
       pipButton.setAttribute('data-title-no-tooltip', this.t('pipMode'));
       pipButton.setAttribute('data-tooltip-title', this.t('pipMode'));
     }

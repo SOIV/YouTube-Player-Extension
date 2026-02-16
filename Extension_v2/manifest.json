@@ -30,7 +30,10 @@
         "scripts/features/player-control/floating-player.js",
         "content.js"
       ],
-      "css": ["styles.css"],
+      "css": [
+        "styles/content/enhancer.css",
+        "styles/content/bugfix.css"
+      ],
       "run_at": "document_start"
     }
   ],

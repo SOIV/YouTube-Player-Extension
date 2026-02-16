@@ -1,0 +1,263 @@
+/* YouTube Bug Fixer - Custom Styles */
+
+/* 광고 요소 숨기기 */
+.ytbf-hide-ads .video-ads,
+.ytbf-hide-ads .ytp-ad-module,
+.ytbf-hide-ads .ytp-ad-overlay-container,
+.ytbf-hide-ads #player-ads,
+.ytbf-hide-ads .ad-container,
+.ytbf-hide-ads [class*="ad-"],
+.ytbf-hide-ads ytd-promoted-sparkles-web-renderer,
+.ytbf-hide-ads ytd-ad-slot-renderer,
+.ytbf-hide-ads ytd-in-feed-ad-layout-renderer,
+.ytbf-hide-ads ytd-banner-promo-renderer,
+.ytbf-hide-ads #masthead-ad,
+.ytbf-hide-ads ytd-promoted-video-renderer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 댓글 섹션 숨기기 */
+.ytbf-hide-comments #comments,
+.ytbf-hide-comments ytd-comments,
+.ytbf-hide-comments #comment-teaser,
+.ytbf-hide-comments ytd-comment-thread-renderer {
+  display: none !important;
+}
+
+/* 추천 영상 숨기기 */
+.ytbf-hide-recommendations #related,
+.ytbf-hide-recommendations #secondary,
+.ytbf-hide-recommendations ytd-watch-next-secondary-results-renderer,
+.ytbf-hide-recommendations #items.ytd-watch-next-secondary-results-renderer,
+.ytbf-hide-recommendations ytd-compact-video-renderer,
+.ytbf-hide-recommendations ytd-shelf-renderer {
+  display: none !important;
+}
+
+/* 추천 영상 숨김 시 메인 콘텐츠 확장 */
+.ytbf-hide-recommendations ytd-watch-flexy[theater] #primary.ytd-watch-flexy {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.ytbf-hide-recommendations ytd-watch-flexy:not([theater]) #primary.ytd-watch-flexy {
+  max-width: calc(100% - 40px) !important;
+  width: calc(100% - 40px) !important;
+}
+
+/* 커스텀 재생속도 메뉴 스타일링 */
+.ytbf-custom-speed-item {
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.ytbf-custom-speed-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ytbf-custom-speed-item.selected {
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
+}
+
+/* 광고 건너뛰기 버튼 강조 */
+.ytbf-skip-highlight .ytp-ad-skip-button,
+.ytbf-skip-highlight .ytp-skip-ad-button {
+  background-color: #ff4444 !important;
+  color: white !important;
+  border: 2px solid #ff6666 !important;
+  font-weight: bold !important;
+  animation: ytbf-pulse 1s infinite;
+}
+
+@keyframes ytbf-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* 플레이어 개선 사항 */
+.ytbf-enhanced-player .ytp-chrome-bottom {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%) !important;
+}
+
+.ytbf-enhanced-player .ytp-progress-bar {
+  height: 4px !important;
+}
+
+.ytbf-enhanced-player .ytp-progress-bar:hover {
+  height: 6px !important;
+}
+
+/* 시어터 모드 개선 */
+.ytbf-enhanced-theater.theater-mode #page-manager {
+  margin-top: 0 !important;
+}
+
+.ytbf-enhanced-theater.theater-mode ytd-masthead {
+  position: relative !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* 볼륨 슬라이더 개선 */
+.ytbf-enhanced-volume .ytp-volume-slider {
+  width: 60px !important;
+}
+
+.ytbf-enhanced-volume .ytp-volume-panel:hover .ytp-volume-slider {
+  width: 80px !important;
+  transition: width 0.2s ease;
+}
+
+/* 설명 자동 확장 애니메이션 */
+.ytbf-auto-expand #meta-contents #description {
+  max-height: none !important;
+  transition: max-height 0.3s ease;
+}
+
+/* 로딩 상태 표시 */
+.ytbf-loading {
+  position: relative;
+}
+
+.ytbf-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #ccc;
+  border-top: 2px solid #ff0000;
+  border-radius: 50%;
+  animation: ytbf-spin 1s linear infinite;
+}
+
+@keyframes ytbf-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 오류 상태 표시 */
+.ytbf-error {
+  border: 2px solid #ff4444 !important;
+  background-color: rgba(255, 68, 68, 0.1) !important;
+}
+
+/* 성공 상태 표시 */
+.ytbf-success {
+  border: 2px solid #44ff44 !important;
+  background-color: rgba(68, 255, 68, 0.1) !important;
+}
+
+/* 디버그 모드 오버레이 */
+.ytbf-debug-overlay {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 12px;
+  z-index: 9999;
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+.ytbf-debug-overlay h4 {
+  margin: 0 0 5px 0;
+  color: #ff6666;
+}
+
+.ytbf-debug-overlay .debug-item {
+  margin: 2px 0;
+  padding: 2px 0;
+  border-bottom: 1px solid #333;
+}
+
+.ytbf-debug-overlay .debug-label {
+  color: #66ccff;
+  font-weight: bold;
+}
+
+.ytbf-debug-overlay .debug-value {
+  color: #ffffff;
+}
+
+/* 접근성 개선 */
+.ytbf-high-contrast {
+  filter: contrast(1.2) !important;
+}
+
+.ytbf-focus-visible :focus {
+  outline: 3px solid #ff6666 !important;
+  outline-offset: 2px !important;
+}
+
+/* 미니플레이어 개선 */
+.ytbf-enhanced-miniplayer .ytp-miniplayer {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 전체화면 개선 */
+.ytbf-enhanced-fullscreen .ytp-fullscreen .ytp-chrome-bottom {
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%) !important;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .ytbf-hide-recommendations #secondary {
+    display: none !important;
+  }
+  
+  .ytbf-mobile-optimized #primary {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .ytbf-auto-dark .ytbf-debug-overlay {
+    background: rgba(40, 40, 40, 0.9);
+    border: 1px solid #555;
+  }
+}
+
+/* 애니메이션 비활성화 옵션 */
+.ytbf-reduce-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* 성능 최적화 */
+.ytbf-performance-mode .ytp-gradient-bottom,
+.ytbf-performance-mode .ytp-gradient-top {
+  display: none !important;
+}
+
+.ytbf-performance-mode .ytp-videowall-still {
+  display: none !important;
+}
+
+/* 커스텀 CSS 적용을 위한 컨테이너 */
+.ytbf-custom-styles {
+  /* 사용자 정의 CSS가 여기에 동적으로 추가됩니다 */
+}

@@ -14,6 +14,7 @@ class YouTubePlayerEnhancer {
     this.pipButtonController = null;
     this.smallPlayerButtonController = null;
     this.floatingPlayerController = null;
+    this.customThemeStyleId = 'ytpe-custom-theme';
     
     this.mainLoopInterval = null;
     
@@ -30,6 +31,8 @@ class YouTubePlayerEnhancer {
       this.setupMessageListener();
       
       await this.initFeatureModules();
+
+      this.applyCustomSettings(['customTheme', 'customScripts']);
       
       this.startMainLoop();
       
@@ -141,6 +144,54 @@ class YouTubePlayerEnhancer {
     
     if (this.floatingPlayerController) {
       this.floatingPlayerController.onSettingsChanged(changedKeys);
+    }
+
+    this.applyCustomSettings(changedKeys);
+  }
+
+  applyCustomSettings(changedKeys) {
+    if (changedKeys.includes('customTheme')) {
+      this.applyCustomTheme();
+    }
+
+    if (changedKeys.includes('customScripts')) {
+      this.executeCustomScript();
+    }
+  }
+
+  applyCustomTheme() {
+    const existing = document.getElementById(this.customThemeStyleId);
+    if (existing) {
+      existing.remove();
+    }
+
+    const customTheme = this.settingsManager.getSetting('customTheme', '');
+    if (!customTheme || !customTheme.trim()) {
+      return;
+    }
+
+    const style = document.createElement('style');
+    style.id = this.customThemeStyleId;
+    style.textContent = customTheme;
+    (document.head || document.documentElement).appendChild(style);
+  }
+
+  executeCustomScript() {
+    const customScripts = this.settingsManager.getSetting('customScripts', '');
+    if (!customScripts || !customScripts.trim()) {
+      return;
+    }
+
+    try {
+      const runCustomScript = new Function('player', 'settings', customScripts);
+      runCustomScript(
+        this.domCache.get('player'),
+        this.settingsManager.settings
+      );
+    } catch (error) {
+      if (this.settingsManager.getSetting('debugMode')) {
+        console.error('Custom script execution failed:', error);
+      }
     }
   }
 
