@@ -2,14 +2,8 @@
   "appName": {
     "message": "YouTube™ Player Extension"
   },
-  "appDescriptionmf": {
-    "message": "유튜브에서 다양한 기능을 제공하는 확장 프로그램"
-  },
   "appDescription": {
-    "message": "고급 플레이어 기능 및 버그 수정"
-  },
-  "playerSettings": {
-    "message": "📺 플레이어 설정"
+    "message": "유튜브에서 다양한 기능을 제공하는 확장 프로그램"
   },
   "audioControl": {
     "message": "🎵 오디오 제어"
@@ -50,9 +44,6 @@
   "smallPlayerButtonDesc": {
     "message": "YouTube 우클릭 메뉴의 소형 플레이어 기능을 버튼으로 추가"
   },
-  "floatingPlayer": {
-    "message": "플로팅 플레이어"
-  },
   "floatingPlayerLabel": {
     "message": "플로팅 플레이어"
   },
@@ -65,32 +56,20 @@
   "floatingPlayerDescription": {
     "message": "스크롤 시 작은 플레이어로 계속 시청"
   },
-  "floatingPlayerSize": {
-    "message": "플로팅 플레이어 크기"
-  },
   "floatingPlayerSizeLabel": {
     "message": "플로팅 플레이어 크기"
   },
   "floatingPlayerSizeName": {
     "message": "플로팅 플레이어 크기"
   },
-  "floatingPlayerSizeDesc": {
-    "message": "플로팅 플레이어의 크기를 선택"
-  },
   "floatingPlayerSizeDescription": {
     "message": "플로팅 플레이어의 크기를 선택"
-  },
-  "floatingPlayerPosition": {
-    "message": "플로팅 플레이어 위치"
   },
   "floatingPlayerPositionLabel": {
     "message": "플로팅 플레이어 위치"
   },
   "floatingPlayerPositionName": {
     "message": "플로팅 플레이어 위치"
-  },
-  "floatingPlayerPositionDesc": {
-    "message": "플로팅 플레이어가 나타날 화면 위치"
   },
   "floatingPlayerPositionDescription": {
     "message": "플로팅 플레이어가 나타날 화면 위치"
@@ -107,17 +86,17 @@
   "bottomRight": {
     "message": "오른쪽 하단"
   },
-  "bugFixes": {
-    "message": "🔧 버그 수정"
-  },
-  "noBugFixes": {
-    "message": "현재 추가된 버그 수정 기능이 없습니다."
-  },
-  "youtubeWorking": {
-    "message": "YouTube에서 대부분의 기능들이 정상 작동하고 있습니다."
-  },
   "advancedSettings": {
     "message": "🛠️ 고급 설정"
+  },
+  "customSettings": {
+    "message": "커스텀 설정"
+  },
+  "debugMode": {
+    "message": "디버그 모드"
+  },
+  "debugModeDesc": {
+    "message": "디버깅 로그 표시 활성화"
   },
   "customTheme": {
     "message": "커스텀 테마 (CSS)"
@@ -158,12 +137,6 @@
   "about": {
     "message": "About / 정보"
   },
-  "backButton": {
-    "message": "뒤로"
-  },
-  "aboutInfo": {
-    "message": "YouTube™ Player Extension 정보"
-  },
   "appDescriptionLong": {
     "message": "YouTube의 플레이어 기능을 향상시키고\n실용적인 오디오 제어 기능을 제공하는 확장 프로그램"
   },
@@ -177,19 +150,37 @@
     "message": "스테레오 패닝 - 좌우 음향 균형 조정 (L/R)"
   },
   "pipFeature": {
-    "message": "PIP(Picture-in-Picture) - 작은 창으로 비디오 시청"
+    "message": "PIP(Picture-in-Picture) 버튼 - 작은 창으로 비디오 시청"
+  },
+  "smallPlayerButtonFeature": {
+    "message": "소형 플레이어 버튼 - YouTube 소형 플레이어를 버튼으로 빠르게 실행"
   },
   "floatingPlayerFeature": {
     "message": "플로팅 플레이어 - 스크롤 시 작은 플레이어로 계속 시청"
   },
-  "codecSelectionFeature": {
-    "message": "비디오 코덱 선택 - H.264, VP9, AV1 중 선택"
+  "debugModeFeature": {
+    "message": "디버그 모드 - 문제 분석용 로그 출력 제어"
+  },
+  "customSettingsFeature": {
+    "message": "커스텀 설정 - 사용자 CSS/JavaScript 적용"
   },
   "developmentBackground": {
     "message": "개발 배경"
   },
   "developmentText": {
     "message": "기존의 복잡한 YouTube 확장 프로그램들과 달리, 정말 필요한 기능만 엄선하여 성능과 안정성에 중점을 둔 설계입니다."
+  },
+  "madeBy": {
+    "message": "Made by SOIV Studio"
+  },
+  "youtubeTrademark": {
+    "message": "YouTube는 Google LLC의 상표입니다"
+  },
+  "disclaimer": {
+    "message": "이 확장 프로그램은 YouTube와 공식적인 관련이 없습니다"
+  },
+  "relatedLinks": {
+    "message": "관련 링크"
   },
   "technicalInfo": {
     "message": "기술 정보"
@@ -203,23 +194,8 @@
   "webAudioAPI": {
     "message": "Web Audio API - 고품질 오디오 처리"
   },
-  "memoryOptimized": {
-    "message": "메모리 최적화 - 사용하지 않는 기능은 로드하지 않음"
-  },
   "youtubeCompatibility": {
     "message": "YouTube 호환성 - YouTube 업데이트에 대응하는 안정적인 구조"
-  },
-  "auto": {
-    "message": "자동"
-  },
-  "compatibility": {
-    "message": "호환성"
-  },
-  "efficiency": {
-    "message": "효율성"
-  },
-  "latest": {
-    "message": "최신"
   },
   "enabledOn": {
     "message": "활성화됨"
@@ -236,32 +212,14 @@
   "center": {
     "message": "Center"
   },
-  "defaultSize": {
-    "message": "기본값"
-  },
-  "autoOption": {
-    "message": "자동"
-  },
   "extensionYouTubeOnly": {
     "message": "이 확장 프로그램은 YouTube에서만 작동합니다."
   },
   "extensionActivated": {
     "message": "YouTube에서 확장 프로그램이 활성화되었습니다."
   },
-  "madeBy": {
-    "message": "Made by SOIV Studio"
-  },
-  "youtubeTrademark": {
-    "message": "YouTube는 Google LLC의 상표입니다"
-  },
-  "disclaimer": {
-    "message": "이 확장 프로그램은 YouTube와 공식적인 관련이 없습니다"
-  },
-  "version": {
-    "message": "Version 1.0.8"
-  },
   "footerText": {
-    "message": "YouTube™ Player Extension v1.0.8"
+    "message": "YouTube™ Player Extension v2.0.0"
   },
   "customThemePlaceholder": {
     "message": "/* 커스텀 CSS 코드를 입력하세요 */\n.ytp-chrome-bottom { \n  background: rgba(0,0,0,0.8) !important; \n}"

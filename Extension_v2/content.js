@@ -54,6 +54,12 @@ class YouTubePlayerEnhancer {
 
   setupMessageListener() {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      if (message.action === 'settingChanged' && message.key !== undefined) {
+        this.settingsManager.settings[message.key] = message.value;
+        this.notifyModulesOfSettingsChange([message.key]);
+        sendResponse({ success: true });
+      }
+
       if (message.action === 'settingsChanged') {
         
         Object.keys(message.changes).forEach(key => {

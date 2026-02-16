@@ -10,381 +10,123 @@
     }
 
     body {
-      width: 405px;
-      min-height: 510px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 760px;
+      min-height: 500px;
       margin: 0;
       padding: 0;
-      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f3f5f7;
+      color: #1f2933;
     }
 
     .header {
-      background: linear-gradient(135deg, #ff0000, #cc0000);
-      color: white;
-      padding: 15px;
-      text-align: center;
+      background: linear-gradient(135deg, #ff1f1f, #cc0000);
+      color: #fff;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       position: relative;
-      z-index: 10001;
-      overflow: hidden;
+      z-index: 20;
     }
 
     .header h1 {
       margin: 0;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    .header p {
-      margin: 5px 0 0 0;
+    .layout {
+      display: flex;
+      min-height: 440px;
+      max-height: 440px;
+    }
+
+    .sidebar {
+      width: 190px;
+      background: #12151b;
+      padding: 12px;
+      border-right: 1px solid #202632;
+    }
+
+    .tab-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tab-button {
+      width: 100%;
+      border: 1px solid #2b3443;
+      background: #181e27;
+      color: #e9eef5;
+      border-radius: 10px;
+      text-align: left;
+      padding: 10px 12px;
       font-size: 12px;
-      opacity: 0.9;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-button:hover {
+      border-color: #3f4d63;
+      background: #1f2732;
+    }
+
+    .tab-button.active {
+      border-color: #ff8a8a;
+      background: linear-gradient(135deg, #ff3a3a, #d70000);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(202, 16, 16, 0.32);
     }
 
     .content {
-      padding: 20px;
-      max-height: 400px;
+      flex: 1;
+      padding: 16px 18px;
       overflow-y: auto;
     }
 
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
     .section {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      border: 1px solid #e1e7ef;
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px 12px 4px;
     }
 
     .section-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #333;
+      font-size: 13px;
+      font-weight: 700;
+      color: #202b38;
       margin-bottom: 10px;
-      padding-bottom: 5px;
-      border-bottom: 2px solid #e9ecef;
       display: flex;
       align-items: center;
-      gap: 5px;
-    }
-
-    .option {
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 8px 0;
-      border-bottom: 1px solid #e9ecef;
+      gap: 6px;
+      border-bottom: 1px solid #edf1f6;
+      padding-bottom: 8px;
     }
 
-    .option:last-child {
-      border-bottom: none;
-    }
-
-    .option-label {
-      font-size: 13px;
-      color: #495057;
-      flex: 1;
-    }
-
-    .option-description {
-      font-size: 11px;
-      color: #6c757d;
-      margin-top: 2px;
-    }
-
-    .control-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .toggle {
-      position: relative;
-      width: 40px;
-      height: 20px;
-      background: #ccc;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .toggle.active {
-      background: #ff0000;
-    }
-
-    .toggle::after {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 16px;
-      height: 16px;
-      background: white;
-      border-radius: 50%;
-      transition: left 0.3s;
-    }
-
-    .toggle.active::after {
-      left: 22px;
-    }
-
-    .slider {
-      width: 80px;
-      height: 4px;
-      border-radius: 2px;
-      background: #ddd;
-      outline: none;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-    }
-
-    .slider:hover {
-      opacity: 1;
-    }
-
-    .slider::-webkit-slider-thumb {
-      appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #ff0000;
-      cursor: pointer;
-    }
-
-    .slider::-moz-range-thumb {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #ff0000;
-      cursor: pointer;
-      border: none;
-    }
-
-    .slider-value {
-      font-size: 11px;
-      color: #666;
-      min-width: 35px;
-      text-align: center;
-    }
-
-    select {
-      padding: 4px 6px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 12px;
-      background: white;
-      min-width: 80px;
-      transition: opacity 0.2s, background-color 0.2s;
-    }
-
-    select:disabled {
-      opacity: 0.5;
-      background: #f5f5f5;
-      color: #999;
-      cursor: not-allowed;
-    }
-
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .multi-select {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-
-    .speed-tag {
-      background: #e9ecef;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      padding: 2px 8px;
-      font-size: 11px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .speed-tag.active {
-      background: #ff0000;
-      color: white;
-      border-color: #cc0000;
-    }
-
-    .audio-controls {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .status {
-      padding: 8px;
-      margin-top: 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    .status.success {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-
-    .status.error {
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
-
-    .info-message {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px;
-      background: #e7f3ff;
-      border: 1px solid #b8daff;
-      border-radius: 8px;
-      margin: 10px 0;
-    }
-
-    .info-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .info-text {
-      font-size: 13px;
-      color: #0c5460;
-      line-height: 1.4;
-    }
-
-    .footer {
-      padding: 10px 20px;
-      background: #e9ecef;
-      border-top: 1px solid #dee2e6;
-      font-size: 11px;
-      color: #6c757d;
-      text-align: center;
-    }
-
-
-
-    .code-editor {
-      width: 100%;
-      min-height: 80px;
-      font-family: 'Courier New', monospace;
-      font-size: 11px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 8px;
-      resize: vertical;
-    }
-
-    .button-group {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .btn {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 11px;
-      cursor: pointer;
-      flex: 1;
-    }
-
-    .btn:hover {
-      background: #0056b3;
-    }
-
-    .btn.danger {
-      background: #dc3545;
-    }
-
-    .btn.danger:hover {
-      background: #c82333;
-    }
-
-    /* 토스트 알림 스타일 */
-    .toast-notification {
-      position: fixed;
-      top: 15px; /* 헤더 위쪽 시작점 */
-      left: 50%;
-      transform: translateX(-50%);
-      background: #28a745;
-      color: white;
-      padding: 14px 20px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      z-index: 10000;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      width: 320px;
-      text-align: center;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      opacity: 0;
-      clip-path: inset(100% 0 0 0); /* 헤더 위 부분 숨김 */
-      margin: 10px 0;
-    }
-
-    .toast-notification.error {
-      background: #dc3545;
-    }
-
-    .toast-notification.show {
-      top: 80px; /* 헤더 높이(65px) + 여백 15px */
-      opacity: 1;
-      clip-path: inset(0% 0 0 0); /* 전체 표시 */
-    }
-
-    .toast-notification.hide {
-      top: 15px;
-      opacity: 0;
-      clip-path: inset(100% 0 0 0); /* 다시 숨김 */
-    }
-
-    .visualizer {
-      width: 100%;
-      height: 40px;
-      background: #000;
-      border-radius: 4px;
-      margin-top: 8px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .visualizer canvas {
-      width: 100%;
-      height: 100%;
-    }
-
-
-    /* 접을 수 있는 섹션 스타일 */
     .section-title.collapsible {
       cursor: pointer;
       user-select: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background-color 0.2s;
-      padding: 5px 0;
-      border-radius: 3px;
-    }
-
-    .section-title.collapsible:hover {
-      background-color: rgba(0, 0, 0, 0.05);
     }
 
     .collapse-icon {
-      font-size: 12px;
-      transition: transform 0.3s ease;
-      margin-left: 10px;
-      color: #666;
-      font-weight: bold;
       display: inline-block;
-      min-width: 12px;
-      text-align: center;
+      font-size: 12px;
+      color: #637487;
+      transition: transform 0.2s ease;
     }
 
     .section-title.collapsible.collapsed .collapse-icon {
@@ -394,205 +136,594 @@
     .collapsible-content {
       max-height: 1000px;
       overflow: hidden;
-      transition: max-height 0.3s ease;
+      transition: max-height 0.25s ease;
     }
 
     .collapsible-content.collapsed {
       max-height: 0;
     }
+
+    .option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #edf1f6;
+    }
+
+    .option:last-child {
+      border-bottom: 0;
+    }
+
+    .option-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2d3a49;
+    }
+
+    .option-description {
+      margin-top: 2px;
+      font-size: 11px;
+      color: #687a8f;
+      line-height: 1.4;
+    }
+
+    .toggle {
+      position: relative;
+      flex: 0 0 auto;
+      width: 42px;
+      height: 22px;
+      border-radius: 999px;
+      background: #c4cedb;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      transition: left 0.2s ease;
+    }
+
+    .toggle.active {
+      background: #ff1f1f;
+    }
+
+    .toggle.active::after {
+      left: 22px;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .slider-row span {
+      font-size: 11px;
+      color: #687a8f;
+      min-width: 28px;
+      text-align: center;
+    }
+
+    .slider {
+      flex: 1;
+      height: 4px;
+      border-radius: 999px;
+      background: #dae2ec;
+      outline: 0;
+      appearance: none;
+    }
+
+    .slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #e11616;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #e11616;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .slider-value {
+      min-width: 54px;
+      font-size: 11px;
+      color: #4f6072;
+      text-align: right;
+    }
+
+    select {
+      min-width: 110px;
+      border: 1px solid #d4deea;
+      border-radius: 8px;
+      background: #fff;
+      color: #2d3a49;
+      padding: 6px 8px;
+      font-size: 12px;
+      transition: opacity 0.2s ease;
+    }
+
+    select:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .input-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #344253;
+    }
+
+    .advanced-box {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #e1e7ef;
+      border-radius: 8px;
+      background: #fbfdff;
+    }
+
+    .advanced-box .input-group {
+      margin-bottom: 0;
+    }
+
+    .code-editor {
+      width: 100%;
+      min-height: 88px;
+      border: 1px solid #d4deea;
+      border-radius: 8px;
+      padding: 8px;
+      resize: vertical;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      margin-bottom: 8px;
+    }
+
+    .settings-actions {
+      margin-top: 10px;
+      padding-top: 0;
+    }
+
+    .btn {
+      flex: 1;
+      border: 0;
+      border-radius: 8px;
+      padding: 7px 9px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #2c6bed;
+      color: #fff;
+    }
+
+    .btn.danger {
+      background: #d92c3d;
+    }
+
+    .info-message {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border: 1px solid #d5e4fa;
+      background: #edf5ff;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 8px 0 10px;
+    }
+
+    .info-icon {
+      font-size: 16px;
+    }
+
+    .info-text {
+      font-size: 12px;
+      color: #34556f;
+      line-height: 1.45;
+    }
+
+    .about-preview {
+      border: 1px dashed #cfdae8;
+      border-radius: 8px;
+      padding: 12px;
+      background: #f8fbff;
+      margin-top: 8px;
+    }
+
+    .about-preview p {
+      margin: 0;
+      font-size: 12px;
+      color: #5a6d82;
+      line-height: 1.45;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .about-card {
+      border: 1px solid #e1e7ef;
+      border-radius: 8px;
+      background: #fff;
+      padding: 10px;
+    }
+
+    .about-card h3 {
+      margin: 0 0 6px;
+      font-size: 12px;
+      color: #243345;
+    }
+
+    .about-card p,
+    .about-card li {
+      margin: 0;
+      font-size: 11px;
+      color: #5c6f85;
+      line-height: 1.45;
+    }
+
+    .about-card ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .sub-settings {
+      margin-left: 16px;
+      padding-left: 12px;
+      border-left: 2px solid #e1e7ef;
+    }
+
+    .sub-settings .option {
+      padding: 8px 0;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      color: #24292f;
+      text-decoration: none;
+    }
+
+    .github-icon {
+      width: 24px;
+      height: 24px;
+      fill: #24292f;
+      transition: fill 0.2s ease;
+    }
+
+    .github-link:hover .github-icon {
+      fill: #2c6bed;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-top: 1px solid #dce5ef;
+      background: #fff;
+      font-size: 11px;
+      color: #6b7f93;
+    }
+
+    .footer button {
+      border: 1px solid #ced8e4;
+      border-radius: 7px;
+      background: #fff;
+      color: #4c6177;
+      font-size: 11px;
+      padding: 5px 8px;
+      cursor: pointer;
+    }
+
+    .status {
+      display: none;
+    }
+
+    .toast-notification {
+      position: fixed;
+      left: 50%;
+      top: 0;
+      transform: translate(-50%, -120%);
+      min-width: 280px;
+      max-width: 360px;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      color: #fff;
+      background: #2ca84b;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      z-index: 10;
+      transition: all 0.25s ease;
+    }
+
+    .toast-notification.error {
+      background: #d92c3d;
+    }
+
+    .toast-notification.show {
+      transform: translate(-50%, 65px);
+      opacity: 1;
+    }
+
+    .toast-notification.hide {
+      transform: translate(-50%, -120%);
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
   <div class="header">
-    <h1 data-i18n="appName">🎮 YouTube™ Player Extension</h1>
-    <p data-i18n="appDescription">고급 플레이어 기능 및 버그 수정</p>
+    <h1 data-i18n="appName">YouTube™ Player Extension</h1>
   </div>
 
-  <div class="content">
-    <!-- 오디오 제어 섹션 -->
-    <div class="section">
-      <div class="section-title" data-i18n="audioControl">🎵 오디오 제어</div>
-      
-      <div class="option">
-        <div style="width: 100%;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+  <div class="layout">
+    <aside class="sidebar">
+      <ul class="tab-list" role="tablist" aria-label="Settings Categories">
+        <li><button class="tab-button" type="button" role="tab" data-tab="audio" aria-selected="false" data-i18n="audioControl">오디오 제어</button></li>
+        <li><button class="tab-button" type="button" role="tab" data-tab="player" aria-selected="false" data-i18n="pipMiniPlayer">플레이어 제어</button></li>
+        <li><button class="tab-button" type="button" role="tab" data-tab="advanced" aria-selected="false" data-i18n="advancedSettings">고급 설정</button></li>
+        <li><button class="tab-button" type="button" role="tab" data-tab="about" aria-selected="false" data-i18n="about">About / 정보</button></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <section class="tab-panel" data-tab-panel="audio" role="tabpanel">
+        <div class="section">
+          <div class="section-title" data-i18n="audioControl">오디오 제어</div>
+
+          <div class="option">
+            <div style="width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+                <div>
+                  <div class="option-label" data-i18n="audioCompressor">오디오 컴프레서</div>
+                  <div class="option-description" data-i18n="audioCompressorDesc">볼륨 증폭 및 다이나믹 레인지 압축 (50% ~ 200%)</div>
+                </div>
+                <div class="toggle" data-setting="enableCompressor"></div>
+              </div>
+              <div id="compressorControls" style="display: none; margin-top: 8px;">
+                <div class="slider-row">
+                  <span>50%</span>
+                  <input type="range" class="slider" data-setting="volumeBoost" min="50" max="200" value="100">
+                  <span>200%</span>
+                  <span class="slider-value" id="volumeBoostValue">100%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="option">
+            <div style="width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+                <div>
+                  <div class="option-label" data-i18n="stereoPanning">스테레오 패닝 (L/R)</div>
+                  <div class="option-description" data-i18n="stereoPanningDesc">좌우 음향 균형 조정</div>
+                </div>
+                <div class="toggle" data-setting="enableStereoPan"></div>
+              </div>
+              <div id="panControls" style="display: none; margin-top: 8px;">
+                <div class="slider-row">
+                  <span>L</span>
+                  <input type="range" class="slider" data-setting="stereoPan" min="-100" max="100" value="0">
+                  <span>R</span>
+                  <span class="slider-value" id="stereoPanValue">Center</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="player" role="tabpanel">
+        <div class="section">
+          <div class="section-title" data-i18n="pipMiniPlayer">플레이어 제어 & 기능</div>
+
+          <div class="option">
             <div>
-              <div class="option-label" data-i18n="audioCompressor">오디오 컴프레서</div>
-              <div class="option-description" data-i18n="audioCompressorDesc">볼륨 증폭 및 다이나믹 레인지 압축 (50% ~ 200%)</div>
+              <div class="option-label" data-i18n="pipMode">Picture-in-Picture 모드</div>
+              <div class="option-description" data-i18n="pipModeDesc">비디오를 작은 창으로 띄워서 시청 (PIP 버튼 추가)</div>
             </div>
-            <div class="toggle" data-setting="enableCompressor"></div>
+            <div class="toggle" data-setting="enablePIP"></div>
           </div>
-          <div id="compressorControls" style="display: none;">
-            <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
-              <span style="font-size: 11px; color: #666; min-width: 30px;">50%</span>
-              <input type="range" class="slider" data-setting="volumeBoost" min="50" max="200" value="100" style="flex: 1;">
-              <span style="font-size: 11px; color: #666; min-width: 40px;">200%</span>
-              <span class="slider-value" id="volumeBoostValue" style="min-width: 50px; text-align: center;">100%</span>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="option">
-        <div style="width: 100%;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div class="option">
             <div>
-              <div class="option-label" data-i18n="stereoPanning">스테레오 패닝 (L/R)</div>
-              <div class="option-description" data-i18n="stereoPanningDesc">좌우 음향 균형 조정</div>
+              <div class="option-label" data-i18n="smallPlayerButton">소형 플레이어 버튼</div>
+              <div class="option-description" data-i18n="smallPlayerButtonDesc">YouTube 우클릭 메뉴의 소형 플레이어 기능을 버튼으로 추가</div>
             </div>
-            <div class="toggle" data-setting="enableStereoPan"></div>
+            <div class="toggle" data-setting="enableSmallPlayerButton"></div>
           </div>
-          <div id="panControls" style="display: none;">
-            <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
-              <span style="font-size: 11px; color: #666; min-width: 15px;">L</span>
-              <input type="range" class="slider" data-setting="stereoPan" min="-100" max="100" value="0" style="flex: 1;">
-              <span style="font-size: 11px; color: #666; min-width: 15px;">R</span>
-              <span class="slider-value" id="stereoPanValue" style="min-width: 50px; text-align: center;">Center</span>
+
+          <div class="option">
+            <div>
+              <div class="option-label" data-i18n="floatingPlayerLabel">플로팅 플레이어</div>
+              <div class="option-description" data-i18n="floatingPlayerDescription">스크롤 시 작은 플레이어로 계속 시청</div>
+            </div>
+            <div class="toggle" data-setting="popupPlayer"></div>
+          </div>
+
+          <div id="floatingPlayerSubSettings" class="sub-settings">
+            <div class="option">
+              <div>
+                <div class="option-label" data-i18n="floatingPlayerSizeLabel">플로팅 플레이어 크기</div>
+                <div class="option-description" data-i18n="floatingPlayerSizeDescription">플로팅 플레이어의 크기를 선택</div>
+              </div>
+              <select data-setting="miniPlayerSize">
+                <option value="256x144">256x144</option>
+                <option value="320x180">320x180</option>
+                <option value="400x225">400x225</option>
+                <option value="426x240">426x240</option>
+                <option value="480x270">480x270 (Default)</option>
+                <option value="560x315">560x315</option>
+                <option value="640x360">640x360</option>
+                <option value="720x405">720x405</option>
+                <option value="854x480">854x480</option>
+                <option value="960x540">960x540</option>
+              </select>
+            </div>
+
+            <div class="option">
+              <div>
+                <div class="option-label" data-i18n="floatingPlayerPositionLabel">플로팅 플레이어 위치</div>
+                <div class="option-description" data-i18n="floatingPlayerPositionDescription">플로팅 플레이어가 나타날 화면 위치</div>
+              </div>
+              <select data-setting="miniPlayerPosition">
+                <option value="top-left" data-i18n="topLeft">왼쪽 상단</option>
+                <option value="top-right" data-i18n="topRight">오른쪽 상단</option>
+                <option value="bottom-left" data-i18n="bottomLeft">왼쪽 하단</option>
+                <option value="bottom-right" data-i18n="bottomRight">오른쪽 하단</option>
+              </select>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
+      </section>
 
-    <!-- PIP & 미니플레이어 섹션 -->
-    <div class="section">
-      <div class="section-title" data-i18n="pipMiniPlayer">📱 플레이어 제어 & 기능</div>
+      <section class="tab-panel" data-tab-panel="advanced" role="tabpanel">
+        <div class="section">
+          <div class="section-title">
+            <span data-i18n="customSettings">커스텀 설정</span>
+          </div>
 
-      <!-- Picture-in-Picture -->
-      
-      <div class="option">
-        <div>
-          <div class="option-label" data-i18n="pipMode">Picture-in-Picture 모드</div>
-          <div class="option-description" data-i18n="pipModeDesc">비디오를 작은 창으로 띄워서 시청 (PIP 버튼 추가)</div>
-        </div>
-        <div class="toggle" data-setting="enablePIP"></div>
-      </div>
+          <div class="advanced-box">
+            <div class="input-group">
+              <label for="customTheme" data-i18n="customTheme">커스텀 테마 (CSS)</label>
+              <textarea
+                id="customTheme"
+                class="code-editor"
+                data-setting="customTheme"
+                data-i18n-placeholder="customThemePlaceholder"
+                placeholder="/* 커스텀 CSS 코드를 입력하세요 */"
+              ></textarea>
+            </div>
+          </div>
 
-      <div class="option">
-        <div>
-          <div class="option-label" data-i18n="smallPlayerButton">소형 플레이어 버튼</div>
-          <div class="option-description" data-i18n="smallPlayerButtonDesc">YouTube 우클릭 메뉴의 소형 플레이어 기능을 버튼으로 추가</div>
-        </div>
-        <div class="toggle" data-setting="enableSmallPlayerButton"></div>
-      </div>
-
-      <div class="option">
-        <div>
-          <div class="option-label" data-i18n="floatingPlayerLabel">플로팅 플레이어</div>
-          <div class="option-description" data-i18n="floatingPlayerDescription">스크롤 시 작은 플레이어로 계속 시청</div>
-        </div>
-        <div class="toggle" data-setting="popupPlayer"></div>
-      </div>
-
-      <div class="option">
-        <div>
-          <div class="option-label" data-i18n="floatingPlayerSizeLabel">플로팅 플레이어 크기</div>
-          <div class="option-description" data-i18n="floatingPlayerSizeDescription">플로팅 플레이어의 크기를 선택</div>
-        </div>
-        <select data-setting="miniPlayerSize">
-          <option value="256x144">256x144</option>
-          <option value="320x180">320x180</option>
-          <option value="400x225">400x225</option>
-          <option value="426x240">426x240</option>
-          <option value="480x270">480x270 (<span data-i18n="defaultSize">기본값</span>)</option>
-          <option value="560x315">560x315</option>
-          <option value="640x360">640x360</option>
-          <option value="720x405">720x405</option>
-          <option value="854x480">854x480</option>
-          <option value="960x540">960x540</option>
-        </select>
-      </div>
-
-      <div class="option">
-        <div>
-          <div class="option-label" data-i18n="floatingPlayerPositionLabel">플로팅 플레이어 위치</div>
-          <div class="option-description" data-i18n="floatingPlayerPositionDescription">플로팅 플레이어가 나타날 화면 위치</div>
-        </div>
-        <select data-setting="miniPlayerPosition">
-          <option value="top-left" data-i18n="topLeft">왼쪽 상단</option>
-          <option value="top-right" data-i18n="topRight">오른쪽 상단</option>
-          <option value="bottom-left" data-i18n="bottomLeft">왼쪽 하단</option>
-          <option value="bottom-right" data-i18n="bottomRight">오른쪽 하단</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- 버그 수정 섹션 -->
-    <div class="section">
-      <div class="section-title collapsible" id="bugFixesToggle">
-        <span data-i18n="bugFixes">🔧 버그 수정</span> 
-        <span class="collapse-icon">▼</span>
-      </div>
-      <div class="collapsible-content" id="bugFixesContent">
-        <div class="info-message">
-          <div class="info-icon">ℹ️</div>
-          <div class="info-text">
-            <span data-i18n="noBugFixes">현재 추가된 버그 수정 기능이 없습니다.</span><br>
-            <span data-i18n="youtubeWorking">YouTube에서 대부분의 기능들이 정상 작동하고 있습니다.</span>
+          <div class="advanced-box">
+            <div class="input-group">
+              <label for="customScripts" data-i18n="customScripts">커스텀 스크립트 (JavaScript)</label>
+              <textarea
+                id="customScripts"
+                class="code-editor"
+                data-setting="customScripts"
+                data-i18n-placeholder="customScriptsPlaceholder"
+                placeholder="// 커스텀 JavaScript 코드를 입력하세요"
+              ></textarea>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- 고급 설정 섹션 -->
-    <div class="section">
-      <div class="section-title collapsible collapsed" id="advancedToggle">
-        <span data-i18n="advancedSettings">🛠️ 고급 설정</span>
-        <span class="collapse-icon">▼</span>
-      </div>
-      <div class="collapsible-content collapsed" id="advancedContent">
-        
+        <div class="section">
+          <div class="section-title" id="advancedTitle">
+            <span data-i18n="advancedSettings">고급 설정</span>
+          </div>
+          <div class="collapsible-content" id="advancedContent">
+            <div class="option" style="margin-bottom: 12px;">
+              <div>
+                <div class="option-label" data-i18n="debugMode">디버그 모드</div>
+                <div class="option-description" data-i18n="debugModeDesc">디버깅 로그 표시 활성화</div>
+              </div>
+              <div class="toggle" data-setting="debugMode"></div>
+            </div>
 
-        <div class="input-group">
-          <label for="customTheme" style="font-size: 12px; font-weight: 600;" data-i18n="customTheme">커스텀 테마 (CSS)</label>
-          <textarea 
-            id="customTheme" 
-            class="code-editor" 
-            data-setting="customTheme"
-            data-i18n-placeholder="customThemePlaceholder"
-            placeholder="/* 커스텀 CSS 코드를 입력하세요 */
-.ytp-chrome-bottom { 
-  background: rgba(0,0,0,0.8) !important; 
-}"
-          ></textarea>
+            <div class="settings-actions">
+              <div class="button-group">
+                <button class="btn" id="exportBtn" data-i18n="exportSettings">설정 내보내기</button>
+                <button class="btn" id="importBtn" data-i18n="importSettings">설정 가져오기</button>
+                <button class="btn danger" id="resetBtn" data-i18n="resetSettings">초기화</button>
+              </div>
+            </div>
+            <input type="file" id="importFile" accept=".json" style="display: none;">
+          </div>
         </div>
+      </section>
 
-        <div class="input-group">
-          <label for="customScripts" style="font-size: 12px; font-weight: 600;" data-i18n="customScripts">커스텀 스크립트 (JavaScript)</label>
-          <textarea 
-            id="customScripts" 
-            class="code-editor" 
-            data-setting="customScripts"
-            data-i18n-placeholder="customScriptsPlaceholder"
-            placeholder="// 커스텀 JavaScript 코드를 입력하세요
-// 사용 가능한 변수: player, settings, audioContext"
-          ></textarea>
+      <section class="tab-panel" data-tab-panel="about" role="tabpanel">
+        <div class="about-preview">
+          <p data-i18n="appDescriptionLong">YouTube의 플레이어 기능을 향상시키고 실용적인 오디오 제어 기능을 제공하는 확장 프로그램</p>
         </div>
-
-        <div class="button-group">
-          <button class="btn" id="exportBtn" data-i18n="exportSettings">설정 내보내기</button>
-          <button class="btn" id="importBtn" data-i18n="importSettings">설정 가져오기</button>
-          <button class="btn danger" id="resetBtn" data-i18n="resetSettings">초기화</button>
+        <div class="about-grid">
+          <div class="about-card">
+            <h3 data-i18n="appFeatures">주요 기능</h3>
+            <ul>
+              <li data-i18n="audioCompressorFeature">오디오 컴프레서 - 볼륨 증폭 및 다이나믹 레인지 압축</li>
+              <li data-i18n="stereoPanningFeature">스테레오 패닝 - 좌우 음향 균형 조정</li>
+              <li data-i18n="pipFeature">PIP - 작은 창으로 비디오 시청</li>
+              <li data-i18n="smallPlayerButtonFeature">소형 플레이어 버튼 - YouTube 소형 플레이어를 버튼으로 빠르게 실행</li>
+              <li data-i18n="floatingPlayerFeature">플로팅 플레이어 - 스크롤 시 작은 플레이어 유지</li>
+              <li data-i18n="debugModeFeature">디버그 모드 - 문제 분석용 로그 출력 제어</li>
+              <li data-i18n="customSettingsFeature">커스텀 설정 - 사용자 CSS/JavaScript 적용</li>
+            </ul>
+          </div>
+          <div class="about-card">
+            <h3 data-i18n="technicalInfo">기술 정보</h3>
+            <ul>
+              <li data-i18n="manifestV3">Manifest V3 - 최신 크롬 확장 프로그램 표준</li>
+              <li data-i18n="modularDesign">모듈화 설계 - 기능별 분리된 JavaScript 모듈</li>
+              <li data-i18n="webAudioAPI">Web Audio API - 고품질 오디오 처리</li>
+              <li data-i18n="youtubeCompatibility">YouTube 호환성 - 업데이트 대응 구조</li>
+            </ul>
+          </div>
+          <div class="about-card">
+            <h3 data-i18n="developmentBackground">개발 배경</h3>
+            <p data-i18n="developmentText">기존의 복잡한 YouTube 확장 프로그램들과 달리 필요한 기능만 선별했습니다.</p>
+          </div>
+          <div class="about-card">
+            <p data-i18n="madeBy">Made by SOIV Studio</p>
+            <p data-i18n="youtubeTrademark">YouTube는 Google LLC의 상표입니다</p>
+            <p data-i18n="disclaimer">이 확장 프로그램은 YouTube와 공식적인 관련이 없습니다</p>
+          </div>
+          <div class="about-card">
+            <h3 data-i18n="relatedLinks">관련 링크</h3>
+            <p>
+              <a href="https://github.com/SOIV/YouTube-Player-Extension" target="_blank" class="github-link" aria-label="GitHub">
+                <svg class="github-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </a>
+            </p>
+          </div>
         </div>
+      </section>
 
-        <input type="file" id="importFile" accept=".json" style="display: none;">
-      </div>
-    </div>
-
-
-    <div id="status" class="status" style="display: none;"></div>
+      <div id="status" class="status"></div>
+    </main>
   </div>
 
   <div class="footer">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <span data-i18n="footerText">YouTube™ Player Extension v1.0.12</span>
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <button id="aboutBtn" style="background: none; border: 1px solid #6c757d; color: #6c757d; padding: 4px 8px; border-radius: 4px; font-size: 10px; cursor: pointer; transition: all 0.2s;">
-          About
-        </button>
-      </div>
-    </div>
+    <span data-i18n="footerText">YouTube™ Player Extension v1.0.12</span>
   </div>
 
   <script src="popup.js"></script>

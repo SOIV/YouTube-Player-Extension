@@ -13,6 +13,7 @@ class PopupManager {
   async init() {
     await this.loadSettings();
     this.setupUI();
+    this.setupTabs();
     this.setupEventListeners();
     this.updateSliderDisplays();
     this.updateTexts();
@@ -89,12 +90,7 @@ class PopupManager {
         // 고급 설정
         customScripts: '',
         customTheme: '',
-        
-        // UI 상태 (접기/펼치기)
-        collapsedSections: {
-          bugFixes: false,     // 버그 수정은 기본적으로 펼쳐진 상태
-          advanced: true       // 고급 설정은 기본적으로 접힌 상태
-        }
+        debugMode: false
       });
       
       this.settings = result;
@@ -135,9 +131,6 @@ class PopupManager {
         textarea.value = this.settings[setting];
       }
     });
-
-    // 접기/펼치기 상태 복원
-    this.restoreCollapsedStates();
 
     // 현재 탭 확인
     this.checkYouTubeTab();
@@ -187,11 +180,6 @@ class PopupManager {
       }
     });
 
-    // 고급 설정 토글
-    document.getElementById('advancedToggle')?.addEventListener('click', () => {
-      this.toggleCollapsible('advancedToggle', 'advancedContent');
-    });
-
     // 버튼 이벤트 리스너
     document.getElementById('exportBtn')?.addEventListener('click', () => {
       this.exportSettings();
@@ -210,19 +198,37 @@ class PopupManager {
       this.handleImport(event);
     });
 
-    // 버그 수정 섹션 접기/펼치기
-    document.getElementById('bugFixesToggle')?.addEventListener('click', () => {
-      this.toggleCollapsible('bugFixesToggle', 'bugFixesContent');
+  }
+
+  setupTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button[data-tab]');
+    const tabPanels = document.querySelectorAll('.tab-panel[data-tab-panel]');
+    if (!tabButtons.length || !tabPanels.length) {
+      return;
+    }
+
+    const activateTab = (tabId) => {
+      tabButtons.forEach((button) => {
+        const isActive = button.dataset.tab === tabId;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      tabPanels.forEach((panel) => {
+        const isActive = panel.dataset.tabPanel === tabId;
+        panel.classList.toggle('active', isActive);
+      });
+    };
+
+    this.activateTab = activateTab;
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activateTab(button.dataset.tab);
+      });
     });
 
-    // About 버튼 클릭
-    document.getElementById('aboutBtn')?.addEventListener('click', () => {
-      try {
-        window.location.replace('about.html');
-      } catch (e) {
-        window.location.href = 'about.html';
-      }
-    });
+    this.activateTab(tabButtons[0].dataset.tab);
   }
 
   // 슬라이더 실시간 UI 업데이트 (디바운싱 없음)
@@ -304,23 +310,12 @@ class PopupManager {
       panControls.style.display = panToggle.classList.contains('active') ? 'block' : 'none';
     }
 
-    // 미니플레이어 컨트롤 활성화/비활성화
     const miniPlayerToggle = document.querySelector('[data-setting="popupPlayer"]');
-    const miniPlayerSizeControl = document.querySelector('[data-setting="miniPlayerSize"]');
-    const miniPlayerPositionControl = document.querySelector('[data-setting="miniPlayerPosition"]');
+    const floatingPlayerSubSettings = document.getElementById('floatingPlayerSubSettings');
     
-    if (miniPlayerToggle && miniPlayerSizeControl && miniPlayerPositionControl) {
+    if (miniPlayerToggle && floatingPlayerSubSettings) {
       const isActive = miniPlayerToggle.classList.contains('active');
-      
-      // 비활성화 상태 설정
-      miniPlayerSizeControl.disabled = !isActive;
-      miniPlayerPositionControl.disabled = !isActive;
-      
-      // 시각적 스타일 적용
-      miniPlayerSizeControl.style.opacity = isActive ? '1' : '0.5';
-      miniPlayerPositionControl.style.opacity = isActive ? '1' : '0.5';
-      miniPlayerSizeControl.style.cursor = isActive ? 'pointer' : 'not-allowed';
-      miniPlayerPositionControl.style.cursor = isActive ? 'pointer' : 'not-allowed';
+      floatingPlayerSubSettings.style.display = isActive ? 'block' : 'none';
     }
 
 
@@ -454,11 +449,22 @@ class PopupManager {
       
       // 활성 탭에 변경사항 알림
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-      if (tab.url.includes('youtube.com')) {
+      if (tab && tab.url && tab.url.includes('youtube.com')) {
+        chrome.tabs.sendMessage(tab.id, {
+          action: 'settingsChanged',
+          changes: {
+            [key]: {
+              newValue: value
+            }
+          }
+        }).catch(() => {
+          // 메시지 전송 실패는 무시
+        });
+
         chrome.tabs.sendMessage(tab.id, {
           action: 'settingChanged',
-          key: key,
-          value: value
+          key,
+          value
         }).catch(() => {
           // 메시지 전송 실패는 무시
         });
@@ -492,63 +498,6 @@ class PopupManager {
     };
     
     return displayNames[setting] || setting;
-  }
-
-
-  restoreCollapsedStates() {
-    // 버그 수정 섹션 상태 복원
-    if (this.settings.collapsedSections.bugFixes) {
-      this.setCollapsedState('bugFixesToggle', 'bugFixesContent', true);
-    }
-    
-    // 고급 설정 섹션 상태 복원  
-    if (this.settings.collapsedSections.advanced) {
-      this.setCollapsedState('advancedToggle', 'advancedContent', true);
-    }
-
-  }
-
-  setCollapsedState(toggleId, contentId, collapsed) {
-    const toggle = document.getElementById(toggleId);
-    const content = document.getElementById(contentId);
-    
-    if (toggle && content) {
-      if (collapsed) {
-        toggle.classList.add('collapsed');
-        content.classList.add('collapsed');
-      } else {
-        toggle.classList.remove('collapsed');
-        content.classList.remove('collapsed');
-      }
-    }
-  }
-
-  toggleCollapsible(toggleId, contentId) {
-    const toggle = document.getElementById(toggleId);
-    const content = document.getElementById(contentId);
-    
-    if (toggle && content) {
-      const isCollapsed = content.classList.contains('collapsed');
-      const newCollapsedState = !isCollapsed;
-      
-      // 상태 변경
-      this.setCollapsedState(toggleId, contentId, newCollapsedState);
-      
-      // 상태 저장
-      const sectionKey = this.getSectionKey(toggleId);
-      if (sectionKey) {
-        this.settings.collapsedSections[sectionKey] = newCollapsedState;
-        this.saveSetting('collapsedSections', this.settings.collapsedSections);
-      }
-    }
-  }
-
-  getSectionKey(toggleId) {
-    const sectionMap = {
-      'bugFixesToggle': 'bugFixes',
-      'advancedToggle': 'advanced'
-    };
-    return sectionMap[toggleId];
   }
 
   // 기존 showStatus 메서드는 그대로 유지

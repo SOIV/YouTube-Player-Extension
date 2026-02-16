@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_appName__",
   "version": "2.0.0",
-  "description": "__MSG_appDescriptionmf__",
+  "description": "__MSG_appDescription__",
   "default_locale": "ko",
   
   "permissions": [
@@ -50,11 +50,6 @@
     "128": "icons/icon128.png"
   },
   
-  "web_accessible_resources": [
-    {
-      "resources": ["about.html"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  "web_accessible_resources": []
   
 }
