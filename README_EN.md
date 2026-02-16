@@ -8,6 +8,12 @@
 
 A browser extension that enhances various features of the YouTube player.
 
+## Project Status
+
+- `Extension_v2` (v2.x): **Active development and support target**
+- `Extension` (v1.x): **Frozen, no further feature/support updates**
+- New features and improvements are developed on `Extension_v2`.
+
 ## Key Features
 
 ### 🎵 Audio Features
@@ -22,18 +28,20 @@ A browser extension that enhances various features of the YouTube player.
 ### 🛠️ Advanced Settings
 - **Custom Scripts**: Execute JavaScript code for additional functionality
 - **Custom Themes**: CSS style customization
+- **Debug Mode**: Control developer/troubleshooting log output
 - **Multi-language Support**: Korean, English
 
 ## Installation
 
-> ※ This extension does not support automatic updates.
+> ※ Chrome Web Store installs support automatic updates.
+> Unpacked/manual installs require manual updates.
 
 ### 🏪 Chrome Web Store (Recommended)
 
 You can install it directly from the Chrome Web Store.<br>
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://chromewebstore.google.com/detail/ndbapfoppojondcmkgdmgmkcanogjfof?utm_source=item-share-cb)
 
-### 📦 Download from Releases
+### 📦 Download from Releases (Distribution discontinued after v2.0.0)
 
 1. Download the latest version from [Releases page](https://github.com/SOIV/YouTube-Player-Extension/releases)
 2. Extract the downloaded ZIP file to your desired folder
@@ -52,10 +60,11 @@ You can install it directly from the Chrome Web Store.<br>
 
 ## Screenshots
 
-![Screenshot 1](docs/screenshot/en/스크린샷%202025-09-15%20232038.png)
-![Screenshot 2](docs/screenshot/en/스크린샷%202025-09-15%20232105.png)
-![Screenshot 3](docs/screenshot/en/스크린샷%202025-09-15%20232132.png)
-![Screenshot 4](docs/screenshot/en/스크린샷%202025-09-15%20232144.png)
+![Screenshot 1](docs/screenshot/en/v2/스크린샷%202026-02-17%20004033.png)
+![Screenshot 2](docs/screenshot/en/v2/스크린샷%202026-02-17%20004050.png)
+![Screenshot 3](docs/screenshot/en/v2/스크린샷%202026-02-17%20004116.png)
+![Screenshot 4](docs/screenshot/en/v2/스크린샷%202026-02-17%20004129.png)
+![Screenshot 5](docs/screenshot/en/v2/스크린샷%202026-02-17%20004202.png)
 
 ## Browser Compatibility
 
@@ -71,38 +80,40 @@ You can install it directly from the Chrome Web Store.<br>
 
 ```
 YouTube Player Extension/
-├── Extension
-│   ├── manifest.json          # Extension manifest
-│   ├── popup.html             # Popup UI
-│   ├── popup.js               # Popup logic
-│   ├── content.js             # Main content script
-│   ├── background.js          # Background service worker
-│   ├── about.html             # About page
-│   ├── i18n.js                # Internationalization system
-│   ├── styles.css             # Stylesheet
+├── Extension/                                # v1.x (frozen/preserved)
+├── Extension_v2/                             # v2.x (active development)
+│   ├── manifest.json                         # Extension manifest
+│   ├── popup.html                            # Popup UI
+│   ├── popup.js                              # Popup logic
+│   ├── content.js                            # Main content script
+│   ├── background.js                         # Background service worker
+│   ├── _locales/
+│   │   ├── ko/messages.json                  # Korean messages
+│   │   └── en/messages.json                  # English messages
+│   ├── styles/
+│   │   ├── popup.css                         # Popup styles
+│   │   └── content/
+│   │       ├── enhancer.css                  # Content feature styles
+│   │       └── bugfix.css                    # Content bugfix styles
 │   ├── scripts/
 │   │   ├── core/
-│   │   │   ├── base.js        # Basic utilities
-│   │   │   └── settings.js    # Settings manager
+│   │   │   ├── base.js                       # Base utilities
+│   │   │   └── settings.js                   # Settings manager
 │   │   └── features/
 │   │       ├── audio-control/
-│   │       │   ├── audio-compressor.js   # Audio compressor
-│   │       │   └── stereo-panning.js     # Stereo panning
+│   │       │   ├── audio-compressor.js       # Audio compressor
+│   │       │   └── stereo-panning.js         # Stereo panning
 │   │       └── player-control/
-│   │           ├── pip-button.js         # PIP button
-│   │           ├── mini-player-button.js # Small player button
-│   │           ├── floating-player.js    # Floating player
-│   │           ├── mini-player-button.js # Mini player button (legacy)
-│   │           ├── Loop-button.js        # Loop button
-│   │           └── Automatic-quality-selection.js # Automatic quality selection
-│   ├── locales/               # Language files
-│   │   ├── ko.json            # Korean
-│   │   ├── en.json            # English
-│   │   ├── example.json       # Translation template
-│   └── icons/                 # Extension icons
-├── legacy/                    # legacy/backup files
-├── docs/                      # Documentation
-└── Privacy-Policy.md          # Privacy Policy
+│   │           ├── pip-button.js             # PIP button
+│   │           ├── mini-player-button.js     # Mini player button
+│   │           ├── floating-player.js        # Floating player
+│   │           ├── Loop-button.js            # Loop button (planned)
+│   │           └── Automatic-quality-selection.js # Auto quality (planned)
+│   ├── icons/                                # Extension icons
+│   └── LICENSE
+├── legacy/                                   # legacy/backup files
+├── docs/                                     # Documentation
+└── Privacy-Policy.md                         # Privacy Policy
 ```
 
 ## Tech Stack
@@ -148,9 +159,9 @@ YouTube Player Extension/
 - Check if system volume is at an appropriate level
 - Check for potential conflicts when using with other audio enhancement features
 
-### ❓ Some features don't work in Firefox
-- Firefox has **limited support** and some features may not work properly
-- We recommend using **Chromium-based browsers** (Chrome, Edge, Whale, etc.) for the best experience
+### ❓ Installation/features do not work on Firefox
+- Current distribution/support target is **Chromium-based browsers**
+- Firefox is not officially supported
 
 ### ❓ I'm experiencing errors or bugs with the Floating Player
 - **Scrolling before YouTube site fully loads** may cause Floating Player related errors or bugs
@@ -159,9 +170,9 @@ YouTube Player Extension/
 - This issue may be fixed in a **future update**
 
 ### ❓ Does the extension auto-update?
-- Currently **does not support automatic updates**
-- Download new versions from [Releases page](https://github.com/SOIV/YouTube-Player-Extension/releases)
-- Auto-update will be supported after Chrome Web Store registration
+- Chrome Web Store installs update automatically
+- Unpacked/manual installs require manual updates
+- If you use manual install, download latest build from [Releases page](https://github.com/SOIV/YouTube-Player-Extension/releases) and reload it
 
 ## Contributing
 

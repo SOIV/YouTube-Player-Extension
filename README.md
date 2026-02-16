@@ -8,6 +8,12 @@
 
 유튜브 플레이어의 다양한 기능을 향상시키는 브라우저 확장 프로그램입니다.
 
+## 프로젝트 상태
+
+- `Extension_v2` (v2.x): **현재 메인 개발/지원 대상**
+- `Extension` (v1.x): **동결(Frozen) 상태, 추가 업데이트 미지원**
+- 신규 기능 및 개선은 `Extension_v2` 기준으로 진행됩니다.
+
 ## 주요 기능
 
 ### 🎵 오디오 기능
@@ -22,18 +28,20 @@
 ### 🛠️ 고급 설정
 - **커스텀 스크립트**: JavaScript 코드 실행으로 추가 기능 구현
 - **커스텀 테마**: CSS 스타일 커스터마이징
+- **디버그 모드**: 개발/문제 분석용 로그 출력 제어
 - **다국어 지원**: 한국어, 영어
 
 ## 설치 방법
 
-> ※ 해당 확장 프로그램은 자동 업데이트를 지원하지 않습니다.
+> ※ Chrome 웹 스토어 설치 버전은 자동 업데이트를 지원합니다.
+> 압축해제(수동) 설치 버전은 자동 업데이트를 지원하지 않습니다.
 
 ### 🏪 Chrome 웹 스토어 (권장)
 
 Chrome Web Store에서 바로 설치할 수 있습니다.<br>
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://chromewebstore.google.com/detail/ndbapfoppojondcmkgdmgmkcanogjfof?utm_source=item-share-cb)
 
-### 📦 릴리즈에서 다운로드
+### 📦 릴리즈에서 다운로드 (v2.0.0 이후 배포 중지)
 
 1. [Releases 페이지](https://github.com/SOIV/YouTube-Player-Extension/releases)에서 최신 버전 다운로드
 2. 다운로드한 ZIP 파일을 원하는 폴더에 압축 해제
@@ -52,10 +60,11 @@ Chrome Web Store에서 바로 설치할 수 있습니다.<br>
 
 ## 스크린샷
 
-![스크린샷 1](docs/screenshot/kr/스크린샷%202025-09-13%20163509.png)
-![스크린샷 2](docs/screenshot/kr/스크린샷%202025-09-13%20163528.png)
-![스크린샷 3](docs/screenshot/kr/스크린샷%202025-09-13%20163546.png)
-![스크린샷 4](docs/screenshot/kr/스크린샷%202025-09-13%20163555.png)
+![스크린샷 1](docs/screenshot/kr/v2/스크린샷%202026-02-17%20003156.png)
+![스크린샷 2](docs/screenshot/kr/v2/스크린샷%202026-02-17%20003218.png)
+![스크린샷 3](docs/screenshot/kr/v2/스크린샷%202026-02-17%20003311.png)
+![스크린샷 4](docs/screenshot/kr/v2/스크린샷%202026-02-17%20003327.png)
+![스크린샷 5](docs/screenshot/kr/v2/스크린샷%202026-02-17%20003349.png)
 
 ## 브라우저 호환성
 
@@ -71,38 +80,40 @@ Chrome Web Store에서 바로 설치할 수 있습니다.<br>
 
 ```
 YouTube Player Extension/
-├── Extension
-│   ├── manifest.json          # 확장 프로그램 매니페스트
-│   ├── popup.html             # 팝업 UI
-│   ├── popup.js               # 팝업 로직
-│   ├── content.js             # 메인 콘텐츠 스크립트
-│   ├── background.js          # 백그라운드 서비스 워커
-│   ├── about.html             # 정보 페이지
-│   ├── i18n.js                # 다국어 지원 시스템
-│   ├── styles.css             # 스타일시트
+├── Extension/                                # v1.x (동결/보존)
+├── Extension_v2/                             # v2.x (현재 개발/지원)
+│   ├── manifest.json                         # 확장 프로그램 매니페스트
+│   ├── popup.html                            # 팝업 UI
+│   ├── popup.js                              # 팝업 로직
+│   ├── content.js                            # 메인 콘텐츠 스크립트
+│   ├── background.js                         # 백그라운드 서비스 워커
+│   ├── _locales/
+│   │   ├── ko/messages.json                  # 한국어 메시지
+│   │   └── en/messages.json                  # 영어 메시지
+│   ├── styles/
+│   │   ├── popup.css                         # 팝업 스타일
+│   │   └── content/
+│   │       ├── enhancer.css                  # 콘텐츠 기능 스타일
+│   │       └── bugfix.css                    # 콘텐츠 버그픽스 스타일
 │   ├── scripts/
 │   │   ├── core/
-│   │   │   ├── base.js        # 기본 유틸리티
-│   │   │   └── settings.js    # 설정 관리자
+│   │   │   ├── base.js                       # 기본 유틸리티
+│   │   │   └── settings.js                   # 설정 관리자
 │   │   └── features/
 │   │       ├── audio-control/
-│   │       │   ├── audio-compressor.js   # 오디오 컴프레서
-│   │       │   └── stereo-panning.js     # 스테레오 패닝
+│   │       │   ├── audio-compressor.js       # 오디오 컴프레서
+│   │       │   └── stereo-panning.js         # 스테레오 패닝
 │   │       └── player-control/
-│   │           ├── pip-button.js         # PIP 버튼
-│   │           ├── mini-player-button.js # 소형 플레이어 버튼
-│   │           ├── floating-player.js    # 플로팅 플레이어
-│   │           ├── mini-player-button.js # 미니 플레이어 버튼(legacy)
-│   │           ├── Loop-button.js        # 반복 재생 버튼
-│   │           └── Automatic-quality-selection.js # 자동 화질 선택
-│   ├── locales/               # 언어 파일
-│   │   ├── ko.json            # 한국어
-│   │   ├── en.json            # 영어
-│   │   ├── example.json       # 번역 템플릿
-│   └── icons/                 # 확장 프로그램 아이콘
-├── legacy/                    # legacy/backup 파일
-├── docs/                      # 문서
-└── Privacy-Policy.md          # 개인정보처리방침(Privacy Policy)
+│   │           ├── pip-button.js             # PIP 버튼
+│   │           ├── mini-player-button.js     # 소형 플레이어 버튼
+│   │           ├── floating-player.js        # 플로팅 플레이어
+│   │           ├── Loop-button.js            # 연속 재생 버튼(예정)
+│   │           └── Automatic-quality-selection.js # 자동 화질 선택(예정)
+│   ├── icons/                                # 확장 프로그램 아이콘
+│   └── LICENSE
+├── legacy/                                   # legacy/backup 파일
+├── docs/                                     # 문서
+└── Privacy-Policy.md                         # 개인정보처리방침
 ```
 
 ## 기술 스택
@@ -148,9 +159,9 @@ YouTube Player Extension/
 - 시스템 볼륨이 적절한 수준인지 확인
 - 다른 오디오 향상 기능과 함께 사용시 충돌 가능성 확인
 
-### ❓ Firefox에서 일부 기능이 작동하지 않아요
-- Firefox는 **제한적 지원**으로 일부 기능이 정상 작동하지 않을 수 있습니다
-- 최적의 경험을 위해 **Chromium 기반 브라우저** (Chrome, Edge, Whale 등) 사용을 권장합니다
+### ❓ Firefox에서 설치/동작이 되지 않아요
+- 현재 배포/지원 대상은 **Chromium 기반 브라우저**입니다
+- Firefox는 공식 지원하지 않습니다
 
 ### ❓ 플로팅 플레이어(Floating Player)에서 오류나 버그가 발생해요
 - YouTube 사이트가 **완전히 로딩되기 전에 스크롤**을 내리면 플로팅 플레이어 관련 오류가 발생할 수 있습니다
@@ -159,9 +170,9 @@ YouTube Player Extension/
 - 해당 이슈는 **향후 업데이트**에서 수정될 수 있습니다.
 
 ### ❓ 확장 프로그램이 업데이트되나요?
-- 현재 **자동 업데이트를 지원하지 않습니다**
-- 새 버전은 [Releases 페이지](https://github.com/SOIV/YouTube-Player-Extension/releases)에서 다운로드
-- Chrome 웹 스토어 등록 후에는 자동 업데이트 지원 예정
+- Chrome 웹 스토어 설치 버전은 자동 업데이트됩니다
+- 압축해제 설치 버전은 수동 업데이트가 필요합니다
+- 수동 설치 사용자는 [Releases 페이지](https://github.com/SOIV/YouTube-Player-Extension/releases)에서 최신 버전을 받아 다시 로드해 주세요
 
 ## 기여하기
 
