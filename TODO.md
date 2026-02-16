@@ -1,20 +1,4 @@
 ## Update & Fix completed
-### v1.0.x update
-
-## To be updated
-> **v2 지원 이전 마지막 업데이트 / Last update before v2 support**
-> **마지막 업데이트가 아닐 수도 있습니다 / This may not be the last update**
-
-
-### Idea / updated List
-- [ ] 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
-    - 비디오 코덱 선택하는 기능은 추가되지 않습니다.
-- [ ] 볼륨 퍼센트 표시 설정
-    - 확정 추가 예정이 아님
-    - 볼륨 조절시 퍼센트가 표시가 되지 않았던 것을 보여줄 수 있도록
-
----
-
 ### v2.0.0 major update
 > Notice : v1.0.9 업데이트 이후로 당분간 v2 업데이트 준비로 인해 v1의 업데이트가 지연 될 수 있습니다.
 - [x] V2 UI/UX Update - v2.0.0 (Settings window & About)
@@ -27,8 +11,20 @@
 - [x] v1.0.10 업데이트 v2에 마이그래이션
 - [x] 커스텀 CSS/스크립트 미작동에 대한 부분 수정
 - [x] 디버그 모드 추가(ON/OFF 토글)
+
+## To be updated
+### v2.1.0 update
 - [ ] 연속 재생 버튼(Loop button)
   - 상태에 따라 아이콘이 변할 수 있도록 / 애니메이션 CSS 적용
+
+### Idea / updated List
+- [ ] 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
+    - 비디오 코덱 선택하는 기능은 추가되지 않습니다.
+- [ ] 볼륨 퍼센트 표시 설정
+    - 확정 추가 예정이 아님
+    - 볼륨 조절시 퍼센트가 표시가 되지 않았던 것을 보여줄 수 있도록
+
+---
 
 ## Help me!
 - [ ] 소형 플레이어의 툴팁을 유튜브의 기본 툴팁을 활용하여 표시
