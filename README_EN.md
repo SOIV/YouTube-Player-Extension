@@ -33,7 +33,7 @@ A browser extension that enhances various features of the YouTube player.
 
 ## Installation
 
-> ※ Chrome Web Store installs support automatic updates.
+> ※ Chrome Web Store installs support automatic updates.<br>
 > Unpacked/manual installs require manual updates.
 
 ### 🏪 Chrome Web Store (Recommended)
