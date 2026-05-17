@@ -94,6 +94,12 @@ class FloatingPlayerController {
     }
   }
 
+  updateMastheadOffset() {
+    const masthead = document.querySelector('#masthead-container');
+    const height = masthead ? masthead.offsetHeight : 56;
+    document.documentElement.style.setProperty('--efyt-masthead-height', `${height}px`);
+  }
+
   setupFloatingPlayerFeatures() {
     if (!this.settings.getSetting('popupPlayer')) return;
 
@@ -102,6 +108,7 @@ class FloatingPlayerController {
       return;
     }
 
+    this.updateMastheadOffset();
     this.addFloatingPlayerCSS();
     this.updateFloatingPlayerClasses();
 
@@ -484,7 +491,7 @@ class FloatingPlayerController {
         position: fixed !important;
         z-index: 2147483647 !important;
         pointer-events: auto !important;
-        top: 24px !important;
+        top: calc(var(--efyt-masthead-height, 56px) + 8px) !important;
         right: 24px !important;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
       }
@@ -550,14 +557,14 @@ class FloatingPlayerController {
       }
 
       body.efyt-floating-player.efyt-floating-player-top-left #movie_player:not(.ytp-fullscreen) {
-        top: 24px !important;
+        top: calc(var(--efyt-masthead-height, 56px) + 8px) !important;
         left: 24px !important;
         right: auto !important;
         bottom: auto !important;
       }
 
       body.efyt-floating-player.efyt-floating-player-top-center #movie_player:not(.ytp-fullscreen) {
-        top: 24px !important;
+        top: calc(var(--efyt-masthead-height, 56px) + 8px) !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
         right: auto !important;
@@ -565,7 +572,7 @@ class FloatingPlayerController {
       }
 
       body.efyt-floating-player.efyt-floating-player-top-right #movie_player:not(.ytp-fullscreen) {
-        top: 24px !important;
+        top: calc(var(--efyt-masthead-height, 56px) + 8px) !important;
         right: 24px !important;
         left: auto !important;
         bottom: auto !important;
