@@ -188,10 +188,6 @@ class AudioCompressorController {
 
   connectAudioNodes() {
     if (!this.audioContext || !this.gainNode) return;
-    
-    if (!this.isEnabled()) {
-      return;
-    }
 
     try {
       if (this.gainNode) {
@@ -280,7 +276,7 @@ class AudioCompressorController {
           this.setupVideoPlayListener();
         }
       } else {
-        return;
+        this.connectAudioNodes();
       }
     }
 
