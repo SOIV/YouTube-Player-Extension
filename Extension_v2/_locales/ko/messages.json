@@ -219,7 +219,7 @@
     "message": "YouTube에서 확장 프로그램이 활성화되었습니다."
   },
   "footerText": {
-    "message": "YouTube™ Player Extension v2.0.0"
+    "message": "YouTube™ Player Extension v2.0.1 - © 2025~2026 SOIV Studio"
   },
   "customThemePlaceholder": {
     "message": "/* 커스텀 CSS 코드를 입력하세요 */\n.ytp-chrome-bottom { \n  background: rgba(0,0,0,0.8) !important; \n}"

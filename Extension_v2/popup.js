@@ -76,7 +76,7 @@ class PopupManager {
         // 팝업/미니 재생기
         popupPlayer: false,
         miniPlayerSize: '480x270',
-        miniPlayerPosition: 'bottom-right',
+        miniPlayerPosition: 'top-right',
         
         // Picture-in-Picture 설정
         enablePIP: true,
@@ -100,6 +100,7 @@ class PopupManager {
     // 토글 스위치 설정
     document.querySelectorAll('.toggle').forEach(toggle => {
       const setting = toggle.dataset.setting;
+      toggle.classList.remove('active');
       if (this.settings[setting]) {
         toggle.classList.add('active');
       }

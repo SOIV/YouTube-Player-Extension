@@ -46,11 +46,6 @@ class FloatingPlayerController {
   }
 
   init() {
-    if (!this.isEnabled()) {
-      this.log('Floating player disabled');
-      return;
-    }
-
     this.log('Initializing floating player');
     this.setupFloatingPlayer();
   }

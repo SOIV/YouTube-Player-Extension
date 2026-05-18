@@ -5,10 +5,14 @@ class PIPButtonController {
     this.settings = settingsManager;
     this.domCache = domCache;
     this.eventManager = eventManager;
+    this.nativePIPButton = null;
+    this.pipCommandsSetup = false;
 
     // 언어 감지 및 다국어 텍스트 초기화
     this.currentLang = this.detectYouTubeLanguage();
     this.translations = this.getTranslations();
+    this.handlePIPButtonClick = this.handlePIPButtonClick.bind(this);
+    this.handlePIPStateChange = this.updatePIPButtonState.bind(this);
   }
 
   // 유튜브 언어 감지
@@ -77,10 +81,6 @@ class PIPButtonController {
 
   // PIP 초기화
   init() {
-    if (!this.isEnabled()) {
-      return;
-    }
-
     this.setupPIP();
   }
 
@@ -170,12 +170,16 @@ class PIPButtonController {
           `;
         }
 
-        // 기존 클릭 이벤트에 우리 기능 추가 (기존 이벤트 중단)
-        nativePIPButton.addEventListener('click', (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          this.togglePIP();
-        }, true); // capture phase에서 먼저 실행
+        if (this.nativePIPButton && this.nativePIPButton !== nativePIPButton) {
+          this.nativePIPButton.removeEventListener('click', this.handlePIPButtonClick, true);
+        }
+
+        this.nativePIPButton = nativePIPButton;
+
+        if (nativePIPButton.dataset.ytpePipBound !== 'true') {
+          nativePIPButton.addEventListener('click', this.handlePIPButtonClick, true);
+          nativePIPButton.dataset.ytpePipBound = 'true';
+        }
 
         return;
       }
@@ -239,15 +243,26 @@ class PIPButtonController {
     }
   }
 
+  handlePIPButtonClick(e) {
+    if (!this.settings.getSetting('enablePIP')) {
+      return;
+    }
+
+    e.stopPropagation();
+    e.preventDefault();
+    this.togglePIP();
+  }
+
   setupPIPCommands() {
+    if (this.pipCommandsSetup) {
+      return;
+    }
+
     // PIP 상태 변경 감지
-    this.eventManager.addEventListener(document, 'enterpictureinpicture', () => {
-      this.updatePIPButtonState();
-    });
+    this.eventManager.addEventListener(document, 'enterpictureinpicture', this.handlePIPStateChange);
     
-    this.eventManager.addEventListener(document, 'leavepictureinpicture', () => {
-      this.updatePIPButtonState();
-    });
+    this.eventManager.addEventListener(document, 'leavepictureinpicture', this.handlePIPStateChange);
+    this.pipCommandsSetup = true;
   }
 
   // PIP 버튼 상태 업데이트
@@ -285,6 +300,12 @@ class PIPButtonController {
 
   // 정리
   cleanup() {
+    if (this.nativePIPButton) {
+      this.nativePIPButton.removeEventListener('click', this.handlePIPButtonClick, true);
+      delete this.nativePIPButton.dataset.ytpePipBound;
+      this.nativePIPButton = null;
+    }
+
     // PIP 버튼 제거
     const pipButton = document.querySelector('.ytp-efyt-pip-button');
     if (pipButton) pipButton.remove();

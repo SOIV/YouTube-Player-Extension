@@ -57,10 +57,6 @@ class SmallPlayerButtonController {
   }
 
   init() {
-    if (!this.isEnabled()) {
-      return;
-    }
-
     this.setupSmallPlayerButton();
   }
 

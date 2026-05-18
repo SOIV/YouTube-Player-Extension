@@ -89,32 +89,26 @@ class YouTubePlayerEnhancer {
     );
     await this.audioCompressorController.init();
     
-    if (this.settingsManager.getSetting('enableStereoPan')) {
-      this.stereoPanningController = new window.YouTubeEnhancer.StereoPanningController(
-        this.settingsManager, 
-        this.domCache, 
-        this.eventManager
-      );
-      await this.stereoPanningController.init();
-    }
+    this.stereoPanningController = new window.YouTubeEnhancer.StereoPanningController(
+      this.settingsManager,
+      this.domCache,
+      this.eventManager
+    );
+    await this.stereoPanningController.init();
     
-    if (this.settingsManager.getSetting('enablePIP')) {
-      this.pipButtonController = new window.YouTubeEnhancer.PIPButtonController(
-        this.settingsManager, 
-        this.domCache, 
-        this.eventManager
-      );
-      this.pipButtonController.init();
-    }
+    this.pipButtonController = new window.YouTubeEnhancer.PIPButtonController(
+      this.settingsManager,
+      this.domCache,
+      this.eventManager
+    );
+    this.pipButtonController.init();
     
-    if (this.settingsManager.getSetting('enableSmallPlayerButton')) {
-      this.smallPlayerButtonController = new window.YouTubeEnhancer.SmallPlayerButtonController(
-        this.settingsManager, 
-        this.domCache, 
-        this.eventManager
-      );
-      this.smallPlayerButtonController.init();
-    }
+    this.smallPlayerButtonController = new window.YouTubeEnhancer.SmallPlayerButtonController(
+      this.settingsManager,
+      this.domCache,
+      this.eventManager
+    );
+    this.smallPlayerButtonController.init();
 
     this.floatingPlayerController = new window.YouTubeEnhancer.FloatingPlayerController(
       this.settingsManager,
@@ -128,10 +122,6 @@ class YouTubePlayerEnhancer {
   notifyModulesOfSettingsChange(changedKeys) {
     if (this.audioCompressorController) {
       this.audioCompressorController.onSettingsChanged(changedKeys);
-    }
-    
-    if (this.stereoPanningController) {
-      this.stereoPanningController.onSettingsChanged(changedKeys);
     }
     
     if (this.pipButtonController) {
@@ -205,22 +195,8 @@ class YouTubePlayerEnhancer {
   }
 
   runPeriodicChecks() {
-    if (this.audioCompressorController && this.settingsManager.getSetting('enableCompressor')) {
-      this.checkAudioContextHealth(this.audioCompressorController);
-    }
-    if (this.stereoPanningController && this.settingsManager.getSetting('enableStereoPan')) {
-      this.checkAudioContextHealth(this.stereoPanningController);
-    }
-  }
-
-  checkAudioContextHealth(controller) {
-    try {
-      if (!controller.audioContext || controller.audioContext.state === 'closed') {
-        if (controller.isEnabled()) {
-          controller.init();
-        }
-      }
-    } catch (error) {
+    if (this.audioCompressorController) {
+      this.audioCompressorController.checkHealth();
     }
   }
 
