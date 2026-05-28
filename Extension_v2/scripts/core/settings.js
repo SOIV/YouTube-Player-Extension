@@ -24,6 +24,9 @@ class SettingsManager {
       
       // 소형 플레이어 버튼 설정
       enableSmallPlayerButton: true,
+
+      // 반복 재생 버튼 설정
+      enableLoopButton: true,
       
       // 고급 설정
       customScripts: '',

@@ -44,6 +44,12 @@
   "smallPlayerButtonDesc": {
     "message": "YouTube 우클릭 메뉴의 소형 플레이어 기능을 버튼으로 추가"
   },
+  "loopButton": {
+    "message": "반복 재생 버튼"
+  },
+  "loopButtonDesc": {
+    "message": "플레이어에 반복 재생 토글 버튼 추가 (클릭 시 애니메이션 효과)"
+  },
   "floatingPlayerLabel": {
     "message": "플로팅 플레이어"
   },

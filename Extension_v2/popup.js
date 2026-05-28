@@ -83,7 +83,10 @@ class PopupManager {
         
         // 소형 플레이어 버튼 설정
         enableSmallPlayerButton: true,
-        
+
+        // 반복 재생 버튼 설정
+        enableLoopButton: true,
+
         // 고급 설정
         customScripts: '',
         customTheme: '',
@@ -469,6 +472,7 @@ class PopupManager {
       miniPlayerPosition: this.t('floatingPlayerPositionName'),
       enablePIP: this.t('pipModeName'),
       enableSmallPlayerButton: this.t('smallPlayerButton'),
+      enableLoopButton: this.t('loopButton'),
       
       // 슬라이더 설정
       volumeBoost: this.t('audioCompressorName'),

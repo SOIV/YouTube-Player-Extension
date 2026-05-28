@@ -23,6 +23,7 @@
         "scripts/features/audio-control/stereo-panning.js",
         "scripts/features/player-control/pip-button.js",
         "scripts/features/player-control/mini-player-button.js",
+        "scripts/features/player-control/Loop-button.js",
         "scripts/features/player-control/floating-player.js",
         "content.js"
       ],

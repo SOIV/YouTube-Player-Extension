@@ -13,6 +13,7 @@ class YouTubePlayerEnhancer {
     this.stereoPanningController = null;
     this.pipButtonController = null;
     this.smallPlayerButtonController = null;
+    this.loopButtonController = null;
     this.floatingPlayerController = null;
     this.customThemeStyleId = 'ytpe-custom-theme';
     
@@ -110,6 +111,13 @@ class YouTubePlayerEnhancer {
     );
     this.smallPlayerButtonController.init();
 
+    this.loopButtonController = new window.YouTubeEnhancer.LoopButtonController(
+      this.settingsManager,
+      this.domCache,
+      this.eventManager
+    );
+    this.loopButtonController.init();
+
     this.floatingPlayerController = new window.YouTubeEnhancer.FloatingPlayerController(
       this.settingsManager,
       this.domCache,
@@ -131,7 +139,11 @@ class YouTubePlayerEnhancer {
     if (this.smallPlayerButtonController) {
       this.smallPlayerButtonController.onSettingsChanged(changedKeys);
     }
-    
+
+    if (this.loopButtonController) {
+      this.loopButtonController.onSettingsChanged(changedKeys);
+    }
+
     if (this.floatingPlayerController) {
       this.floatingPlayerController.onSettingsChanged(changedKeys);
     }
@@ -221,7 +233,11 @@ class YouTubePlayerEnhancer {
     if (this.smallPlayerButtonController) {
       this.smallPlayerButtonController.cleanup();
     }
-    
+
+    if (this.loopButtonController) {
+      this.loopButtonController.cleanup();
+    }
+
     if (this.floatingPlayerController) {
       this.floatingPlayerController.cleanup();
     }

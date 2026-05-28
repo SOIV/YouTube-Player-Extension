@@ -44,6 +44,12 @@
   "smallPlayerButtonDesc": {
     "message": "Add a button for YouTube's right-click menu small player feature"
   },
+  "loopButton": {
+    "message": "Loop Button"
+  },
+  "loopButtonDesc": {
+    "message": "Add a loop toggle button to the player (with click animation)"
+  },
   "floatingPlayerLabel": {
     "message": "Floating Player"
   },
