@@ -222,7 +222,7 @@
     "message": "Extension activated on YouTube."
   },
   "footerText": {
-    "message": "YouTube™ Player Extension v2.0.1 - © 2025~2026 SOIV Studio"
+    "message": "YouTube™ Player Extension v2.1.0 - © 2025~2026 SOIV Studio"
   },
   "customThemePlaceholder": {
     "message": "/* Enter your custom CSS code here */\n.ytp-chrome-bottom { \n  background: rgba(0,0,0,0.8) !important; \n}"
