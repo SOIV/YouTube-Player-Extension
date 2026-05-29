@@ -82,13 +82,23 @@ class LoopButtonController {
     } catch (error) {}
   }
 
+  clearAnimationTimer() {
+    if (this._animationTimer) {
+      clearTimeout(this._animationTimer);
+      this._animationTimer = null;
+    }
+  }
+
   addLoopButton() {
     try {
       const controlsRightContainer = document.querySelector('.ytp-right-controls-right');
       if (!controlsRightContainer) return;
 
       const existing = document.querySelector('.ytp-efyt-loop-button');
-      if (existing) existing.remove();
+      if (existing) {
+        this.clearAnimationTimer();
+        existing.remove();
+      }
 
       if (this._loopObserver) {
         this._loopObserver.disconnect();
@@ -105,16 +115,16 @@ class LoopButtonController {
 
       loopButton.innerHTML = `
         <svg viewBox="0 0 24 24" class="ype-loop-icon" aria-hidden="true" focusable="false">
-          <path class="animated-tail"
+          <path class="ype-loop-tail"
                 d="M 17 6 L 20 6 L 20 18 L 4 18 L 4 6 L 17 6 L 20 6 L 20 18 L 4 18 L 4 6 L 17 6"
                 pathLength="200"/>
-          <path class="animated-tail"
+          <path class="ype-loop-tail"
                 d="M 7 18 L 4 18 L 4 6 L 20 6 L 20 18 L 7 18 L 4 18 L 4 6 L 20 6 L 20 18 L 7 18"
                 pathLength="200"/>
-          <polygon class="arrow-head top-arrow" points="-2,-4 2.5,0 -2,4"/>
-          <polygon class="arrow-head bottom-arrow" points="-2,-4 2.5,0 -2,4"/>
+          <polygon class="ype-loop-arrow-head ype-loop-top-arrow" points="-2,-4 2.5,0 -2,4"/>
+          <polygon class="ype-loop-arrow-head ype-loop-bottom-arrow" points="-2,-4 2.5,0 -2,4"/>
 
-          <path class="status-icon" d="M 11 10.5 L 12.5 9.5 L 12.5 14.5" />
+          <path class="ype-loop-status-icon" d="M 11 10.5 L 12.5 9.5 L 12.5 14.5" />
           
         </svg>
       `;
@@ -154,7 +164,7 @@ class LoopButtonController {
       button.classList.remove('active');
     }
 
-    if (this._animationTimer) clearTimeout(this._animationTimer);
+    this.clearAnimationTimer();
 
     button.classList.remove('animating');
     void button.querySelector('.ype-loop-icon')?.offsetWidth;
@@ -185,7 +195,10 @@ class LoopButtonController {
   onSettingsChanged(changedSettings) {
     if (changedSettings.includes('enableLoopButton')) {
       const existing = document.querySelector('.ytp-efyt-loop-button');
-      if (existing) existing.remove();
+      if (existing) {
+        this.clearAnimationTimer();
+        existing.remove();
+      }
 
       if (this._loopObserver) {
         this._loopObserver.disconnect();
@@ -203,10 +216,7 @@ class LoopButtonController {
       this._loopObserver.disconnect();
       this._loopObserver = null;
     }
-    if (this._animationTimer) {
-      clearTimeout(this._animationTimer);
-      this._animationTimer = null;
-    }
+    this.clearAnimationTimer();
     const button = document.querySelector('.ytp-efyt-loop-button');
     if (button) button.remove();
   }

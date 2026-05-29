@@ -298,7 +298,7 @@ efyt-progress-tooltip {
 }
 
 /* ── 2. 중앙 상태 아이콘 (1 또는 체크) 디자인 및 숨김 처리 ── */
-.status-icon {
+.ype-loop-status-icon {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.5;
@@ -315,12 +315,12 @@ efyt-progress-tooltip {
 }
 
 /* ── 3. 활성화(active) 되었을 때 아이콘 나타남 ── */
-.ytp-efyt-loop-button.active .status-icon {
+.ytp-efyt-loop-button.active .ype-loop-status-icon {
   opacity: 1;
   transform: scale(1); /* 원래 크기로 복귀하며 팝업 */
 }
 
-.animated-tail {
+.ype-loop-tail {
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -330,25 +330,25 @@ efyt-progress-tooltip {
   stroke-dashoffset: -168;
 }
 
-.arrow-head {
+.ype-loop-arrow-head {
   fill: currentColor;
   offset-rotate: auto;
   offset-distance: 0%;
 }
 
-.top-arrow {
+.ype-loop-top-arrow {
   offset-path: path("M 17 6 L 20 6 L 20 18 L 4 18 L 4 6 L 17 6 Z");
 }
 
-.bottom-arrow {
+.ype-loop-bottom-arrow {
   offset-path: path("M 7 18 L 4 18 L 4 6 L 20 6 L 20 18 L 7 18 Z");
 }
 
-.ytp-efyt-loop-button.animating .animated-tail {
+.ytp-efyt-loop-button.animating .ype-loop-tail {
   animation: run-tail 1.15s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.ytp-efyt-loop-button.animating .arrow-head {
+.ytp-efyt-loop-button.animating .ype-loop-arrow-head {
   animation: run-head 1.15s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
