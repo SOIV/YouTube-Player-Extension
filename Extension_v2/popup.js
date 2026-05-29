@@ -85,7 +85,7 @@ class PopupManager {
         enableSmallPlayerButton: true,
 
         // 반복 재생 버튼 설정
-        enableLoopButton: true,
+        enableLoopButton: false,
 
         // 고급 설정
         customScripts: '',
