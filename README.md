@@ -107,7 +107,7 @@ YouTube Player Extension/
 │   │           ├── pip-button.js             # PIP 버튼
 │   │           ├── mini-player-button.js     # 소형 플레이어 버튼
 │   │           ├── floating-player.js        # 플로팅 플레이어
-│   │           ├── Loop-button.js            # 연속 재생 버튼(예정)
+│   │           ├── Loop-button.js            # 연속 재생 버튼
 │   │           └── Automatic-quality-selection.js # 자동 화질 선택(예정)
 │   ├── icons/                                # 확장 프로그램 아이콘
 │   └── LICENSE

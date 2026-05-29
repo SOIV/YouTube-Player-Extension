@@ -14,7 +14,7 @@
 
 ## To be updated
 ### v2.1.0 update
-- [ ] 연속 재생 버튼(Loop button)
+- [x] 연속 재생 버튼(Loop button)
   - 상태에 따라 아이콘이 변할 수 있도록 / 애니메이션 CSS 적용
 
 ### Idea / updated List
