@@ -23,6 +23,7 @@ A browser extension that enhances various features of the YouTube player.
 ### 📱 Player Features
 - **Picture-in-Picture (PIP) Button**: Added a button to launch the PIP.
 - **Mini Player Button**: Added a button to go to YouTube's mini player.
+- **Loop Button**: Added a loop toggle button to the player (with click animation)
 - **Floating Player**: Continue watching with small player while scrolling (customizable size and position)
 
 ### 🛠️ Advanced Settings
