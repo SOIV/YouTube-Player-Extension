@@ -12,10 +12,12 @@
 - [x] 커스텀 CSS/스크립트 미작동에 대한 부분 수정
 - [x] 디버그 모드 추가(ON/OFF 토글)
 
-## To be updated
 ### v2.1.0 update
 - [x] 연속 재생 버튼(Loop button)
   - 상태에 따라 아이콘이 변할 수 있도록 / 애니메이션 CSS 적용
+
+## To be updated
+- 예정된 업데이트 없음
 
 ### Idea / updated List
 - [ ] 유튜브 자동 화질 고정(자동 품질 선택(Automatic quality selection)) 기능
