@@ -91,8 +91,8 @@ class LoopButtonController {
 
   addLoopButton() {
     try {
-      const controlsRightContainer = document.querySelector('.ytp-right-controls-right');
-      if (!controlsRightContainer) return;
+      const subtitlesButton = document.querySelector('.ytp-subtitles-button');
+      if (!subtitlesButton) return;
 
       const existing = document.querySelector('.ytp-efyt-loop-button');
       if (existing) {
@@ -139,12 +139,7 @@ class LoopButtonController {
         this.toggleLoop(loopButton);
       });
 
-      const fullscreenButton = controlsRightContainer.querySelector('.ytp-fullscreen-button');
-      if (fullscreenButton) {
-        controlsRightContainer.insertBefore(loopButton, fullscreenButton);
-      } else {
-        controlsRightContainer.appendChild(loopButton);
-      }
+      subtitlesButton.parentNode.insertBefore(loopButton, subtitlesButton);
 
       this.watchVideoLoopState(loopButton);
 
